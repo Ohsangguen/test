@@ -1,44 +1,50 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom'; 
-import "./App.css";
-
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Header from './pages/Header';
+import Sidebar from './pages/Sidebar';
+// import Login from './pages/Login';
 import Main from './pages/Main';
-import Tarot_meaning from './pages/Tarot_meaning';
+import TarotMeaning from './pages/TarotMeaning';
 import Todayfortune from './pages/Todayfortune';
 import Fourcard from './pages/Fourcard';
 import Couple from './pages/Couple';
+import Login from './pages/Login';
 
 function App() {
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태 관리
+
+  // 사이드바 열기/닫기 함수
+  const toggleSidebar = () => {
+    setIsSidebarOpen(prevState => !prevState);
+    console.log("bar click");
+  };
+
   return (
     <Router>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/main">Main</Link>
-          </li>
-          <li>
-            <Link to="/tarotmeaning">Tarot_meaning</Link>
-          </li>
-          <li>
-            <Link to="/todayfortune">Todayfortune</Link>
-          </li>
-          <li>
-            <Link to="/fourcard">Fourcard</Link>
-          </li>
-          <li>
-            <Link to="/couple">Couple</Link>
-          </li>
-        </ul>
-      </nav>
+      <div className="app">
+        {/* Header */}
+        <Header toggleSidebar={toggleSidebar} />
 
-      <Routes>
-        
-        <Route path="/main" element={<Main />} />
-        <Route path="/tarotmeaning" element={<Tarot_meaning />} />
-        <Route path="/todayfortune" element={<Todayfortune />} />
-        <Route path="/fourcard" element={<Fourcard />} />
-        <Route path="/couple" element={<Couple />} />
-      </Routes>
+        <div className="mainBody">
+          {/* Sidebar */}
+          <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
+          <div
+            className={`overlay ${isSidebarOpen ? "open" : ""}`}
+            onClick={toggleSidebar}
+          ></div>
+
+          <div className="main-content">
+            <Routes>
+              <Route path="/login" element={<Login />} />
+              <Route path="/main" element={<Main />} />
+              <Route path="/todayfortune" element={<Todayfortune />} />
+              <Route path="/tarotmeaning" element={<TarotMeaning />} />
+              <Route path="/fourcard" element={<Fourcard />} />
+              <Route path="/couple" element={<Couple />} />
+            </Routes>
+          </div>
+        </div>
+      </div>
     </Router>
   );
 }

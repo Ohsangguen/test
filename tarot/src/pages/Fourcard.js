@@ -14,7 +14,6 @@ const Fourcard = () => {
     return (
         <div className="tarot-purple-four">
              <div className="black-overlay-four">
-
                 {selectedScreen === 'selection' && (
                     <div id="selection-screen" className="screen active">
                         <h1>타로 리딩을 선택하세요</h1>

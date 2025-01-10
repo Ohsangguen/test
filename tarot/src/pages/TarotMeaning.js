@@ -1,8 +1,8 @@
 // TarotExplanation.jsx
 import React from 'react';
-import './Tarot_meaning.css';
+import './TarotMeaning.css';
 
-const Tarot_meaning = () => {
+const TarotMeaning = () => {
   return (
     <div className="tarot-purple-mean">
       <div className="black-overlay">
@@ -83,4 +83,4 @@ const Tarot_meaning = () => {
   );
 };
 
-export default Tarot_meaning;
+export default TarotMeaning;

@@ -4,9 +4,9 @@ import './Todayfortune.css';  // CSS 파일 import
 
 const Todayfortune = () => {
 
-  const cardCount = 60; // 카드 수를 설정
-  const radius = 300; // 반지름 설정
-  const cards = Array.from({ length: cardCount });
+  // const cardCount = 60; // 카드 수를 설정
+  // const radius = 300; // 반지름 설정
+  // const cards = Array.from({ length: cardCount });
 
 
   return (
