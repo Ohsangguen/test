@@ -1,0 +1,170 @@
+/* Today.css */
+/* body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}*/
+
+.tarot-purple {
+    background-color: rgb(54, 23, 97);
+    color: #fff;
+    position: relative;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.black-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+    .container-main {
+        width: 100%;
+        height: 100%;
+        text-align: center;
+        z-index: 2;
+        position: relative;
+        overflow: hidden;
+
+    }
+
+    .header-main {
+        margin-top: 1.5vh;
+        font-size: 1.5rem;
+        font-weight: bold;
+        color: white;
+    }
+
+    /* .cards-wrapper {
+        display: flex;
+        justify-content: space-around;
+        margin-top: 5rem;
+        flex-wrap: wrap;
+        width: 80%;
+        height: 80%;
+    } */
+
+    .cards-wrapper-main {
+        display: flex;
+        flex-wrap: wrap;
+        width: 100%;
+        height: 100%;
+    }
+
+    .card-container-main {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-decoration: none;
+        color: rgb(230, 201, 204);
+    }
+
+    .card-container-main:hover .card-image-main {
+        transform: scale(1.1);
+        box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        transition: transform 0.3s ease-in-out;
+    }
+
+    .leftupcard-container { top: 10%; left: 10%; }
+    .rightupcard-container { top: 10%; right: 10%; }
+    .leftdowncard-container { bottom: 10%; left: 10%; }
+    .rightdowncard-container { bottom: 10%; right: 10%; }
+
+    .card-image-main {
+        width: 30%;
+        z-index: 2;
+        box-shadow: 0 0 5px rgba(237, 240, 77, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
+      0 0 15px rgba(237, 240, 77, 0.1);
+    }
+
+    .card-text-main {
+        margin-bottom: 0.5rem;
+        z-index: 3; /* 텍스트를 카드 위에 표시 */
+        font-size: 3vh;
+    }
+
+    .today-fortune, .tarot-meaning, .card-tarot, .couple-tarot {
+        position: absolute;
+        color: rgb(230, 201, 204);
+        text-decoration: none;
+        z-index: 3;
+        font-size: 3vh;
+    }
+
+    .today-fortune { bottom: 10%; left: 25%; }
+    .tarot-meaning { top: 10%; left: 25%; }
+    .card-tarot { top: 10%; right: 25%; }
+    .couple-tarot { bottom: 10%; right: 25%; }
+
+
+    .leftsymbol-container {
+        position: absolute;
+        width: 50%;
+        height: 0%;
+        top: 10%;
+        left: 0%;
+        transform: translateY(-5%);
+        z-index: 2;
+    }
+    /* 이미지 자체 스타일은 필요에 따라 추가 */
+    .leftsymbol-img { width: 100%; height: auto; }
+
+    .rightsymbol-container {
+        position: absolute;
+        width: 50%;
+        height: 0%;
+        top: 10%;
+        left: 100%;
+        transform: translateY(-5%);
+        z-index: 2;
+    }
+    /* 이미지 자체 스타일은 필요에 따라 추가 */
+    .rightsymbol-img { width: 100%; height: auto; }
+
+
+
+
+    /* .leftsymbol-img, .rightsymbol-img {
+        position: absolute;
+        width: 10%;
+        height: auto;
+        z-index: 2;
+    }
+    .leftsymbol-img { top: 10%; left: 5%; transform: translateY(-50%); }
+    .rightsymbol-img { top: 10%; right: 5%; transform: translateY(-50%); } */
+
+    .center-main {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        z-index: 2;
+    }
+
+
+    .midle-image {
+        width: 100%;
+        max-width: 800px;
+        height: auto;
+        
+    }
+
+@media (max-width: 1200px) {
+    .header { font-size: 4vw; }
+    .today-fortune, .tarot-meaning, .card-tarot, .couple-tarot {
+        font-size: 4vw;
+    }
+    .midle-image { width: 70%; }
+    .card-image { width: 30%; }
+  }
+  

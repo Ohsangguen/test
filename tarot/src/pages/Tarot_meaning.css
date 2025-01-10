@@ -1,0 +1,27 @@
+
+.tarot-purple-mean {
+    background-color: rgb(54, 23, 97);
+    color: #fff;
+    overflow: hidden;
+    position: relative;
+    height: 100vh;
+    margin: 0;
+}
+
+.black-overlay {
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+}
+
+.user-wrap img {
+    width: 120%;
+    height: 90%;
+    position: relative;
+    left: -10%;
+    top: -2%;
+}
