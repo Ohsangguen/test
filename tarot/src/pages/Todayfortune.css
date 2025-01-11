@@ -99,10 +99,9 @@
   flex-wrap: wrap;
   justify-content: center;
   align-items: center;
-  height: 45%;
+  height: 100%;
   margin-top: 10px;
   margin-bottom: 20px;
-  position: relative;
   z-index: 5;
 }
 
@@ -123,7 +122,7 @@
   margin: 5px;
   cursor: pointer;
   perspective: 1000px;
-  transition: transform 0.6s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 6;
   position: relative;
   border-radius: 3px;
@@ -131,6 +130,20 @@
     0 0 15px rgba(245, 223, 62, 0.187);
 }
 
+.card-wrapper {
+  /* 클릭 가능한 영역 확장 */
+  width: 120px;  /* 카드 이미지보다 넓게 설정 */
+  height: auto; /* 카드 이미지보다 높게 설정 */
+  cursor: pointer;
+  /* 필요하다면 투명한 배경을 추가하여 영역 확인 가능:
+  background-color: rgba(0, 0, 0, 0.1);
+  */
+}
+
+.card-wrapper:hover .tarot-card {
+  transform: translateY(-30px);
+  box-shadow: 0 10px 20px rgb(255, 255, 255);
+}
 .card.tilted {
   transform: rotate(15deg);
   z-index: 7;
@@ -189,17 +202,7 @@
   z-index: 2;
 }
 
-#reveal-button {
-  display: block;
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
-  position: absolute;
-  bottom: 30px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 10;
-}
+
 
 .selection-options {
   display: flex;
@@ -274,6 +277,30 @@
 .selection-btn.shuffle-btn {
   position: relative;
   z-index: 10; /* 다른 요소보다 높게 설정 */
+}
+
+.selection-btn.shuffle-btn {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+}
+
+.selection-btn.reveal-button {
+  display: block;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  position: relative;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
 }
 
 @media (max-width: 768px) {
