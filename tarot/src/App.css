@@ -1,7 +1,14 @@
+@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102@1.0/MapoGoldenPier.css');
+
+
 body {
   width: 1920px;
   margin: 0;
-  font-family: Arial, sans-serif;
+  font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
+}
+
+* {
+  font-family: 'MapoGoldenPier', sans-serif; /* 모든 요소에 폰트 패밀리 설정 */
 }
 
 .app {

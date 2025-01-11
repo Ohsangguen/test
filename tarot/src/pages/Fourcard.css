@@ -1,10 +1,10 @@
-body {
+/* body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
-  }
+  } */
   
-  .tarot-purple-four {
+  .tarot-purple {
     background-color: rgb(54, 23, 97);
     color: #fff;
     position: relative;
@@ -15,7 +15,7 @@ body {
     align-items: center;
 }
 
-.black-overlay-four {
+.black-overlay {
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;

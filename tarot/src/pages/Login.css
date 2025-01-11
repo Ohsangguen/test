@@ -1,9 +1,16 @@
+@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102@1.0/MapoGoldenPier.css');
+
+
+body {
+  font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
+}
+
+
 .background {
     background-color: rgb(54, 23, 97);
     flex:1;
     min-height: 100vh;
     margin: 0;
-    font-family: 'Roboto', sans-serif; /* 구글 폰트 적용 */
     display: flex;
     align-items: center;
     /*가로 방향 가운데 정렬*/
@@ -12,42 +19,56 @@
   
   /* 로그인 컨테이너 */
   .login-container {
-    width: 300px;
-    height: 400px;
+    width: 380px;
+    height: 700px;
     padding: 30px 40px;
-    background-color: rgba(255, 255, 255, 0.95); /* 반투명 흰색 배경 */
-    border-radius: 12px;
-    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 20px 80px rgba(255, 255, 255, 0.2);
     text-align: center;
-    margin: 20px auto; /* 수평 중앙 배치 */
+    margin: 0 auto;
+    padding: 20px;
+    background-image: url('../components/card_image.png');
+    background-size: contain;    
+    overflow-y: auto; /* 내부 요소가 넘칠 경우 스크롤 가능 */
   }
-  
+
+/*   
   .login-container.extend {
-    height: 750px;  /* 세로길이 확장 */
+    height: 750px;
   }
-  
+   */
+
+
   /* 제목 스타일 */
   .login-container h2 {
+    padding-top: 32px;
     margin-bottom: 25px;
-    color: #333;
+    color: #ffffff;
+    font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
+
   }
   
   /* 폼 그룹 */
   .login-form .form-group {
+    padding-left: 15px;
+    padding-right: 15px;
     margin-bottom: 20px;
     text-align: left;
   }
   
   /* 레이블 스타일 */
   .login-form label {
+    padding-left: 5px;
     display: block;
     margin-bottom: 8px;
-    color: #555;
+    color: #ffffff;
     font-weight: 500;
+    font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
+
   }
   
   /* 아이콘과 입력창을 함께 감싸는 컨테이너 */
   .input-with-icon {
+    
     position: relative;
   }
   
@@ -90,16 +111,18 @@
   
   /* 제출 버튼 스타일 */
   .submit-button {
-    width: 100%;
+    width: calc(100% - 30px);
+    margin-top: 10px;
     padding: 14px 0;
     background-color: #9862b0;
     color: white;
-    border: none;
     border-radius: 6px;
     cursor: pointer;
     font-size: 18px;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+    font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
+
   }
   
   /* 제출 버튼 호버 시 스타일 변경 */
@@ -111,11 +134,11 @@
   
   /* 토글 버튼 스타일 */
   .toggle-button {
+    width: calc(100% - 30px);
     margin-top: 20px;
-    width: 100%;
     padding: 12px 0;
     background-color: transparent;
-    color: #000000;
+    color: #ffffff;
     border: 2px solid #9862b0;
     border-radius: 6px;
     cursor: pointer;
@@ -134,6 +157,8 @@
     margin-top: 15px;
     color: red;
     font-weight: 500;
+    font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
+
   }
   
   .google-login {

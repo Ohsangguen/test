@@ -1,12 +1,34 @@
 // OneCardTarot.jsx
-import React from 'react';
-import './Todayfortune.css';  // CSS 파일 import
+import React, { useEffect, useState } from 'react';
+import './Todayfortune.css';
+import cardImage from '../components/card_image.png';  // 카드 이미지 import
+
 
 const Todayfortune = () => {
 
-  // const cardCount = 60; // 카드 수를 설정
-  // const radius = 300; // 반지름 설정
-  // const cards = Array.from({ length: cardCount });
+  const cardCount = 78; // 카드 수
+  const radius = 300;   // 원의 반지름
+  const cards = Array.from({ length: cardCount });
+
+  const [startAnimation, setStartAnimation] = useState(false);
+  const [isGathering, setIsGathering] = useState(false);
+
+
+  useEffect(() => {
+    // 컴포넌트가 마운트되면 애니메이션 시작 상태로 변경
+    setStartAnimation(true);
+  }, []);
+
+  const shuffleCards = () => {
+    // 셔플 버튼 클릭 시: 먼저 모음 단계 시작
+    setIsGathering(true);
+    // 모음이 완료되면 펼침 상태로 전환
+    setTimeout(() => {
+      setIsGathering(false);
+      setStartAnimation(true);
+    }, 3000); // 1.5초 후 펼침 시작 (조정 가능)
+  };
+
 
 
   return (
@@ -25,7 +47,7 @@ const Todayfortune = () => {
             카드 확인하기
           </button>
 
-          <a href="tarot-meaning.html" className="circle tarot-meaning">
+          <a href="tarotmeaning" className="circle tarot-meaning">
             <img src="https://ifh.cc/g/bgXtqd.png" alt="타로란" />
           </a>
           <a href="today-fortune.html" className="circle today-fortune">
@@ -58,6 +80,13 @@ const Todayfortune = () => {
               className="line-img"
             />
           </div>
+          <div className="leftline-img">
+            <img
+              src="https://ifh.cc/g/2aTXPo.png"
+              alt="left line"
+              className="line-img"
+            />
+          </div>
 
           <div className="card-selection-container">
             <img
@@ -66,6 +95,61 @@ const Todayfortune = () => {
               className="card-selection-img"
             />
           </div>
+
+          <button onClick={shuffleCards} className="selection-btn shuffle-btn">
+            셔플
+          </button>
+
+
+          <div className="cards-spread">
+            {cards.map((_, index) => {
+              const angle = (280 / cardCount) * index;
+              // 각 카드에 대해 지연 시간을 계산 (예: 0.02초 간격)
+              const delay = index * 0.02;
+
+              let style = {
+                position: 'absolute',
+                top: '50%',
+                left: '50%',
+                transform: 'translate(-50%, -50%)',
+                transition: 'transform 1s ease-out',
+                transitionDelay: `${delay}s`,
+                width: '100px',
+                height: 'auto',
+              };
+
+              if (isGathering) {
+                // 오른쪽 카드부터 중앙으로 모으기 위한 지연 시간 계산
+                const gatherDelay = (cardCount - index) * 0.02;
+                style.transitionDelay = `${gatherDelay}s`;
+                // 회전 없이 중앙으로 이동
+                style.transform = 'translate(-50%, -50%)';
+              } else if (startAnimation) {
+                // 펼침 단계: 카드가 원형으로 펼쳐짐
+                const delay = index * 0.02;
+                style.transitionDelay = `${delay}s`;
+                style.transform = `
+                  rotate(${angle + 135}deg) 
+                  translate(${radius}px)
+                  rotate(90deg)
+                `;
+              } else {
+                // 초기 중앙 위치 상태
+                style.transform = 'translate(-50%, -50%)';
+              }
+
+              return (
+                <img 
+                  key={index} 
+                  src={cardImage} 
+                  alt={`Tarot card ${index + 1}`} 
+                  style={style} 
+                  className="tarot-card"
+                />
+              );
+            })}
+          </div>
+
         </div>
       </div>
     </div>

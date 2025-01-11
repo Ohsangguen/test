@@ -38,8 +38,8 @@
     }
 
     .header-main {
-        margin-top: 1.5vh;
-        font-size: 1.5rem;
+        margin-top: 5vh;
+        font-size: 2rem;
         font-weight: bold;
         color: white;
     }
@@ -62,17 +62,44 @@
 
     .card-container-main {
         position: absolute;
-        display: flex;
+        display: inline-block;
         flex-direction: column;
         align-items: center;
-        text-decoration: none;
         color: rgb(230, 201, 204);
+        cursor: pointer;
+        text-decoration: none;
+
     }
+
+    .card-text-main {
+        font-size: 1.2rem;
+        text-align: center;
+        transition: transform 0.3s ease-in-out;
+        pointer-events: auto;
+    }
+
+    .card-image-main {
+        width: 30%;
+        z-index: 2;
+        box-shadow: 0 0 5px rgba(237, 240, 77, 0.1), 0 0 10px rgba(237, 240, 77, 0.1), 0 0 15px rgba(237, 240, 77, 0.1);
+        transition: box-shadow 0.3s ease-in-out;
+        position: relative;
+        pointer-events: auto; /* 클릭 가능하도록 변경 */
+    }
+
 
     .card-container-main:hover .card-image-main {
         transform: scale(1.1);
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         transition: transform 0.3s ease-in-out;
+        pointer-events: auto;
+    }
+
+    .card-container-main:hover .card-text-main {
+        transform: scale(1.3) translateY(-8px);
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+        transition: transform 0.3s ease-in-out;
+
     }
 
     .leftupcard-container { top: 10%; left: 10%; }
@@ -80,18 +107,8 @@
     .leftdowncard-container { bottom: 10%; left: 10%; }
     .rightdowncard-container { bottom: 10%; right: 10%; }
 
-    .card-image-main {
-        width: 30%;
-        z-index: 2;
-        box-shadow: 0 0 5px rgba(237, 240, 77, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
-      0 0 15px rgba(237, 240, 77, 0.1);
-    }
-
-    .card-text-main {
-        margin-bottom: 0.5rem;
-        z-index: 3; /* 텍스트를 카드 위에 표시 */
-        font-size: 3vh;
-    }
+    
+    
 
     .today-fortune, .tarot-meaning, .card-tarot, .couple-tarot {
         position: absolute;
@@ -109,30 +126,23 @@
 
     .leftsymbol-container {
         position: absolute;
-        width: 50%;
-        height: 0%;
+        width: 10%;
+        height: 80%;
         top: 10%;
         left: 0%;
-        transform: translateY(-5%);
         z-index: 2;
     }
-    /* 이미지 자체 스타일은 필요에 따라 추가 */
-    .leftsymbol-img { width: 100%; height: auto; }
+    .leftsymbol-img { height: 100%; }
 
     .rightsymbol-container {
         position: absolute;
-        width: 50%;
-        height: 0%;
+        width: 10%;
+        height: 80%;
         top: 10%;
         left: 100%;
-        transform: translateY(-5%);
         z-index: 2;
     }
-    /* 이미지 자체 스타일은 필요에 따라 추가 */
-    .rightsymbol-img { width: 100%; height: auto; }
-
-
-
+    .rightsymbol-img { height: 100%; }
 
     /* .leftsymbol-img, .rightsymbol-img {
         position: absolute;
@@ -151,7 +161,6 @@
         z-index: 2;
     }
 
-
     .midle-image {
         width: 100%;
         max-width: 800px;
@@ -159,12 +168,34 @@
         
     }
 
+    .line-img {
+        width: 100%;
+        height: auto;
+        max-width: 400px;
+      }
+      
+      .rightline-img {
+        position: absolute;
+        top: 5%;
+        right: 0;
+        transform: translateY(-50%);
+        z-index: 2;
+      }
+
+      .leftline-img {
+        position: absolute;
+        top: 5%;
+        left: 0;
+        transform: translateY(-50%);
+        z-index: 2;
+      }
+
 @media (max-width: 1200px) {
     .header { font-size: 4vw; }
     .today-fortune, .tarot-meaning, .card-tarot, .couple-tarot {
         font-size: 4vw;
     }
-    .midle-image { width: 70%; }
+    .midle-image { width: 100%; }
     .card-image { width: 30%; }
   }
   
