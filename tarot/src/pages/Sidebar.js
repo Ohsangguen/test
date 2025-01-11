@@ -15,7 +15,10 @@ const Sidebar = ({ isSidebarOpen, toggleSidebar }) => {
           </li>
           <li className={location.pathname === '/login' ? 'active' : ''}>
             <Link to="/login" onClick={toggleSidebar}>Login</Link>
-            </li>
+          </li>
+          <li className={location.pathname === '/mypage' ? 'active' : ''}>
+            <Link to="/mypage" onClick={toggleSidebar}>Mypage</Link>
+          </li>
           <li className={location.pathname === '/tarotmeaning' ? 'active' : ''}>
             <Link to="/tarotmeaning" onClick={toggleSidebar}>Tarotmeaning</Link>
           </li>

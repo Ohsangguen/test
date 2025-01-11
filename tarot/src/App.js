@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './pages/Header';
 import Sidebar from './pages/Sidebar';
-// import Login from './pages/Login';
+import Login from './pages/Login';
+import Mypage from './pages/Mypage';
+
 import Main from './pages/Main';
 import TarotMeaning from './pages/TarotMeaning';
 import Todayfortune from './pages/Todayfortune';
 import Fourcard from './pages/Fourcard';
 import Couple from './pages/Couple';
-import Login from './pages/Login';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태 관리
@@ -36,6 +37,7 @@ function App() {
           <div className="main-content">
             <Routes>
               <Route path="/login" element={<Login />} />
+              <Route path="/mypage" element={<Mypage />} />
               <Route path="/main" element={<Main />} />
               <Route path="/todayfortune" element={<Todayfortune />} />
               <Route path="/tarotmeaning" element={<TarotMeaning />} />
