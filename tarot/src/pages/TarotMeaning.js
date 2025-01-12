@@ -9,6 +9,7 @@ import TAROT_logo from '../components/TAROT.png';
 
 
 const TarotMeaning = () => {
+  
   return (
     <div className="tarot-purple">
       <div className="black-overlay">

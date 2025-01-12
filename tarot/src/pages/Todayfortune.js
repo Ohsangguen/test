@@ -68,9 +68,15 @@ const Todayfortune = () => {
     <div id="tarot-screen" className="tarot-purple-today">
       <div className="black-overlay-today">
         <div className="container-today">
+          <div className="header-options">
+            <a href="todayfortune" className="option-text">오늘의 운세</a>
+            <a href="fourcard" className="option-text">포카드 타로</a>
+            <a href="couple" className="option-text">커플 타로</a>
+          </div>
           <a href="main" className="header-today">
             <img src="https://ifh.cc/g/018lPq.png" alt="Tarot" />
           </a>
+          
 
           {selectedCardIndex !== null && (
             <div className="selected-card-center">
@@ -104,7 +110,7 @@ const Todayfortune = () => {
               셔플
             </button>
 
-            <a href="tarotmeaning" className="circle tarot-meaning">
+            {/* <a href="tarotmeaning" className="circle tarot-meaning">
               <img src="https://ifh.cc/g/bgXtqd.png" alt="타로란" />
             </a>
             <a href="todayfortune" className="circle today-fortune">
@@ -112,7 +118,7 @@ const Todayfortune = () => {
             </a>
             <a href="couple" className="circle couple-tarot">
               <img src="https://ifh.cc/g/NPR31l.png" alt="커플 궁합 타로" />
-            </a>
+            </a>*/}
 
             <div className="leftpattern-img">
               <img

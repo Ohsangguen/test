@@ -7,11 +7,12 @@ import fourcard_logo from '../components/포카드_logo.png';
 import couple_logo from '../components/커플타로_logo.png';  
 import TAROT_logo from '../components/TAROT.png';
 
+import fool from '../components/넙죽타로카드/메이저 카드/0. the fool.png';
 
 const TarotCards = () => {
 
-    const majorArcana = [
-        { id: 0, name: '광대 The Fool', imageUrl: '/images/fool.png' },
+    const majorArcana = [ 
+        { id: 0, name: '광대 The Fool', imageUrl: fool },
         { id: 1, name: '마술사 The Magician', imageUrl: '/images/magician.png' },
         { id: 2, name: '여사제 The High Priestess', imageUrl: '/images/high_priestess.png' },
         { id: 3, name: '여제 The Empress', imageUrl: '/images/empress.png' },
@@ -60,11 +61,15 @@ const TarotCards = () => {
         setSelectedCard(card);
     };
 
+    const closeOverlay = () => {
+        setSelectedCard(null);
+    };
+
     return (
         <div className="tarot-purple">
             <div className="black-overlay">
-                {/* 헤더 섹션 */}
-                <div className="header-container-cards">
+
+            <div className="header-container-mean">
                 <a href="main" className="title-logo">
                     <h1 className="main-title-text">TAROT</h1>
                 </a>
@@ -72,17 +77,14 @@ const TarotCards = () => {
                     <a href="todayfortune" className="option-text">오늘의 운세</a>
                     <a href="fourcard" className="option-text">포카드 타로</a>
                     <a href="couple" className="option-text">커플 타로</a>
-                    <button onClick={() => {}} className="option-text">타로 카드 종류</button>
                 </div>
             </div>
 
-            {/* 콘텐츠 섹션 */}
             <div className="content-container-cards">
-            {/* 왼쪽 사이드바 */}
                 <div className="left-sidebar">
                     <a href="tarotmeaning" className="sidebar-item active">타로란?</a>
                     <a href="tarotcards" className="sidebar-item active">타로 카드 종류</a>
-            </div>
+                </div>
 
             {/* Main Content */}
             <div className="main-content-cards">
@@ -137,15 +139,13 @@ const TarotCards = () => {
 
                     {/* 선택한 카드 상세 정보 */}
                     {selectedCard && (
-                        <div className="selected-card-detail">
-                            <h2>{selectedCard.name}</h2>
-                            {selectedCard.imageUrl && (
-                                <img
-                                    src={selectedCard.imageUrl}
-                                    alt={selectedCard.name}
-                                    className="selected-card-image"
-                                />
-                            )}
+                        <div className="overlay" onClick={closeOverlay}>
+                            <div className="overlay-content">
+                                <h2>{selectedCard.name}</h2>
+                                {selectedCard.imageUrl && (
+                                    <img src={selectedCard.imageUrl} alt={selectedCard.name} className="selected-card-image" />
+                                )}
+                            </div>
                         </div>
                     )}
                         </div>

@@ -20,10 +20,21 @@
     overflow: auto; 
 }
 
-
+.container-today {
+    width: 100%;
+    margin: 0 auto;
+    border: 0px solid lightpink;
+    padding: 10px;
+    position: relative;
+    height: 100%;
+    box-sizing: border-box;
+    box-shadow: 0 0 5px rgba(237, 240, 77, 0.1);
+    align-items: center;
+    justify-content: center;
+  }
 
 /* Header Section */
-.header-container-cards {
+.header-container-mean {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -43,17 +54,24 @@
 .header-options {
     display: flex;
     gap: 20px;
-}
-
-.option-img {
+    border: 0px solid #000;
+    width: 100%;
+    height: 10%;
+    align-items: center;
+    justify-content: right;
+    position: absolute;
+    z-index: 3;
+  }
+  .option-text {
     width: 100px;
+    font-size: 1.2rem;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
-}
-
-.option-img:hover {
+  }
+  
+  .option-text:hover {
     transform: scale(1.1);
-}
+  }
 
 /* Content Layout */
 .content-container-cards {
@@ -63,7 +81,7 @@
 
 /* Left Sidebar */
 .left-sidebar {
-    width: 10%;
+    width: 7%;
     display: flex;
     flex-direction: column;
     gap: 10px;
@@ -100,16 +118,14 @@
 }
 
 .main-content p {
-    font-size: 1.2rem;
+    font-size: 1rem;
     line-height: 1.8;
     margin-bottom: 20px;
 }
 
 
 /* Main Content */
-.main-content {
-    width: 70%;
-}
+
 
 .card-name {
     font-size: 1.2rem;
@@ -176,12 +192,12 @@
 /* 카드 스타일 */
 .card-item {
     background: rgba(255, 255, 255, 0.1);
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
     text-align: center;
     cursor: pointer;
     transition: transform 0.2s ease, background 0.2s ease;
-    width: 150px;
+    width: 80%;
 }
 
 .card-item:hover {
@@ -205,4 +221,37 @@
     margin-top: 20px;
     border-radius: 10px;
     border: 2px solid white;
+}
+
+/* TarotCards.css */
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.756);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 0.8rem;
+}
+
+.overlay-content {
+    background: rgba(80, 40, 84, 0.7);
+    padding: 10px;
+    border-radius: 5px;
+    text-align: center;
+    max-width: 400px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    position: relative;
+    width: 70%;
+    height: 70%;
+}
+
+.overlay-content img {
+    max-width: 70%;
+    height: auto;
+    margin-top: 20px;
 }
