@@ -17,9 +17,8 @@ import General from './pages/General';
 import Love from './pages/Love';
 import Money from './pages/Money';
 
-
-
 import Couple from './pages/Couple';
+import CoupleDetail from './pages/CoupleDetail';
 
 function App() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태 관리
@@ -62,6 +61,8 @@ function App() {
               <Route path="/money" element={<Money />} />
 
               <Route path="/couple" element={<Couple />} />
+              <Route path="/coupledetail" element={<CoupleDetail />} />
+
             </Routes>
           </div>
         </div>
