@@ -7,11 +7,12 @@ import cardImage from '../components/card_image.png';  // 카드 이미지 impor
 const General = () => {
 
   const cardCount = 78; // 카드 수
-  const radius = 250;   // 원의 반지름
+  const radius = 800;   // 원의 반지름
   const cards = Array.from({ length: cardCount });
 
   const [startAnimation, setStartAnimation] = useState(false);
   const [isGathering, setIsGathering] = useState(false);
+  const [selectedCards, setSelectedCards] = useState([]); // 선택된 카드 상태 관리
 
 
   useEffect(() => {
@@ -29,9 +30,17 @@ const General = () => {
     }, 3000);
   };
 
+  // const handleCardClick = (index) => {
+  //   console.log(`카드 ${index + 1} 클릭됨`);
+  //   // 여기서 원하는 동작 수행
+  // };
+  
   const handleCardClick = (index) => {
     console.log(`카드 ${index + 1} 클릭됨`);
-    // 여기서 원하는 동작 수행
+
+    if (selectedCards.length < 4) {
+      setSelectedCards([...selectedCards, cards[index]]);
+    }
   };
 
   return (
@@ -64,22 +73,6 @@ const General = () => {
               <img src="https://ifh.cc/g/NPR31l.png" alt="커플 궁합 타로" />
             </a>
 
-            <div className="leftpattern-img">
-              <img
-                src="https://ifh.cc/g/n5Q1nw.png"
-                alt="Left Pattern"
-                className="pattern-img"
-              />
-            </div>
-
-            <div className="rightpattern-img">
-              <img
-                src="https://ifh.cc/g/P23tkZ.png"
-                alt="Right Pattern"
-                className="pattern-img-r"
-              />
-            </div>
-
             <div className="rightline-img">
               <img
                 src="https://ifh.cc/g/2aTXPo.png"
@@ -95,24 +88,17 @@ const General = () => {
               />
             </div>
 
-            <div className="card-selection-container">
-              <img
-                src="카드-고르기.png"
-                alt="카드 고르기"
-                className="card-selection-img"
-              />
-            </div>
 
             <div className="cards-spread">
               {cards.map((_, index) => {
-                const angle = (280 / cardCount) * index;
+                const angle = (100 / cardCount) * index;
                 // 각 카드에 대해 지연 시간을 계산
                 const delay = index * 0.02;
 
                 let wrapperStyle = {
                   position: 'absolute',
-                  top: '50%',
-                  left: '50%',
+                  top: '110%',
+                  left: '47%',
                   transition: 'transform 1s ease-out',
                   transitionDelay: `${delay}s`,
                   width: '120px',   // 카드 크기와 동일하게 설정
@@ -127,9 +113,9 @@ const General = () => {
 
                 } else if (startAnimation) {
                   wrapperStyle.transform = `
-                    rotate(${angle + 138}deg) 
+                    rotate(${angle + 223}deg) 
                     translate(${radius}px)
-                    rotate(80deg)
+                    rotate(90deg)
                   `;
 
                 } else {
@@ -152,9 +138,21 @@ const General = () => {
                 );
               })}
           </div>
+          <div className="selected-cards-container">
+            {selectedCards.map((card, index) => (
+              <div key={index} className="selected-card">
+                <img 
+                  src={cardImage} 
+                  alt={`Selected Tarot card ${index + 1}`} 
+                  className="tarot-card"
+                />
+              </div>
+            ))}
         </div>
-      </div>
-    </div>
+          
+        </div>
+        </div>
+        </div>
   );
 };
 
