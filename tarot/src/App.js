@@ -7,8 +7,18 @@ import Mypage from './pages/Mypage';
 
 import Main from './pages/Main';
 import TarotMeaning from './pages/TarotMeaning';
+import TarotCards from './pages/TarotCards';
+
 import Todayfortune from './pages/Todayfortune';
+import TodayDetail from './pages/TodayDetail';
+
 import Fourcard from './pages/Fourcard';
+import General from './pages/General';
+import Love from './pages/Love';
+import Money from './pages/Money';
+
+
+
 import Couple from './pages/Couple';
 
 function App() {
@@ -39,9 +49,18 @@ function App() {
               <Route path="/login" element={<Login />} />
               <Route path="/mypage" element={<Mypage />} />
               <Route path="/main" element={<Main />} />
-              <Route path="/todayfortune" element={<Todayfortune />} />
+
               <Route path="/tarotmeaning" element={<TarotMeaning />} />
+              <Route path="/tarotcards" element={<TarotCards />} />
+
+              <Route path="/todayfortune" element={<Todayfortune />} />
+              <Route path="/card/:cardId" element={<TodayDetail />} />
+
               <Route path="/fourcard" element={<Fourcard />} />
+              <Route path="/general" element={<General />} />
+              <Route path="/love" element={<Love />} />
+              <Route path="/money" element={<Money />} />
+
               <Route path="/couple" element={<Couple />} />
             </Routes>
           </div>

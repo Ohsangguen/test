@@ -41,64 +41,67 @@ const Login = () => {
     };
 
     return (
-        <div className="background">
-            <div className={`login-container ${isRegister ? 'extend' : ''}`}>
-                <h2>{isRegister ? '회원가입' : '로그인'}</h2>
-                <form onSubmit={isRegister ? handleRegister : handleLogin} className="login-form">
-                    {isRegister && (
+        <div className="tarot-purple">
+            <div className="black-overlay">
+                <div className={`login-container ${isRegister ? 'extend' : ''}`}>
+                    <h2>{isRegister ? '회원가입' : '로그인'}</h2>
+                    <form onSubmit={isRegister ? handleRegister : handleLogin} className="login-form">
+                        {isRegister && (
+                            <div className="form-group">
+                                <label htmlFor="username">사용자 이름</label>
+                                <input
+                                    type="text"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    placeholder="사용자 이름"
+                                    required
+                                />
+                            </div>
+                        )}
                         <div className="form-group">
-                            <label htmlFor="username">사용자 이름</label>
+                            <label htmlFor="email">이메일</label>
                             <input
-                                type="text"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                                placeholder="사용자 이름"
+                                type="email"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                placeholder="이메일"
                                 required
                             />
                         </div>
-                    )}
-                    <div className="form-group">
-                        <label htmlFor="email">이메일</label>
-                        <input
-                            type="email"
-                            value={email}
-                            onChange={(e) => setEmail(e.target.value)}
-                            placeholder="이메일"
-                            required
-                        />
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="password">비밀번호</label>
-                        <input
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            placeholder="비밀번호"
-                            required
-                        />
-                    </div>
-
-                    {isRegister && (
                         <div className="form-group">
-                            <label htmlFor="profileImage">프로필 이미지 URL (선택)</label>
+                            <label htmlFor="password">비밀번호</label>
                             <input
-                                type="text"
-                                value={profileImage}
-                                onChange={(e) => setProfileImage(e.target.value)}
-                                placeholder="프로필 이미지 URL (선택)"
+                                type="password"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                placeholder="비밀번호"
+                                required
                             />
                         </div>
-                    )}
-                    <button type="submit" className="submit-button">
-                        {isRegister ? '회원가입' : '로그인'}
+
+                        {isRegister && (
+                            <div className="form-group">
+                                <label htmlFor="profileImage">프로필 이미지 URL (선택)</label>
+                                <input
+                                    type="text"
+                                    value={profileImage}
+                                    onChange={(e) => setProfileImage(e.target.value)}
+                                    placeholder="프로필 이미지 URL (선택)"
+                                />
+                            </div>
+                        )}
+                        <button type="submit" className="submit-button">
+                            {isRegister ? '회원가입' : '로그인'}
+                        </button>
+                    </form>
+                    {message && <p className="message">{message}</p>}
+                    <button onClick={() => setIsRegister(!isRegister)} className="toggle-button">
+                        {isRegister ? '로그인 페이지로' : '회원가입 페이지로'}
                     </button>
-                </form>
-                {message && <p className="message">{message}</p>}
-                <button onClick={() => setIsRegister(!isRegister)} className="toggle-button">
-                    {isRegister ? '로그인 페이지로' : '회원가입 페이지로'}
-                </button>
+                </div>
             </div>
         </div>
+        
     );
 };
 

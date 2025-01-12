@@ -1,15 +1,10 @@
 // OneCardTarot.jsx
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 가져오기
-import './Todayfortune.css';
+import './General.css';
 import cardImage from '../components/card_image.png';  // 카드 이미지 import
-import today_logo from '../components/오늘의운세_logo.png';  // 카드 이미지 import
-import tarotmeaning_logo from '../components/타로란_logo.png';  // 카드 이미지 import
 
 
-const Todayfortune = () => {
-
-  const navigate = useNavigate(); // useNavigate 훅 초기화
+const General = () => {
 
   const cardCount = 78; // 카드 수
   const radius = 250;   // 원의 반지름
@@ -17,8 +12,7 @@ const Todayfortune = () => {
 
   const [startAnimation, setStartAnimation] = useState(false);
   const [isGathering, setIsGathering] = useState(false);
-  const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-  const [showRevealButton, setShowRevealButton] = useState(false);
+
 
   useEffect(() => {
     // 컴포넌트가 마운트되면 애니메이션 시작 상태로 변경
@@ -37,68 +31,24 @@ const Todayfortune = () => {
 
   const handleCardClick = (index) => {
     console.log(`카드 ${index + 1} 클릭됨`);
-    setSelectedCardIndex(index);
-    setShowRevealButton(true);
+    // 여기서 원하는 동작 수행
   };
-
-  const handleRevealClick = () => {
-    const randomIndex = Math.floor(Math.random() * cardCount);
-    console.log(`랜덤으로 선택된 카드: ${randomIndex + 1}`);
-
-    // React Router를 이용한 페이지 이동
-    navigate(`/card/${randomIndex}`);
-  };
-
-  // const handleRevealClick = () => {
-  //   if (selectedCardIndex === null) {
-  //     // 사용자가 아직 카드를 선택하지 않은 경우에 대한 처리
-  //     console.warn('카드를 선택해주세요.');
-  //     return;
-  //   }
-  //   console.log(`선택된 카드: ${selectedCardIndex + 1}`);
-  
-  //   // React Router를 이용한 페이지 이동
-  //   // URL 파라미터에 selectedCardIndex를 사용 (0부터 시작하므로 필요 시 +1 조정 가능)
-  //   navigate(`/card/${selectedCardIndex}`);
-  // };
-
-
 
   return (
     <div id="tarot-screen" className="tarot-purple-today">
       <div className="black-overlay-today">
         <div className="container-today">
-          <a href="main" className="header-today">
+          <a href="checkmain.html" className="header-today">
             <img src="https://ifh.cc/g/018lPq.png" alt="Tarot" />
           </a>
-
-          {selectedCardIndex !== null && (
-            <div className="selected-card-center">
-              <img 
-                src={cardImage} 
-                alt={`Selected Tarot card ${selectedCardIndex + 1}`} 
-                className="large-tarot-card" 
-              />
-            </div>
-          )}
-
-          {showRevealButton && (
-            <button 
-              id="reveal-button" 
-              className="selection-btn reveal-btn"
-              onClick={handleRevealClick}
-            >
-              카드 확인하기
-            </button>
-          )}
 
           {/* <h2 className="instruction-text">카드를 골라주세요.</h2> */}
 
           <div className="cards-container-today"></div>
 
-            {/* <button id="reveal-button" className="selection-btn reveal-btn">
+            <button id="reveal-button" className="selection-btn reveal-btn">
               카드 확인하기
-            </button> */}
+            </button>
 
             <button onClick={shuffleCards} className="selection-btn shuffle-btn">
               셔플
@@ -107,10 +57,10 @@ const Todayfortune = () => {
             <a href="tarotmeaning" className="circle tarot-meaning">
               <img src="https://ifh.cc/g/bgXtqd.png" alt="타로란" />
             </a>
-            <a href="todayfortune" className="circle today-fortune">
+            <a href="today-fortune.html" className="circle today-fortune">
               <img src="https://ifh.cc/g/TqQC50.png" alt="오늘의 운세" />
             </a>
-            <a href="couple" className="circle couple-tarot">
+            <a href="couple-tarot.html" className="circle couple-tarot">
               <img src="https://ifh.cc/g/NPR31l.png" alt="커플 궁합 타로" />
             </a>
 
@@ -121,6 +71,7 @@ const Todayfortune = () => {
                 className="pattern-img"
               />
             </div>
+
             <div className="rightpattern-img">
               <img
                 src="https://ifh.cc/g/P23tkZ.png"
@@ -128,6 +79,7 @@ const Todayfortune = () => {
                 className="pattern-img-r"
               />
             </div>
+
             <div className="rightline-img">
               <img
                 src="https://ifh.cc/g/2aTXPo.png"
@@ -142,7 +94,14 @@ const Todayfortune = () => {
                 className="line-img"
               />
             </div>
-          
+
+            <div className="card-selection-container">
+              <img
+                src="카드-고르기.png"
+                alt="카드 고르기"
+                className="card-selection-img"
+              />
+            </div>
 
             <div className="cards-spread">
               {cards.map((_, index) => {
@@ -159,19 +118,20 @@ const Todayfortune = () => {
                   width: '120px',   // 카드 크기와 동일하게 설정
                   height: 'auto',
                   transform: 'translate(-50%, -50%)', // 기본 transform
-                  cursor: 'pointer',
                 };
 
                 if (isGathering) {
                   const gatherDelay = (cardCount - index) * 0.02;
                   wrapperStyle.transitionDelay = `${gatherDelay}s`;
                   wrapperStyle.transform = 'translate(-50%, -50%)';
+
                 } else if (startAnimation) {
                   wrapperStyle.transform = `
                     rotate(${angle + 138}deg) 
                     translate(${radius}px)
                     rotate(80deg)
                   `;
+
                 } else {
                   wrapperStyle.transform = 'translate(-50%, -50%)';
                 }
@@ -198,4 +158,4 @@ const Todayfortune = () => {
   );
 };
 
-export default Todayfortune;
+export default General;

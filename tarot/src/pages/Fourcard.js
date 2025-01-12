@@ -1,14 +1,28 @@
 import React, { useState } from 'react';
 import './Fourcard.css';
 import cardimage from '../components/card_image.png';
+import { useNavigate } from 'react-router-dom';
+
 
 
 const Fourcard = () => {
     const [selectedScreen, setSelectedScreen] = useState('selection');
+    const navigate = useNavigate();
+
+    // const handleSelectionClick = (type) => {
+    //     console.log(`${type} selected`);
+    //     setSelectedScreen('tarot');
+    // };
 
     const handleSelectionClick = (type) => {
         console.log(`${type} selected`);
-        setSelectedScreen('tarot');
+        if(type === 'general') {
+            navigate('/general');
+        } else if(type === 'love') {
+            navigate('/love');
+        } else if(type === 'money') {
+            navigate('/money');
+        }
     };
 
     return (

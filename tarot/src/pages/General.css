@@ -1,21 +1,18 @@
-/* body {
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-  } */
-  
-  .tarot-purple {
-    background-color: rgb(54, 23, 97);
-    color: #fff;
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+/* Todayfortune.css */
 
-.black-overlay {
+.tarot-purple-today {
+    background-color: rgb(54, 23, 97);
+      color: #fff;
+      position: relative;
+      height: 100%;
+      min-height: 100vh;
+      width: 100vw;
+      overflow: hidden;
+      position: relative;
+  
+  }
+  
+  .black-overlay-today {
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
@@ -23,9 +20,9 @@
     width: 100%;
     height: 100%;
     z-index: 1;
-}
+  }
   
-  .container-four {
+  .container-today {
     width: 90%;
     margin: 0 auto;
     border: 0px solid lightpink;
@@ -34,26 +31,28 @@
     height: 90%;
     box-sizing: border-box;
     box-shadow: 0 0 5px rgba(237, 240, 77, 0.1);
+    align-items: center;
+    justify-content: center;
   }
   
-  .header-four {
+  .header-today {
     display: inline-block;
-    width: 150px;
-    height: 75px;
+    width: 20%;
+    height: 20%;
     margin: 10px;
     overflow: hidden;
     position: absolute;
-    top: 20px;
+    top: 10px;
     left: 20px;
   }
   
-  .header img {
+  .header-today img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     position: absolute;
-    top: 50%;
-    left: 50%;
+    top: 35%;
+    left: 60%;
     transform: translate(-50%, -50%) scale(4);
   }
   
@@ -94,55 +93,56 @@
     left: 80%;
   }
   
-  .card-container {
-    position: relative;
-    cursor: pointer;
-}
-  
-  
-  .cards-container-four {
+  .cards-container-today {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    height: 45%;
+    height: 100%;
     margin-top: 10px;
     margin-bottom: 20px;
-    position: relative;
     z-index: 5;
   }
   
-  .card-image-four {
-    width: 200px;
-    height: auto;
+  .card-spread {
+    position: relative;
+    width: 100%;
+    height: 100vh; /* 화면 전체 높이 사용 */
+    overflow: hidden;
+  }
+  
+  
+  .tarot-card {
+    width: 57px;
+    height: 95px;
     background-size: 350%;
     background-position: center;
     background-repeat: no-repeat;
+    margin: 5px;
     cursor: pointer;
     perspective: 1000px;
-    transition: transform 0.6s;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 6;
     position: relative;
     border-radius: 3px;
-    box-shadow: 0 0 5px rgba(237, 240, 77, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
-      0 0 15px rgba(237, 240, 77, 0.1);
+    box-shadow: 0 0 1px rgba(243, 236, 54, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
+      0 0 15px rgba(245, 223, 62, 0.187);
   }
-
-  .card-container:hover .card-image-four {
-    transform: scale(1.1);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-    transition: transform 0.3s ease-in-out;
-}
-
-    .card-text {
-        /* position: absolute; */
-        z-index: 2;
-        font-size: 1.5rem;
-        color: white;
-        font-weight: bold;
-        text-align: center;
-    }
   
+  .card-wrapper {
+    /* 클릭 가능한 영역 확장 */
+    width: 120px;  /* 카드 이미지보다 넓게 설정 */
+    height: auto; /* 카드 이미지보다 높게 설정 */
+    cursor: pointer;
+    /* 필요하다면 투명한 배경을 추가하여 영역 확인 가능:
+    background-color: rgba(0, 0, 0, 0.1);
+    */
+  }
+  
+  .card-wrapper:hover .tarot-card {
+    transform: translateY(-30px);
+    box-shadow: 0 10px 20px rgb(255, 255, 255);
+  }
   .card.tilted {
     transform: rotate(15deg);
     z-index: 7;
@@ -193,54 +193,20 @@
     z-index: 2;
   }
   
-  #reveal-button {
-    display: block;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
+  .leftline-img {
     position: absolute;
-    bottom: 30px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-  }
-
-  .options-container {
-    height: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-top: 20px;
-    gap: 20px;
+    top: 5%;
+    left: 0;
+    transform: translateY(-50%);
+    z-index: 2;
   }
   
-  .screen-four {
-    display: none;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    height: 100vh; /* 화면 전체 높이를 사용하여 가운데 정렬 */
-    position: absolute;
-
-  }
   
-  .screen.active {
-    width: 100%;
-    display: block;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-  }
   
   .selection-options {
-    width: 100%;
     display: flex;
     justify-content: center;
     margin-top: 20px;
-    width: 20%;
-    gap: 100px;
-
   }
   
   .selection-btn {
@@ -260,7 +226,7 @@
   }
   
   .subject-image {
-    margin-top: 15vh;
+    margin-top: 20vh;
     text-align: center;
   }
   
@@ -305,6 +271,35 @@
   
   .reveal-btn:hover {
     background-color: #523c7a;
+  }
+  
+  .selection-btn.shuffle-btn {
+    position: relative;
+    z-index: 10; /* 다른 요소보다 높게 설정 */
+  }
+  
+  .selection-btn.shuffle-btn {
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+  }
+  
+  .selection-btn.reveal-button {
+    display: block;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
   }
   
   @media (max-width: 768px) {
