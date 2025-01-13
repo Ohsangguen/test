@@ -52,7 +52,7 @@ const General = () => {
     <div id="tarot-screen" className="tarot-purple">
       <div className="black-overlay">
         <div className="container-general">
-          <a href="checkmain.html" className="header-general">
+          <a href="/main" className="header-general">
             <img src="https://ifh.cc/g/018lPq.png" alt="Tarot" />
           </a>
 
