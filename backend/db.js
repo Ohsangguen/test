@@ -25,11 +25,11 @@ const promisePool = pool.promise();
 
 async function executeQuery(query, params) {
   try {
-    const [rows, fields] = await promisePool.query(query, params);
-    console.log('Query Result:', rows);
+    const [rows] = await promisePool.query(query, params);
+    console.log('Query executed successfully:', query);
     return rows;
   } catch (err) {
-    console.error('Query Error:', err);
+    console.error('Query execution error:', err.message);
     throw err;
   }
 }

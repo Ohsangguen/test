@@ -44,3 +44,8 @@ app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
   console.log(`Swagger API Docs available at http://localhost:${PORT}/api-docs`);
 });
+app._router.stack.forEach((middleware) => {
+  if (middleware.route) {
+    console.log(middleware.route.path); // 등록된 경로 출력
+  }
+});

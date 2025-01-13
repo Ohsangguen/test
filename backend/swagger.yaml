@@ -52,3 +52,101 @@ paths:
           description: Invalid credentials
         '500':
           description: Internal server error
+  /api/specific-card:
+    get:
+      summary: Get a specific tarot card
+      description: Fetch a tarot card with theme "general" and position "present".
+      tags:
+        - Tarot
+      responses:
+        200:
+          description: Successfully fetched the card.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  card:
+                    type: object
+                    properties:
+                      id:
+                        type: integer
+                        description: Card ID
+                      name:
+                        type: string
+                        description: Card name
+                      image_url:
+                        type: string
+                        description: Card image URL
+                      theme:
+                        type: string
+                        description: Card theme
+                      position:
+                        type: string
+                        description: Card position
+                      upright_meaning:
+                        type: string
+                        description: Upright meaning of the card
+        404:
+          description: No card found for the given criteria.
+        500:
+          description: Server error.
+  /api/generate-reading:
+    post:
+      summary: Generate a tarot reading and call Gemini API
+      description: Select a tarot card, create a reading, and retrieve AI analysis.
+      tags:
+        - Tarot
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                userId:
+                  type: integer
+                  description: The ID of the user requesting the tarot reading.
+      responses:
+        200:
+          description: Successfully generated the tarot reading.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  readingId:
+                    type: integer
+                    description: The ID of the created tarot reading.
+                  card:
+                    type: object
+                    description: The selected tarot card.
+                    properties:
+                      id:
+                        type: integer
+                        description: Card ID
+                      name:
+                        type: string
+                        description: Card name
+                      image_url:
+                        type: string
+                        description: Card image URL
+                      theme:
+                        type: string
+                        description: Card theme
+                      position:
+                        type: string
+                        description: Card position
+                      upright_meaning:
+                        type: string
+                        description: Upright meaning of the card.
+        400:
+          description: Invalid input data.
+        500:
+          description: Server error.
