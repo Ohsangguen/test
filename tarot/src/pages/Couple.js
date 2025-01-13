@@ -1,14 +1,24 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Couple.css';
 import { cards, shuffleCards } from './card-shuffle.js'; 
 import TAROT_logo from '../components/TAROT.png';
+import coupleneob from '../components/커플 타로 넙죽이/커플 넙죽이(주파수).png';
+
 
 const Couple = () => {
-    const [cards, setCards] = useState(shuffleCards());
-    const [selectedCard, setSelectedCard] = useState(null);
-    const [placedCards, setPlacedCards] = useState(Array(8).fill(null)); // 8개의 드롭존 상태 관리
-    const [highlightedZones, setHighlightedZones] = useState(Array(8).fill(false)); // 드롭존 강조 상태 관리
+  const [cards, setCards] = useState(shuffleCards());
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [placedCards, setPlacedCards] = useState(Array(8).fill(null)); // 8개의 드롭존 상태 관리
+  const [highlightedZones, setHighlightedZones] = useState(Array(8).fill(false)); // 드롭존 강조 상태 관리
+  const [allCardsPlaced, setAllCardsPlaced] = useState(false); // 모든 카드가 드롭되었는지 상태 관리
+  const navigate = useNavigate();
 
+
+    useEffect(() => {
+      // 모든 드롭존에 카드가 드롭되었는지 확인
+      setAllCardsPlaced(placedCards.every(card => card !== null));
+    }, [placedCards]);
 
     // 드래그 시작 이벤트
     const handleDragStart = (e, card) => {
@@ -27,7 +37,8 @@ const Couple = () => {
         if (cardData) {
             const card = JSON.parse(cardData);
             const updatedCards = [...placedCards];
-            updatedCards[index] = card;
+            updatedCards[index] = { ...card, index }; // 카드와 인덱스를 함께 저장
+            console.log(updatedCards);
             setPlacedCards(updatedCards);
 
             // 드롭 후 테두리 비활성화
@@ -39,16 +50,15 @@ const Couple = () => {
   
     // 카드 확인 버튼 클릭
     const handleReveal = () => {
-      if (!selectedCard) {
-        alert('카드를 드롭 영역에 놓아야 합니다.');
+      if (!allCardsPlaced) {
+        alert('모든 카드를 드롭 영역에 놓아야 합니다.');
       } else {
-        localStorage.setItem('selectedCard', JSON.stringify(selectedCard));
-        window.location.href = 'coupledetail';
+        navigate('/coupledetail', { state: { selectedCards: placedCards } });
       }
     };
 
     return (
-      <div className="tarot-purple">
+      <div className="tarot-purple-couple">
         <div className="black-overlay">
           <div className="container-couple">
             <h2 className="instruction-text">카드를 비어있는 공간에 가져오세요.</h2>
@@ -74,12 +84,14 @@ const Couple = () => {
                         {placedCards.map((card, index) => (
                             <div
                                 key={index}
-                                className={`heart-placeholder ${highlightedZones[index] ? 'highlighted' : ''}`}
+                                className={`heart-placeholder ${highlightedZones[index] ? 'highlighted' : ''} ${[2, 4, 6].includes(index) ? 'heart-placeholder-right' : ''}${[1, 3, 5].includes(index) ? 'heart-placeholder-left' : ''}`}
                                 onDragOver={handleDragOver}
                                 onDrop={(e) => handleDrop(e, index)}
                             >
                                 {card ? (
-                                    <div className="card-drop" style={{ backgroundImage: `url(${card.image})` }} />
+                                    <div className="card-drop" style={{ backgroundImage: `url(${card.image})`, backgroundColor: allCardsPlaced ? 'rgb(249, 133, 133)' : '#ccc' }} />
+
+                                    // <div className="card-drop" style={{ backgroundImage: `url(${card.image})` }} />
                                 ) : (
                                     <div className="drop-placeholder">카드가져오기</div>
                                 )}
@@ -88,13 +100,15 @@ const Couple = () => {
                     </div>
 
                 {/* 버튼 */}
-                <button
-                id="reveal-button"
-                className="reveal-btn-couple"
-                onClick={handleReveal}
-                >
-                카드 확인하기
-                </button>
+                {allCardsPlaced && (
+                    <button
+                        id="reveal-button"
+                        className="reveal-btn-couple"
+                        onClick={handleReveal}
+                    >
+                        카드 확인하기
+                    </button>
+                )}
 
                 {/* 하단 링크들 */}
                 <a href="/tarotmeaning" className="circle tarot-meaning">

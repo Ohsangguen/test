@@ -1,9 +1,13 @@
-  .tarot-purple {
+  .tarot-purple-couple {
     background-color: rgb(54, 23, 97);
     color: #fff;
     overflow: hidden;
     position: relative;
     height: 100vh;
+    background-image: url('../components/커플 타로 넙죽이/커플 넙죽이(주파수).png'); /* 배경 이미지 설정 */
+    background-size: 50%; /* 배경 이미지 크기 조정 */
+    background-position: calc(43% + 10%)  100%; /* 배경 이미지 위치 조정 */
+    background-repeat: no-repeat;
   }
   
   .black-overlay {
@@ -117,16 +121,30 @@
   position: absolute;
   color: rgba(255, 255, 255, 0.8);
   opacity: 0.5;
-/* 
-  width: 80px;
-  height: 80px;
-  border: 2px dashed white;
-  border-radius: 50%;
+}
+
+.heart-placeholder-right {
+  width: 70px;
+  height: 110px;
+  border: 2px dashed rgb(240, 110, 110);
   display: flex;
   justify-content: center;
   align-items: center;
-  position: absolute; */
+  position: absolute;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.5;
+}
 
+.heart-placeholder-left {
+  width: 70px;
+  height: 110px;
+  border: 2px dashed rgb(106, 91, 225);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  color: rgba(255, 255, 255, 0.8);
+  opacity: 0.5;
 }
 
 .heart-placeholder:nth-child(1) { top: 100px; left: 50%; transform: translateX(-50%); }
@@ -165,7 +183,14 @@
   cursor: pointer;    
   box-shadow: 0 4px 8px rgba(0,0,0,0.5);
 }
+
+.card-drop.red {
+  background-color: rgb(249, 133, 133);
+}
   
+.highlighted {
+  border-color: yellow;
+}
   .tarot-meaning {
     top: 40px;
     left: 60%;

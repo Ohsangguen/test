@@ -26,7 +26,6 @@
     justify-content: center;
     align-items: center;
     position: relative;
-    margin-top: 10vh;
     height: 50px;
   }
   
@@ -53,27 +52,46 @@
     width: 60%;
   }
   .interpretation-box-in {
+    display: flex;
+    flex-direction: row; /* 이미지와 텍스트를 row로 배치 */
+    align-items: center; /* 세로 정렬 */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    align-items: row;
     margin-top: 3vh;  
-  }
+}
   
-  .container-generaldetail {
+.container-generaldetail {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     position: absolute;
-    top: 30%;
+    top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
     width: 100%; /* 필요에 따라 조정 */
-    height: 100%;
     padding: 10px;
     box-sizing: border-box;
-    margin-top: 20px; /* cards-spread-generaldetail 아래에 배치 */
+}
+
+.tarot-card-generaldetail {
+  width: 30%;
+  height: 80%;
+  background-size: 350%;
+  background-position: center;
+  background-repeat: no-repeat;
+  margin: 5px;
+  cursor: pointer;
+  perspective: 1000px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  z-index: 6;
+  position: relative;
+  border-radius: 3px;
+  box-shadow: 0 0 1px rgba(243, 236, 54, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
+    0 0 15px rgba(245, 223, 62, 0.187);
+    margin-right: 10%;
+    
 }
   
   h1 {

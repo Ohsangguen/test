@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import cardImage from '../components/card_image.png'; // 카드 이미지 import
 import './GeneralDetail.css';
 
@@ -7,6 +7,7 @@ const GeneralDetail = () => {
   const location = useLocation();
   const { selectedCards } = location.state;
   const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+  const navigate = useNavigate();
   console.log(selectedCards);
 
   const handleCardClick = (index) => {
@@ -45,7 +46,7 @@ const GeneralDetail = () => {
                 <img
                   src={cardImage}
                   alt={`Selected Tarot card ${selectedCardIndex + 1}`}
-                  className="tarot-card"
+                  className="tarot-card-generaldetail"
                 />
                 <p>이 카드의 해석은 ...</p>
               </div>
