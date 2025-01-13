@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './Mypage.css';
+import neob from '../components/캐릭터 포즈 모음/타로넙죽-8.png'
 
 const Mypage = () => {
     const [user, setUser] = useState({
@@ -17,15 +18,22 @@ const Mypage = () => {
     }, []);
 
     return (
-        <div className="mypage-container">
-            <h1>마이페이지</h1>
-            <div className="profile">
-                <img src={user.imageUrl || 'https://via.placeholder.com/150'} alt="Profile" className="profile-image" />
-                <div className="info">
-                    <p><strong>이름:</strong> {user.username}</p>
-                    <p><strong>이메일:</strong> {user.email}</p>
-                    <p><strong>비밀번호:</strong> {user.password}</p>
-                    <p><strong>이미지 URL:</strong> {user.imageUrl}</p>
+        <div className="tarot-purple-mypage">
+            <div className="black-overlay">
+                <div className="tarot-title-mypage">Welcome to Tarot World !</div>
+                <div className="neob-container">
+                    <img src={neob} alt="Neob" className="neob-image" />
+                </div>
+                <div className="mypage-container">
+                    
+                    {/* <h1>마이페이지</h1> */}
+                    <div className="profile">
+                        <img src={user.imageUrl || 'https://via.placeholder.com/150'} alt="Profile" className="profile-image" />
+                        <div className="info">
+                            <p><strong>이름:</strong> {user.username}</p>
+                            <p><strong>이메일:</strong> {user.email}</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
