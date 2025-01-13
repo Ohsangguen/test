@@ -1,14 +1,14 @@
 
-.tarot-purple {
+.tarot-purple-cards {
     background-color: rgb(54, 23, 97);
     color: #fff;
     height: 100vh;
-    overflow: auto; 
+    overflow: hidden; 
     position: relative;
     margin: 0;
 }
 
-.black-overlay {
+.black-overlay-cards {
     background-color: rgba(0, 0, 0, 0.5);
     position: relative;
     top: 0;

@@ -302,6 +302,22 @@
     transform: translateX(-50%);
     z-index: 10;
   }
+
+
+/* 아이콘과 입력창을 함께 감싸는 컨테이너 */
+/* .input-with-icon {
+  position: relative;
+} */
+
+/* 아이콘 스타일 */
+.input-with-icon {
+  position: absolute;
+  top: 50%;
+  left: 12px;
+  transform: translateY(-50%);
+  color: #FFA673;
+}
+
   
   @media (max-width: 768px) {
     .leftpattern-img {

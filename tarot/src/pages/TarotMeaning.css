@@ -1,5 +1,5 @@
 
-.tarot-purple {
+.tarot-purple-meaning {
     background-color: rgb(54, 23, 97);
     color: #fff;
     overflow: hidden;
@@ -8,7 +8,7 @@
     margin: 0;
 }
 
-.black-overlay {
+.black-overlay-meaning  {
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;

@@ -11,8 +11,8 @@ import TAROT_logo from '../components/TAROT.png';
 const TarotMeaning = () => {
   
   return (
-    <div className="tarot-purple">
-      <div className="black-overlay">
+    <div className="tarot-purple-meaning ">
+      <div className="black-overlay-meaning ">
         
         {/* Header Section */}
         <div className="header-container-mean">

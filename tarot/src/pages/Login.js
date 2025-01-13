@@ -97,6 +97,10 @@ const Login = () => {
         }
     };
 
+    const handleFileChange = (e) => {
+        setProfileImage(e.target.files[0]);
+    };
+
     return (
         <div className="tarot-purple">
             <div className="black-overlay">
@@ -147,14 +151,16 @@ const Login = () => {
 
                         {isRegister && (
                             <div className="form-group">
-                                <label htmlFor="profileImage">프로필 이미지 URL (선택)</label>
+                            <label htmlFor="profileImage">프로필 이미지</label>
+                            <div className="input-with-icon">
                                 <input
-                                    type="text"
-                                    value={profileImage}
-                                    onChange={(e) => setProfileImage(e.target.value)}
-                                    placeholder="프로필 이미지 URL (선택)"
+                                    type="file"
+                                    id="profileImage"
+                                    accept="image/*"
+                                    onChange={handleFileChange}
                                 />
                             </div>
+                        </div>
                         )}
                         <button type="submit" className="submit-button">
                             {isRegister ? '회원가입' : '로그인'}

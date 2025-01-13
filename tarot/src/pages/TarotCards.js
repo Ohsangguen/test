@@ -8,33 +8,55 @@ import couple_logo from '../components/커플타로_logo.png';
 import TAROT_logo from '../components/TAROT.png';
 
 import fool from '../components/넙죽타로카드/메이저 카드/0. the fool.png';
+import magician from '../components/넙죽타로카드/메이저 카드/1. the magician.png';
+import highPriestess from '../components/넙죽타로카드/메이저 카드/2. the high priestess.png';
+import empress from '../components/넙죽타로카드/메이저 카드/3. the empress.png';
+import emperor from '../components/넙죽타로카드/메이저 카드/4. the emperor.png';
+import hierophant from '../components/넙죽타로카드/메이저 카드/5. the hierophant.png';
+import lovers from '../components/넙죽타로카드/메이저 카드/6. the lovers.png';
+import chariot from '../components/넙죽타로카드/메이저 카드/7. the chariot.png';
+import strength from '../components/넙죽타로카드/메이저 카드/8. strength.png';
+import hermit from '../components/넙죽타로카드/메이저 카드/9. the hermit.png';
+import wheelOfFortune from '../components/넙죽타로카드/메이저 카드/10. wheel of fortune.png';
+import justice from '../components/넙죽타로카드/메이저 카드/11. justice.png';
+import hangedMan from '../components/넙죽타로카드/메이저 카드/12. the hanged man.png';
+import death from '../components/넙죽타로카드/메이저 카드/13. death.png';
+import temperance from '../components/넙죽타로카드/메이저 카드/14. temperance.png';
+import devil from '../components/넙죽타로카드/메이저 카드/15. the devil.png';
+import tower from '../components/넙죽타로카드/메이저 카드/16. the tower.png';
+import star from '../components/넙죽타로카드/메이저 카드/17. the star.png';
+import moon from '../components/넙죽타로카드/메이저 카드/18. the moon.png';
+import sun from '../components/넙죽타로카드/메이저 카드/19. the sun.png';
+import judgement from '../components/넙죽타로카드/메이저 카드/20. judgement.png';
+import world from '../components/넙죽타로카드/메이저 카드/21. the world.png';
 
 const TarotCards = () => {
 
-    const majorArcana = [ 
+    const majorArcana = [
         { id: 0, name: '광대 The Fool', imageUrl: fool },
-        { id: 1, name: '마술사 The Magician', imageUrl: '/images/magician.png' },
-        { id: 2, name: '여사제 The High Priestess', imageUrl: '/images/high_priestess.png' },
-        { id: 3, name: '여제 The Empress', imageUrl: '/images/empress.png' },
-        { id: 4, name: '황제 The Emperor', imageUrl: '/images/emperor.png' },
-        { id: 5, name: '교황 The Hierophant', imageUrl: '/images/hierophant.png' },
-        { id: 6, name: '연인 The Lovers', imageUrl: '/images/lovers.png' },
-        { id: 7, name: '전차 The Chariot', imageUrl: '/images/chariot.png' },
-        { id: 8, name: '힘 Strength', imageUrl: '/images/strength.png' },
-        { id: 9, name: '은둔자 The Hermit', imageUrl: '/images/hermit.png' },
-        { id: 10, name: '운명의 수레바퀴 Wheel of Fortune', imageUrl: '/images/wheel_of_fortune.png' },
-        { id: 11, name: '정의 Justice', imageUrl: '/images/justice.png' },
-        { id: 12, name: '매달린 남자 The Hanged Man', imageUrl: '/images/hanged_man.png' },
-        { id: 13, name: '죽음 Death', imageUrl: '/images/death.png' },
-        { id: 14, name: '절제 Temperance', imageUrl: '/images/temperance.png' },
-        { id: 15, name: '악마 The Devil', imageUrl: '/images/devil.png' },
-        { id: 16, name: '탑 The Tower', imageUrl: '/images/tower.png' },
-        { id: 17, name: '별 The Star', imageUrl: '/images/star.png' },
-        { id: 18, name: '달 The Moon', imageUrl: '/images/moon.png' },
-        { id: 19, name: '태양 The Sun', imageUrl: '/images/sun.png' },
-        { id: 20, name: '심판 Judgement', imageUrl: '/images/judgement.png' },
-        { id: 21, name: '세계 The World', imageUrl: '/images/world.png' }
+        { id: 1, name: '마술사 The Magician', imageUrl: magician },
+        { id: 2, name: '여사제 The High Priestess', imageUrl: highPriestess },
+        { id: 3, name: '여제 The Empress', imageUrl: empress },
+        { id: 4, name: '황제 The Emperor', imageUrl: emperor },
+        { id: 5, name: '교황 The Hierophant', imageUrl: hierophant },
+        { id: 6, name: '연인 The Lovers', imageUrl: lovers },
+        { id: 7, name: '전차 The Chariot', imageUrl: chariot },
+        { id: 8, name: '힘 Strength', imageUrl: strength },
+        { id: 9, name: '은둔자 The Hermit', imageUrl: hermit },
+        { id: 10, name: '운명의 수레바퀴 Wheel of Fortune', imageUrl: wheelOfFortune },
+        { id: 11, name: '정의 Justice', imageUrl: justice },
+        { id: 12, name: '매달린 남자 The Hanged Man', imageUrl: hangedMan },
+        { id: 13, name: '죽음 Death', imageUrl: death },
+        { id: 14, name: '절제 Temperance', imageUrl: temperance },
+        { id: 15, name: '악마 The Devil', imageUrl: devil },
+        { id: 16, name: '탑 The Tower', imageUrl: tower },
+        { id: 17, name: '별 The Star', imageUrl: star },
+        { id: 18, name: '달 The Moon', imageUrl: moon },
+        { id: 19, name: '태양 The Sun', imageUrl: sun },
+        { id: 20, name: '심판 Judgement', imageUrl: judgement },
+        { id: 21, name: '세계 The World', imageUrl: world },
       ];
+      
 
     const minorArcana = [
         { id: 7, name: 'Wands : 창의성, 열정, 행동' },
@@ -66,8 +88,8 @@ const TarotCards = () => {
     };
 
     return (
-        <div className="tarot-purple">
-            <div className="black-overlay">
+        <div className="tarot-purple-cards">
+            <div className="black-overlay-cards">
 
             <div className="header-container-mean">
                 <a href="main" className="title-logo">
