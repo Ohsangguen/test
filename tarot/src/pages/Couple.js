@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Couple.css';
 import { cards, shuffleCards } from './card-shuffle.js'; 
 import TAROT_logo from '../components/TAROT.png';
@@ -6,11 +7,13 @@ import coupleneob from '../components/커플 타로 넙죽이/커플 넙죽이(�
 
 
 const Couple = () => {
-    const [cards, setCards] = useState(shuffleCards());
-    const [selectedCard, setSelectedCard] = useState(null);
-    const [placedCards, setPlacedCards] = useState(Array(8).fill(null)); // 8개의 드롭존 상태 관리
-    const [highlightedZones, setHighlightedZones] = useState(Array(8).fill(false)); // 드롭존 강조 상태 관리
-    const [allCardsPlaced, setAllCardsPlaced] = useState(false); // 모든 카드가 드롭되었는지 상태 관리
+  const [cards, setCards] = useState(shuffleCards());
+  const [selectedCard, setSelectedCard] = useState(null);
+  const [placedCards, setPlacedCards] = useState(Array(8).fill(null)); // 8개의 드롭존 상태 관리
+  const [highlightedZones, setHighlightedZones] = useState(Array(8).fill(false)); // 드롭존 강조 상태 관리
+  const [allCardsPlaced, setAllCardsPlaced] = useState(false); // 모든 카드가 드롭되었는지 상태 관리
+  const navigate = useNavigate();
+
 
     useEffect(() => {
       // 모든 드롭존에 카드가 드롭되었는지 확인
@@ -50,8 +53,7 @@ const Couple = () => {
       if (!allCardsPlaced) {
         alert('모든 카드를 드롭 영역에 놓아야 합니다.');
       } else {
-        localStorage.setItem('placedCards', JSON.stringify(placedCards));
-        window.location.href = 'coupledetail';
+        navigate('/coupledetail', { state: { selectedCards: placedCards } });
       }
     };
 
