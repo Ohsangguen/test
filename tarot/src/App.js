@@ -47,25 +47,31 @@ function App() {
 
           <div className="main-content">
             <Routes>
+              {/* 기본 경로 */}
+              <Route path="/" element={<Main />} />
+
+              {/* 로그인 및 마이페이지 */}
               <Route path="/login" element={<Login />} />
               <Route path="/mypage" element={<Mypage />} />
-              <Route path="/main" element={<Main />} />
 
+              {/* 타로 관련 경로 */}
               <Route path="/tarotmeaning" element={<TarotMeaning />} />
               <Route path="/tarotcards" element={<TarotCards />} />
 
+              {/* 오늘의 운세 */}
               <Route path="/todayfortune" element={<Todayfortune />} />
               <Route path="/card/:cardId" element={<TodayDetail />} />
 
+              {/* 포카드 타로 */}
               <Route path="/fourcard" element={<Fourcard />} />
               <Route path="/general" element={<General />} />
               <Route path="/love" element={<Love />} />
               <Route path="/money" element={<Money />} />
               <Route path="/generaldetail" element={<GeneralDetail />} />
 
+              {/* 커플 타로 */}
               <Route path="/couple" element={<Couple />} />
               <Route path="/coupledetail" element={<CoupleDetail />} />
-
             </Routes>
           </div>
         </div>
@@ -73,5 +79,4 @@ function App() {
     </Router>
   );
 }
-
 export default App;
