@@ -45,7 +45,7 @@ const GeneralDetail = () => {
                 <img
                   src={cardImage}
                   alt={`Selected Tarot card ${selectedCardIndex + 1}`}
-                  className="tarot-card"
+                  className="tarot-card-generaldetail"
                 />
                 <p>이 카드의 해석은 ...</p>
               </div>
