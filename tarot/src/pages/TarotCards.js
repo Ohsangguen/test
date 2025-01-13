@@ -1,5 +1,6 @@
 // TarotCards.jsx
 import React, { useState } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './TarotCards.css';
 import today_logo from '../components/오늘의운세_logo.png';  
 import tarotmeaning_logo from '../components/타로란_logo.png';  
@@ -74,6 +75,8 @@ const TarotCards = () => {
 
     const [showCardTypes, setShowCardTypes] = useState(false);
     const [selectedCard, setSelectedCard] = useState(null);
+    const navigate = useNavigate();
+
 
     const handleCardTypeClick = () => {
         setShowCardTypes(!showCardTypes);
@@ -87,19 +90,22 @@ const TarotCards = () => {
         setSelectedCard(null);
     };
 
+    const handleTitleClick = () => {
+        navigate('/');
+      };
+
     return (
         <div className="tarot-purple-cards">
             <div className="black-overlay-cards">
-
             <div className="header-container-mean">
-                <a href="main" className="title-logo">
-                    <h1 className="main-title-text">TAROT</h1>
-                </a>
-                <div className="header-options">
-                    <a href="todayfortune" className="option-text">오늘의 운세</a>
-                    <a href="fourcard" className="option-text">포카드 타로</a>
-                    <a href="couple" className="option-text">커플 타로</a>
-                </div>
+            <div className="main-title" onClick={handleTitleClick}>
+                <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text" />
+            </div>
+            <div className="header-options-mean">
+                <a href="todayfortune" className="option-text-mean">오늘의 운세</a>
+                <a href="fourcard" className="option-text-mean">포카드 타로</a>
+                <a href="couple" className="option-text-mean">커플 타로</a>
+            </div>
             </div>
 
             <div className="content-container-cards">

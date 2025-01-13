@@ -39,18 +39,20 @@
 }
 
 .main-title-text {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #fff;
+    width: 200%; /* 이미지의 너비 조정 */
+    height: auto; /* 이미지의 높이를 자동으로 조정 */
+    cursor: pointer;
+    text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8); /* 하얀 그림자 추가 */
 }
 
-.header-options {
+.header-options-mean {
     display: flex;
-    gap: 20px;
+    gap: 40px;
+    left: 50px;
 }
 
-.option-img {
-    width: 100px;
+.option-text-mean {
+    font-size: 1.8rem;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
 }
@@ -65,6 +67,13 @@
     padding: 50px;
 }
 
+.content-container-cards {
+    display: flex;
+    padding-top: 40px;
+    padding-left: 80px;
+    padding-right: 80px;
+}
+
 /* Left Sidebar */
 .left-sidebar {
     width: 10%;
@@ -76,24 +85,27 @@
 }
 
 .sidebar-item {
-    width: 150px;
+    width: 100%;
     cursor: pointer;
-    filter: grayscale(100%);
+    filter: white;
     transition: filter 0.3s ease-in-out;
+    font-size: 1.5rem;
+    margin-top: 20px;
 }
 
 .sidebar-item.active {
-    filter: grayscale(0%);
+    filter: white;
 }
 
 .sidebar-item:hover {
-    filter: grayscale(0%);
+    filter: purple;
+
 }
 
 /* Main Content */
 .main-content-mean {
     width: 100%;
-    padding: 20px;
+    padding: 1% 5%;
 }
 
 .main-content h1 {
