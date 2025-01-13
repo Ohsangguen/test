@@ -49,16 +49,16 @@ const General = () => {
   };
 
   return (
-    <div id="tarot-screen" className="tarot-purple-today">
-      <div className="black-overlay-today">
-        <div className="container-today">
-          <a href="checkmain.html" className="header-today">
+    <div id="tarot-screen" className="tarot-purple">
+      <div className="black-overlay">
+        <div className="container-general">
+          <a href="checkmain.html" className="header-general">
             <img src="https://ifh.cc/g/018lPq.png" alt="Tarot" />
           </a>
 
           {/* <h2 className="instruction-text">카드를 골라주세요.</h2> */}
 
-          <div className="cards-container-today"></div>
+          <div className="cards-container-general"></div>
 
             <button id="reveal-button" className="selection-btn reveal-btn" onClick={handleRevealClick}>
               카드 확인하기

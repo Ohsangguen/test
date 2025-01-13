@@ -1,4 +1,4 @@
-.tarot-purple-today {
+.tarot-purple {
     background-color: rgb(54, 23, 97);
     color: #fff;
     position: relative;
@@ -8,7 +8,7 @@
     overflow: hidden;
   }
   
-  .black-overlay-today {
+  .black-overlay {
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
@@ -21,15 +21,16 @@
   /* Todayfortune.css */
   
   
-  .cards-spread {
+  .cards-spread-generaldetail {
     display: flex;
-    justify-content: space-around;
+    justify-content: center;
     align-items: center;
     position: relative;
-    height: 50vh;
+    margin-top: 10vh;
+    height: 50px;
   }
   
-  .selected-card {
+  .selected-card-generaldetail {
     position: relative;
     width: 120px;
     height: auto;
@@ -43,18 +44,37 @@
   }
   
   .interpretation-box {
-    background-color: white;
+    background-color: rgba(255, 255, 255, 0.498);
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    margin-top: 20vh;
+    margin-top: 3vh;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 60%;
+  }
+  .interpretation-box-in {
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    align-items: row;
+    margin-top: 3vh;  
   }
   
-  .container-today {
-    padding: 20px;
+  .container-generaldetail {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; /* 필요에 따라 조정 */
+    height: 100%;
+    padding: 10px;
     box-sizing: border-box;
-  }
+    margin-top: 20px; /* cards-spread-generaldetail 아래에 배치 */
+}
   
   h1 {
     text-align: center;

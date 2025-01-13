@@ -150,7 +150,7 @@ const Todayfortune = () => {
             </div>
           
 
-            <div className="cards-spread">
+            <div className="cards-spread-general">
               {cards.map((_, index) => {
                 const angle = (280 / cardCount) * index;
                 // 각 카드에 대해 지연 시간을 계산
