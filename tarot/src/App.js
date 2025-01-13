@@ -16,6 +16,8 @@ import Fourcard from './pages/Fourcard';
 import General from './pages/General';
 import Love from './pages/Love';
 import Money from './pages/Money';
+import GeneralDetail from './pages/GeneralDetail';
+
 
 import Couple from './pages/Couple';
 import CoupleDetail from './pages/CoupleDetail';
@@ -59,6 +61,7 @@ function App() {
               <Route path="/general" element={<General />} />
               <Route path="/love" element={<Love />} />
               <Route path="/money" element={<Money />} />
+              <Route path="/generaldetail" element={<GeneralDetail />} />
 
               <Route path="/couple" element={<Couple />} />
               <Route path="/coupledetail" element={<CoupleDetail />} />

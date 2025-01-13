@@ -1,5 +1,6 @@
 // OneCardTarot.jsx
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './General.css';
 import cardImage from '../components/card_image.png';  // 카드 이미지 import
 
@@ -13,7 +14,7 @@ const General = () => {
   const [startAnimation, setStartAnimation] = useState(false);
   const [isGathering, setIsGathering] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]); // 선택된 카드 상태 관리
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     // 컴포넌트가 마운트되면 애니메이션 시작 상태로 변경
@@ -29,17 +30,21 @@ const General = () => {
       setStartAnimation(true);
     }, 3000);
   };
-
-  // const handleCardClick = (index) => {
-  //   console.log(`카드 ${index + 1} 클릭됨`);
-  //   // 여기서 원하는 동작 수행
-  // };
   
   const handleCardClick = (index) => {
     console.log(`카드 ${index + 1} 클릭됨`);
 
     if (selectedCards.length < 4) {
-      setSelectedCards([...selectedCards, cards[index]]);
+      const randomCard = cards[Math.floor(Math.random() * cardCount)];
+      setSelectedCards([...selectedCards, randomCard]);
+    }
+  };
+
+  const handleRevealClick = () => {
+    if (selectedCards.length === 4) {
+      navigate('/generaldetail', { state: { selectedCards } });
+    } else {
+      console.warn('4장의 카드를 선택해주세요.');
     }
   };
 
@@ -55,7 +60,7 @@ const General = () => {
 
           <div className="cards-container-today"></div>
 
-            <button id="reveal-button" className="selection-btn reveal-btn">
+            <button id="reveal-button" className="selection-btn reveal-btn" onClick={handleRevealClick}>
               카드 확인하기
             </button>
 
@@ -66,10 +71,10 @@ const General = () => {
             <a href="tarotmeaning" className="circle tarot-meaning">
               <img src="https://ifh.cc/g/bgXtqd.png" alt="타로란" />
             </a>
-            <a href="today-fortune.html" className="circle today-fortune">
+            <a href="todayfortune" className="circle today-fortune">
               <img src="https://ifh.cc/g/TqQC50.png" alt="오늘의 운세" />
             </a>
-            <a href="couple-tarot.html" className="circle couple-tarot">
+            <a href="couple" className="circle couple-tarot">
               <img src="https://ifh.cc/g/NPR31l.png" alt="커플 궁합 타로" />
             </a>
 
@@ -97,7 +102,7 @@ const General = () => {
 
                 let wrapperStyle = {
                   position: 'absolute',
-                  top: '110%',
+                  top: '120%',
                   left: '47%',
                   transition: 'transform 1s ease-out',
                   transitionDelay: `${delay}s`,
@@ -124,19 +129,19 @@ const General = () => {
 
                 return (
                   <div 
-                    key={index} 
-                    style={wrapperStyle} 
-                    className="card-wrapper"
-                    onClick={() => handleCardClick(index)}  // 클릭 이벤트 할당
-                  >
-                    <img 
-                      src={cardImage} 
-                      alt={`Tarot card ${index + 1}`} 
-                      className="tarot-card"
-                    />
-                  </div>
-                );
-              })}
+                  key={index} 
+                  style={wrapperStyle} 
+                  className={`card-wrapper ${selectedCards.includes(index) ? 'selected' : ''}`}
+                  onClick={() => handleCardClick(index)}  // 클릭 이벤트 할당
+                >
+                  <img 
+                    src={cardImage} 
+                    alt={`Tarot card ${index + 1}`} 
+                    className="tarot-card"
+                  />
+                </div>
+              );
+            })}
           </div>
           <div className="selected-cards-container">
             {selectedCards.map((card, index) => (

@@ -283,12 +283,14 @@
   }
 
   .selected-cards-container {
-    overflow: hidden;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-top: 20px;
-    border: #fff;
+    position: absolute;
+    bottom: 20vh; /* 화면 하단에서 20px 위로 배치 */
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%; /* 필요에 따라 조정 */
   }
   
   .selected-card {

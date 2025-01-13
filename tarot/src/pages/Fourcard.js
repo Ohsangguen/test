@@ -31,9 +31,9 @@ const Fourcard = () => {
                 {selectedScreen === 'selection' && (
                     <div id="selection-screen" className="screen active">
                         <h1>타로 리딩을 선택하세요</h1>
-                        <div className="subject-image">
+                        {/* <div className="subject-image">
                             <img src="주제-정하기.png" alt="주제 정하기" />
-                        </div>
+                        </div> */}
                         <div className="options-container">
                             <div className="selection-options">
                             <div className="card-container" onClick={() => handleSelectionClick('general')}>
