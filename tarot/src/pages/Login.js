@@ -11,19 +11,38 @@ const Login = () => {
     const [message, setMessage] = useState('');
     const navigate = useNavigate();
 
-    const handleLogin = (e) => {
+    const handleLogin = async (e) => {
         e.preventDefault();
-
+    
         if (!email || !password) {
-            setMessage('모든 필드를 입력해주세요.');
+            setMessage('모든 필드를 입력해주세dds요.');
             return;
         }
-
-        // 로그인 로직
-        // PI 호출, 토큰 저장
-
-        setMessage('로그인 성공!');
-        navigate('/main'); // 로그인 성공 후 메인 페이지로 이동
+    
+        try {
+            const response = await fetch('/api/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ email, password }),
+            });
+    
+            const data = await response.json();
+    
+            if (!response.ok) {
+                setMessage(data.message || '로그인 실패');
+                return;
+            }
+    
+            // 사용자 정보를 로컬 스토리지에 저장하고 My Page로 이동
+            localStorage.setItem('loggedInUser', JSON.stringify(data.user));
+            setMessage('로그인 성공!');
+            navigate('/mypage'); // My Page로 이동
+        } catch (error) {
+            console.error('Login error:', error);
+            setMessage('서버 에러 발생!');
+        }
     };
 
     const handleRegister = (e) => {
