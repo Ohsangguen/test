@@ -4,6 +4,7 @@ import Header from './pages/Header';
 import Sidebar from './pages/Sidebar';
 import Login from './pages/Login';
 import Mypage from './pages/Mypage';
+import Loding from './pages/Loding';
 
 import Main from './pages/Main';
 import TarotMeaning from './pages/TarotMeaning';
@@ -17,7 +18,6 @@ import General from './pages/General';
 import Love from './pages/Love';
 import Money from './pages/Money';
 import GeneralDetail from './pages/GeneralDetail';
-
 
 import Couple from './pages/Couple';
 import CoupleDetail from './pages/CoupleDetail';
@@ -53,7 +53,8 @@ function App() {
               {/* 로그인 및 마이페이지 */}
               <Route path="/login" element={<Login />} />
               <Route path="/mypage" element={<Mypage />} />
-
+              <Route path="/loding" element={<Loding />} />
+              
               {/* 타로 관련 경로 */}
               <Route path="/tarotmeaning" element={<TarotMeaning />} />
               <Route path="/tarotcards" element={<TarotCards />} />
