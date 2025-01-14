@@ -61,7 +61,7 @@ function App() {
 
               {/* 오늘의 운세 */}
               <Route path="/todayfortune" element={<Todayfortune />} />
-              <Route path="/card/:cardId" element={<TodayDetail />} />
+              <Route path="/todaydetail" element={<TodayDetail />} />
 
               {/* 포카드 타로 */}
               <Route path="/fourcard" element={<Fourcard />} />

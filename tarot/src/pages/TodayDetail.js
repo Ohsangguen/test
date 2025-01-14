@@ -1,56 +1,59 @@
-// TodayDetail.js
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import './TodayDetail.css';
+import sampleCardImage from '../components/card_image.png'; // 임의의 이미지 import
 
 const TodayDetail = () => {
-  const { cardId } = useParams(); // URL에서 cardId 파라미터 추출
-  const [cardData, setCardData] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const location = useLocation();
+  const selectedCard = location.state?.selectedCard || { id: 1 }; // 단일 카드 상태, 기본값 설정
+  const [cardUrl, setCardUrl] = useState('');
+  const [interpretation, setInterpretation] = useState('');
+  const [showInterpretation, setShowInterpretation] = useState(false); // 해석창 상태
 
   useEffect(() => {
-    // 페이지가 로드될 때, 백엔드 API 호출하여 카드 데이터 가져오기
-    const fetchCardData = async () => {
-      try {
-        const response = await fetch(`/api/card/${cardId}`); // 카드 정보를 제공하는 API 엔드포인트
-        if (!response.ok) {
-          throw new Error(`HTTP error! status: ${response.status}`);
-        }
-        const data = await response.json();
-        setCardData(data);
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setLoading(false);
-      }
+    // 임의의 카드 데이터 설정
+    const cardData = {
+      url: sampleCardImage,
+      interpretation: '이 카드는 당신의 현재 상황을 나타냅니다. 긍정적인 변화를 기대하세요.',
     };
+    setCardUrl(cardData.url);
+    setInterpretation(cardData.interpretation);
+  }, [selectedCard]);
 
-    fetchCardData();
-  }, [cardId]);
-
-  if (loading) {
-    return <div className="today-detail-container">Loading...</div>;
-  }
-
-  if (error) {
-    return <div className="today-detail-container">Error: {error}</div>;
-  }
+  const handleCardClick = () => {
+    setShowInterpretation(true); // 해석창 표시
+  };
 
   return (
-    <div className="today-detail-container">
-      {cardData && (
-        <div className="card-detail">
-          <img 
-            src={cardData.imageUrl} 
-            alt={`Card ${cardId}`} 
-            className="card-image" 
-          />
-          <div className="card-interpretation">
-            {cardData.interpretation}
+    <div className="tarot-purple-todaydetail">
+      <div className="black-overlay">
+        <div className="container-todaydetail">
+          {/* 카드 */}
+          <div className="card-todaydetail" onClick={handleCardClick}>
+            <img
+              src={cardUrl} // 임의의 이미지 URL 사용
+              alt={`Selected Tarot card`}
+              className="tarot-card-todaydetail"
+            />
           </div>
+
+          {/* 해석 텍스트 박스 */}
+          {showInterpretation && (
+            <div className="interpretation-box">
+              <div className="interpretation-box-in">
+                <img
+                  src={cardUrl} // 임의의 이미지 URL 사용
+                  alt={`Selected Tarot card`}
+                  className="tarot-card-todaydetail"
+                />
+                <p style={{ fontSize: '14px' }}>
+                  {interpretation}
+                </p>
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </div>
     </div>
   );
 };
