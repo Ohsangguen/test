@@ -2,7 +2,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './General.css';
-import cardImage from '../components/card_image.png';  // 카드 이미지 import
+import cardImage from '../components/card_image2.png';  // 카드 이미지 import
 
 
 const General = () => {
@@ -137,7 +137,7 @@ const General = () => {
                   <img 
                     src={cardImage} 
                     alt={`Tarot card ${index + 1}`} 
-                    className="tarot-card"
+                    className="tarot-card-general"
                   />
                 </div>
               );
@@ -145,11 +145,11 @@ const General = () => {
           </div>
           <div className="selected-cards-container">
             {selectedCards.map((card, index) => (
-              <div key={index} className="selected-card">
+              <div key={index} className="selected-card-general">
                 <img 
                   src={cardImage} 
                   alt={`Selected Tarot card ${index + 1}`} 
-                  className="tarot-card"
+                  className="tarot-card-general"
                 />
               </div>
             ))}
