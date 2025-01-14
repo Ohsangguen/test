@@ -6,7 +6,9 @@ import './CoupleDetail.css';
 const CoupleDetail = () => {
 
     const location = useLocation();
-    const { selectedCards } = location.state || { selectedCards: [] };
+    // const { selectedCards } = location.state || { selectedCards: [] };
+    const selectedCards = location.state?.selectedCards || []; // 기본값 설정
+
     const [selectedCardIndex, setSelectedCardIndex] = useState(null);
     
 

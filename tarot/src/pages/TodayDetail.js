@@ -46,7 +46,7 @@ const TodayDetail = () => {
                   alt={`Selected Tarot card`}
                   className="tarot-card-todaydetail"
                 />
-                <p style={{ fontSize: '14px' }}>
+                <p style={{ fontSize: '17px' }}>
                   {interpretation}
                 </p>
               </div>

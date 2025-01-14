@@ -1,4 +1,4 @@
-.tarot-purple-loding {
+.tarot-purple-loading {
     background-color: rgb(54, 23, 97);
     color: #fff;
     overflow: hidden;
@@ -6,7 +6,7 @@
     height: 100vh;
   }
   
-  .black-overlay-loding {
+  .black-overlay-loading {
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
@@ -34,9 +34,14 @@
   }
   
   .loading-image {
-    width: 30%;
-    height: 30%;
-    animation: spin 2s linear infinite;
+    width: 80%;
+    height: 75%;
+    animation: scale 2s linear infinite;
+  }
+  .loading-image2 {
+    width: 50%;
+    height: 60%;
+    animation: move 3s linear infinite;
   }
   
   .loading-text {
@@ -45,11 +50,20 @@
     text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8);
   }
   
-  @keyframes spin {
-    0% {
-      transform: rotate(0deg);
+  @keyframes scale {
+    0%, 100% {
+      transform: scale(1);
     }
-    100% {
-      transform: rotate(360deg);
+    50% {
+      transform: scale(1.2);
+    }
+  }
+
+  @keyframes move {
+    0%, 100% {
+      transform: translateX(-50%);
+    }
+    50% {
+      transform: translateX(50%);
     }
   }

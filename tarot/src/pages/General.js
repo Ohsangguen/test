@@ -4,6 +4,8 @@ import './General.css';
 import cardImage from '../components/card_image2.png';  // 카드 이미지 import
 import TAROT_logo from '../components/TAROT.png';
 import axios from 'axios';
+import FourcardLoading from './FourcardLoading';
+
 
 const General = () => {
   const cardCount = 78; // 카드 수
@@ -13,6 +15,10 @@ const General = () => {
   const [startAnimation, setStartAnimation] = useState(false);
   const [isGathering, setIsGathering] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]); // 선택된 카드 상태 관리
+  const [showRevealButton, setShowRevealButton] = useState(false);
+  const [selectedCardIndex, setSelectedCardIndex] = useState(null);
+  
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,7 +61,10 @@ const General = () => {
   const handleRevealClick = () => {
     fetchReading();
     if (selectedCards.length === 4) {
-      navigate('/generaldetail', { state: { selectedCards } });
+      setIsLoading(true); // 로딩 상태로 전환
+      setTimeout(() => {
+        navigate('/generaldetail', { state: { selectedCards} });
+      }, 10000); // 10초 후에 TodayDetail 페이지로 이동
     } else {
       console.warn('4장의 카드를 선택해주세요.');
     }
@@ -66,6 +75,10 @@ const General = () => {
   };
 
   return (
+    <div>
+      {isLoading ? (
+        <FourcardLoading /> // 로딩 중일 때 Loading 컴포넌트 표시
+      ) : (
     <div id="tarot-screen" className="tarot-purple-general">
       <div className="black-overlay-general">
         <div className="main-title-left" onClick={handleTitleClick}>
@@ -167,7 +180,10 @@ const General = () => {
           )}
           </div>
         </div>
+        
       </div>
+       )}
+    </div>
   );
 };
 

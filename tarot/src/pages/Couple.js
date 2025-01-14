@@ -5,18 +5,20 @@ import { cards, shuffleCards } from './card-shuffle.js';
 import TAROT_logo from '../components/TAROT.png';
 import coupleneob from '../components/커플 타로 넙죽이/커플 넙죽이(주파수).png';
 import tarot_card_back from '../components/card_image2.png';
+import CoupleLoading from './CoupleLoading';
 
 
 
 const Couple = () => {
   // const [cards, setCards] = useState(shuffleCards());
+  const navigate = useNavigate();
   const [selectedCard, setSelectedCard] = useState(null);
   const [placedCards, setPlacedCards] = useState(Array(8).fill(null)); // 8개의 드롭존 상태 관리
   const [highlightedZones, setHighlightedZones] = useState(Array(8).fill(false)); // 드롭존 강조 상태 관리
   const [allCardsPlaced, setAllCardsPlaced] = useState(false); // 모든 카드가 드롭되었는지 상태 관리
   const [isGathering, setIsGathering] = useState(false); // 카드 모음 상태 관리
   const [startAnimation, setStartAnimation] = useState(false);
-  const navigate = useNavigate();
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
 
   const cardCount = 78; // 카드 수
   const radius = 800;   // 원의 반지름
@@ -80,7 +82,10 @@ const Couple = () => {
       if (!allCardsPlaced) {
         alert('모든 카드를 드롭 영역에 놓아야 합니다.');
       } else {
+        setIsLoading(true); // 로딩 상태로 전환
+        setTimeout(() => {
         navigate('/coupledetail', { state: { selectedCards: placedCards } });
+        }, 10000); // 10초 후에 CoupleDetail 페이지로 이동
       }
     };
 
@@ -99,6 +104,10 @@ const Couple = () => {
     };
 
     return (
+      <div>
+      {isLoading ? (
+        <CoupleLoading /> // 로딩 중일 때 Loading 컴포넌트 표시
+      ) : (
       <div className="tarot-purple-couple">
         <div className="black-overlay-couple">
 
@@ -196,6 +205,8 @@ const Couple = () => {
           </div>
         </div>
       </div>
+       )}
+    </div>
     );
 };
 

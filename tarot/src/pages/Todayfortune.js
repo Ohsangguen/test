@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom'; // useNavigate 가져오기
 import './Todayfortune.css';
 import cardImage from '../components/card_image2.png';  // 카드 이미지 import
 import cardReveal from '../components/card_reveal.png';  // 카드 이미지 import
-
 import today_logo from '../components/오늘의운세_logo.png';  // 카드 이미지 import
 import tarotmeaning_logo from '../components/타로란_logo.png';  // 카드 이미지 import
 import TAROT_logo from '../components/TAROT.png';
+import TodayLoading from './TodayLoading'; // Loading 컴포넌트 import
 
 
 const Todayfortune = () => {
@@ -22,6 +22,7 @@ const Todayfortune = () => {
   const [isGathering, setIsGathering] = useState(false);
   const [selectedCardIndex, setSelectedCardIndex] = useState(null);
   const [showRevealButton, setShowRevealButton] = useState(false);
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
 
   useEffect(() => {
     // 컴포넌트가 마운트되면 애니메이션 시작 상태로 변경
@@ -45,26 +46,13 @@ const Todayfortune = () => {
   };
 
   const handleRevealClick = () => {
-    const randomIndex = Math.floor(Math.random() * cardCount);
-    console.log(`랜덤으로 선택된 카드: ${randomIndex + 1}`);
-
-    // React Router를 이용한 페이지 이동
-    navigate(`/todaydetail`);
+    setIsLoading(true); // 로딩 상태로 전환
+    setTimeout(() => {
+      navigate('/todaydetail', { state: { selectedCard: { id: selectedCardIndex } } });
+    }, 10000); // 10초 후에 TodayDetail 페이지로 이동
   };
-  
 
-  // const handleRevealClick = () => {
-  //   if (selectedCardIndex === null) {
-  //     // 사용자가 아직 카드를 선택하지 않은 경우에 대한 처리
-  //     console.warn('카드를 선택해주세요.');
-  //     return;
-  //   }
-  //   console.log(`선택된 카드: ${selectedCardIndex + 1}`);
-  
-  //   // React Router를 이용한 페이지 이동
-  //   // URL 파라미터에 selectedCardIndex를 사용 (0부터 시작하므로 필요 시 +1 조정 가능)
-  //   navigate(`/card/${selectedCardIndex}`);
-  // };
+
 
   const handleTitleClick = () => {
     navigate('/');
@@ -72,6 +60,10 @@ const Todayfortune = () => {
 
 
   return (
+    <div>
+      {isLoading ? (
+        <TodayLoading /> // 로딩 중일 때 Loading 컴포넌트 표시
+      ) : (
     <div id="tarot-screen" className="tarot-purple-today">
       <div className="black-overlay-today">
         <div className="container-today">
@@ -132,20 +124,6 @@ const Todayfortune = () => {
                 className="pattern-img-r"
               />
             </div>
-            {/* <div className="rightline-img">
-              <img
-                src="https://ifh.cc/g/2aTXPo.png"
-                alt="Right line"
-                className="line-img"
-              />
-            </div>
-            <div className="leftline-img">
-              <img
-                src="https://ifh.cc/g/2aTXPo.png"
-                alt="left line"
-                className="line-img"
-              />
-            </div> */}
 
               <button onClick={shuffleCards} className="selection-btn shuffle-btn-today">
                 셔플        
@@ -201,6 +179,8 @@ const Todayfortune = () => {
           </div>
         </div>
       </div>
+      </div>
+      )}
     </div>
   );
 };

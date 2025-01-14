@@ -135,7 +135,7 @@ const TarotCards = () => {
         { 
             id: 8, 
             name: 'Cups : 감정, 관계, 사랑',
-            imagesUrl: [Cup1, Cup2, Cup3, Cup4, Cup5, Cup6, Cup7, Cup8, Cup9, Cup10]
+            images: [Cup1, Cup2, Cup3, Cup4, Cup5, Cup6, Cup7, Cup8, Cup9, Cup10]
         },
         { 
             id: 9, 
