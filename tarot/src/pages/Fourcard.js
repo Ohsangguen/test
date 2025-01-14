@@ -4,6 +4,7 @@ import cardimage from '../components/card_image.png';
 import cardimage_general from '../components/card_general.png';
 import cardimage_love from '../components/card_love.png';
 import cardimage_money from '../components/card_money.png';
+import TAROT_logo from '../components/TAROT.png';
 
 import { useNavigate } from 'react-router-dom';
 

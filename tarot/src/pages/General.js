@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './General.css';
 import cardImage from '../components/card_image2.png';  // 카드 이미지 import
+import TAROT_logo from '../components/TAROT.png';
 
 
 const General = () => {
@@ -52,9 +53,7 @@ const General = () => {
     <div id="tarot-screen" className="tarot-purple">
       <div className="black-overlay">
         <div className="container-general">
-          <a href="/main" className="header-general">
-            <img src="https://ifh.cc/g/018lPq.png" alt="Tarot" />
-          </a>
+          
 
           {/* <h2 className="instruction-text">카드를 골라주세요.</h2> */}
 
@@ -78,7 +77,7 @@ const General = () => {
               <img src="https://ifh.cc/g/NPR31l.png" alt="커플 궁합 타로" />
             </a>
 
-            <div className="rightline-img">
+            {/* <div className="rightline-img">
               <img
                 src="https://ifh.cc/g/2aTXPo.png"
                 alt="Right line"
@@ -91,7 +90,7 @@ const General = () => {
                 alt="left line"
                 className="line-img"
               />
-            </div>
+            </div> */}
 
 
             <div className="cards-spread">

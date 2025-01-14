@@ -22,6 +22,18 @@
   z-index: 1;
 }
   
+
+.main-title {
+  width: 150px;
+}
+
+.main-title-text {
+  width: 200%; /* 이미지의 너비 조정 */
+  height: auto; /* 이미지의 높이를 자동으로 조정 */
+  cursor: pointer;
+  text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8); /* 하얀 그림자 추가 */
+}
+
  .container-general {
   width: 100%;
   margin: 0 auto;
