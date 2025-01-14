@@ -7,6 +7,7 @@ import cardReveal from '../components/card_reveal.png';  // 카드 이미지 imp
 
 import today_logo from '../components/오늘의운세_logo.png';  // 카드 이미지 import
 import tarotmeaning_logo from '../components/타로란_logo.png';  // 카드 이미지 import
+import TAROT_logo from '../components/TAROT.png';
 
 
 const Todayfortune = () => {
@@ -48,8 +49,9 @@ const Todayfortune = () => {
     console.log(`랜덤으로 선택된 카드: ${randomIndex + 1}`);
 
     // React Router를 이용한 페이지 이동
-    navigate(`/card/${randomIndex}`);
+    navigate(`/todaydetail`);
   };
+  
 
   // const handleRevealClick = () => {
   //   if (selectedCardIndex === null) {
@@ -64,63 +66,57 @@ const Todayfortune = () => {
   //   navigate(`/card/${selectedCardIndex}`);
   // };
 
+  const handleTitleClick = () => {
+    navigate('/');
+  };
 
 
   return (
     <div id="tarot-screen" className="tarot-purple-today">
       <div className="black-overlay-today">
         <div className="container-today">
+          <div className="main-title-left" onClick={handleTitleClick}>
+            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
+          </div>
+
           <div className="header-options">
-            <a href="todayfortune" className="option-text">오늘의 운세</a>
+            <a href="tarotmeaning" className="option-text">타로란?</a>
             <a href="fourcard" className="option-text">포카드 타로</a>
             <a href="couple" className="option-text">커플 타로</a>
           </div>
-          <a href="main" className="header-today">
+          {/* <a href="main" className="header-today">
             <img src="https://ifh.cc/g/018lPq.png" alt="Tarot" />
-          </a>
+          </a> */}
           
 
           {selectedCardIndex !== null && (
             <div className="selected-card-center">
+
+              {/* {showRevealButton && (
+                <button 
+                
+                  id="reveal-button-today" 
+                  src={cardReveal} 
+                  className="selection-btn reveal-btn-today"
+                  onClick={handleRevealClick}
+                >
+                  카드 확인하기
+                </button>
+              )} */}
+
               <img 
                 src={cardReveal} 
                 alt={`Selected Tarot card ${selectedCardIndex + 1}`} 
                 className="large-tarot-card" 
+                onClick={handleRevealClick}
+
               />
             </div>
-          )}
-
-          {showRevealButton && (
-            <button 
-              id="reveal-button" 
-              className="selection-btn reveal-btn"
-              onClick={handleRevealClick}
-            >
-              카드 확인하기
-            </button>
           )}
 
           {/* <h2 className="instruction-text">카드를 골라주세요.</h2> */}
 
           <div className="cards-container-today"></div>
-
-            {/* <button id="reveal-button" className="selection-btn reveal-btn">
-              카드 확인하기
-            </button> */}
-
-            <button onClick={shuffleCards} className="selection-btn shuffle-btn">
-              셔플
-            </button>
-
-            {/* <a href="tarotmeaning" className="circle tarot-meaning">
-              <img src="https://ifh.cc/g/bgXtqd.png" alt="타로란" />
-            </a>
-            <a href="todayfortune" className="circle today-fortune">
-              <img src="https://ifh.cc/g/TqQC50.png" alt="오늘의 운세" />
-            </a>
-            <a href="couple" className="circle couple-tarot">
-              <img src="https://ifh.cc/g/NPR31l.png" alt="커플 궁합 타로" />
-            </a>*/}
 
             <div className="leftpattern-img">
               <img
@@ -136,7 +132,7 @@ const Todayfortune = () => {
                 className="pattern-img-r"
               />
             </div>
-            <div className="rightline-img">
+            {/* <div className="rightline-img">
               <img
                 src="https://ifh.cc/g/2aTXPo.png"
                 alt="Right line"
@@ -149,10 +145,13 @@ const Todayfortune = () => {
                 alt="left line"
                 className="line-img"
               />
-            </div>
-          
+            </div> */}
 
-            <div className="cards-spread-general">
+              <button onClick={shuffleCards} className="selection-btn shuffle-btn-today">
+                셔플        
+              </button>
+
+            <div className="cards-spread-today">
               {cards.map((_, index) => {
                 const angle = (280 / cardCount) * index;
                 // 각 카드에 대해 지연 시간을 계산
@@ -161,19 +160,19 @@ const Todayfortune = () => {
                 let wrapperStyle = {
                   position: 'absolute',
                   top: '50%',
-                  left: '50%',
+                  left: '46%',
                   transition: 'transform 1s ease-out',
                   transitionDelay: `${delay}s`,
                   width: '120px',   // 카드 크기와 동일하게 설정
                   height: 'auto',
-                  transform: 'translate(-50%, -50%)', // 기본 transform
+                  transform: 'translate(25%, -50%)', // 기본 transform
                   cursor: 'pointer',
                 };
 
                 if (isGathering) {
                   const gatherDelay = (cardCount - index) * 0.02;
                   wrapperStyle.transitionDelay = `${gatherDelay}s`;
-                  wrapperStyle.transform = 'translate(-50%, -50%)';
+                  wrapperStyle.transform = 'translate(25%, -50%)';
                 } else if (startAnimation) {
                   wrapperStyle.transform = `
                     rotate(${angle + 138}deg) 
@@ -181,7 +180,7 @@ const Todayfortune = () => {
                     rotate(80deg)
                   `;
                 } else {
-                  wrapperStyle.transform = 'translate(-50%, -50%)';
+                  wrapperStyle.transform = 'translate(25%, -50%)';
                 }
 
                 return (

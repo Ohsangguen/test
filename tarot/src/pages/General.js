@@ -46,42 +46,54 @@ const General = () => {
     }, 3000);
   };
   
-  const handleCardClick = (index) => {
-    console.log(`카드 ${index + 1} 클릭됨`);
-
-    if (selectedCards.length < 4) {
-      const randomCard = cards[Math.floor(Math.random() * cardCount)];
-      setSelectedCards([...selectedCards, randomCard]);
+  const handleCardClick = (card) => {
+    if (selectedCards.length < 4 && !selectedCards.includes(card)) {
+      setSelectedCards([...selectedCards, card]);
     }
   };
 
   const handleRevealClick = () => {
     fetchReading();
+    if (selectedCards.length === 4) {
+      navigate('/generaldetail', { state: { selectedCards } });
+    } else {
+      console.warn('4장의 카드를 선택해주세요.');
+    }
+  };
+
+  const handleTitleClick = () => {
+    navigate('/');
   };
 
   return (
-    <div id="tarot-screen" className="tarot-purple">
-      <div className="black-overlay">
+    <div id="tarot-screen" className="tarot-purple-general">
+      <div className="black-overlay-general">
+        <div className="main-title-left" onClick={handleTitleClick}>
+          <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
+        </div>
+
+        <div className="header-options">
+            <a href="tarotmeaning" className="option-text">타로란?</a>
+            <a href="todayfortune" className="option-text">오늘의 운세</a>
+            <a href="couple" className="option-text">커플 타로</a>
+          </div>
+
         <div className="container-general">
+          
+
+          {/* <h2 className="instruction-text">카드를 골라주세요.</h2> */}
+
           <div className="cards-container-general"></div>
 
-          <button id="reveal-button" className="selection-btn reveal-btn" onClick={handleRevealClick}>
-            카드 확인하기
-          </button>
+            <button id="reveal-button" className="selection-btn reveal-btn" onClick={handleRevealClick}>
+              카드 확인하기
+            </button>
 
-          <button onClick={shuffleCards} className="selection-btn shuffle-btn">
-            셔플
-          </button>
+            <button onClick={shuffleCards} className="selection-btn shuffle-btn">
+              셔플
+            </button>
 
-          <a href="tarotmeaning" className="circle tarot-meaning">
-            <img src="https://ifh.cc/g/bgXtqd.png" alt="타로란" />
-          </a>
-          <a href="todayfortune" className="circle today-fortune">
-            <img src="https://ifh.cc/g/TqQC50.png" alt="오늘의 운세" />
-          </a>
-          <a href="couple" className="circle couple-tarot">
-            <img src="https://ifh.cc/g/NPR31l.png" alt="커플 궁합 타로" />
-          </a>
+
 
           <div className="cards-spread">
             {cards.map((_, index) => {
@@ -132,6 +144,7 @@ const General = () => {
               );
             })}
           </div>
+
           <div className="selected-cards-container">
             {selectedCards.map((card, index) => (
               <div key={index} className="selected-card-general">
@@ -143,9 +156,18 @@ const General = () => {
               </div>
             ))}
           </div>
+
+        {selectedCards.length === 4 && (
+            <button
+              className="reveal-btn-general"
+              onClick={handleRevealClick}
+            >
+              카드 확인하기
+            </button>
+          )}
+          </div>
         </div>
       </div>
-    </div>
   );
 };
 

@@ -6,11 +6,11 @@
     height: 100vh;
     background-image: url('../components/커플 타로 넙죽이/커플 넙죽이(주파수).png'); /* 배경 이미지 설정 */
     background-size: 50%; /* 배경 이미지 크기 조정 */
-    background-position: calc(43% + 10%)  100%; /* 배경 이미지 위치 조정 */
+    background-position: calc(40% + 10%)  100%; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat;
   }
   
-  .black-overlay {
+  .black-overlay-couple {
     background-color: rgba(0, 0, 0, 0.5);
     position: absolute;
     top: 0;
@@ -19,16 +19,47 @@
     height: 100%;
     z-index: 1;
   }
+
+  .main-title-left {
+    width: 150px;
+    margin-top: 2vh;
+}
+
+.main-title-text-left {
+    width: 200%; /* 이미지의 너비 조정 */
+    height: auto; /* 이미지의 높이를 자동으로 조정 */
+    cursor: pointer;
+    text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8); /* 하얀 그림자 추가 */
+}
+
+  .header-options {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* 우측 정렬 */
+    padding: 20px;
+    position: absolute;
+    top: 2vh;
+    right: 3vw;
+    gap: 5%;
+  }
+  .option-text {
+    width: 100px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소의 색상 상속 */
+    white-space: nowrap;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5); /* 하얀 그림자 추가 */
+  }
   
   .container-couple {
     width: 70%;
     margin: 0 auto;
-    border: 0px solid lightpink;
     padding: 30px;
     position: relative;
     height: 90%;
     text-align: center;
-    box-shadow: 0 0 5px rgba(237, 240, 77, 0.1);
   }
 
   .instruction-text {
@@ -160,7 +191,7 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  top: 60%;
+  top: 47%;
   left: 50%;
   transform: translate(-50%, -50%);
 
@@ -181,7 +212,7 @@
 .heart-placeholder-right {
   width: 70px;
   height: 110px;
-  border: 2px dashed rgb(240, 110, 110);
+  border: 2px dashed rgb(255, 91, 91);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -193,7 +224,7 @@
 .heart-placeholder-left {
   width: 70px;
   height: 110px;
-  border: 2px dashed rgb(106, 91, 225);
+  border: 2px dashed rgb(111, 92, 255);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -244,8 +275,9 @@
   background-color: rgb(249, 133, 133);
 }
   
-.highlighted {
-  border-color: yellow;
+.heart-placeholder.highlighted {
+  box-shadow: 0 0 10px 5px rgb(255, 134, 134); /* 빨간색으로 반짝이는 효과 */
+  animation: blink 1s infinite; /* 애니메이션 적용 */
 }
   .tarot-meaning {
     top: 40px;
@@ -281,14 +313,19 @@
   .reveal-btn-couple {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: #b275c6;
+    background-color: #b275c684;
     color: white;
     border: none;
     border-radius: 10px;
     cursor: pointer;
-    transition: background-color 0.3s;
+    transition: background-color 0.3s ease;
+    transform: translateX(-50%);
+    position: absolute;
+    top: 55%; /* 버튼 위치를 더 올림 */
+    left: 50%;
+
   }
-  .reveal-btn:hover {
+  .reveal-btn-couple:hover {
     background-color: #ffd700;
   }
   
@@ -344,4 +381,14 @@
     }
   } */
   
-    
+  @keyframes blink {
+    0% {
+      box-shadow: 0 0 10px 5px rgb(255, 145, 145);
+    }
+    50% {
+      box-shadow: 0 0 20px 10px rgb(255, 145, 145);
+    }
+    100% {
+      box-shadow: 0 0 10px 5px rgb(255, 145, 145);
+    }
+  }
