@@ -67,6 +67,32 @@ const getSpecificTarotCard = async () => {
   }
 };
 
+const getCardsByThemeAndPosition = async (theme, position) => {
+  const query = `
+    SELECT * FROM tarot_cards
+    WHERE theme = ? AND position = ?
+    ORDER BY RAND()
+    LIMIT 1;
+  `;
+  try {
+    const rows = await db.executeQuery(query, [theme, position]);
+
+    // 디버깅 로그 추가
+    console.log('Query Result:', rows);
+
+    // 배열이 비어 있는 경우 처리
+    if (!rows || rows.length === 0) {
+      console.log(`No rows returned from the database for theme: ${theme}, position: ${position}.`);
+      return null; // 빈 결과 처리
+    }
+
+    return rows[0]; // 첫 번째 결과 반환
+  } catch (error) {
+    console.error(`Error fetching tarot card for theme: ${theme}, position: ${position}`, error.message);
+    throw new Error('Database query failed while fetching tarot card.');
+  }
+};
+
 const storeReadingCard = async (readingId, cardId) => {
   try {
     const query = 'INSERT INTO tarot_reading_cards (reading_id, card_id) VALUES (?, ?)';
@@ -78,4 +104,4 @@ const storeReadingCard = async (readingId, cardId) => {
   }
 };
 
-module.exports = { getAllTarotCards, createReading, getReadingCards, getSpecificTarotCard, storeReadingCard };
+module.exports = { getAllTarotCards, createReading, getReadingCards, getSpecificTarotCard, storeReadingCard, getCardsByThemeAndPosition };
