@@ -36,6 +36,7 @@
 
 .main-title {
     width: 150px;
+    margin-top: 2vh;
 }
 
 .main-title-text {
@@ -49,12 +50,17 @@
     display: flex;
     gap: 40px;
     left: 50px;
+    margin-right: 3%;
 }
 
 .option-text-mean {
     font-size: 1.8rem;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소의 색상 상속 */
+    white-space: nowrap;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5); /* 하얀 그림자 추가 */
 }
 
 .option-img:hover {
@@ -81,7 +87,7 @@
     flex-direction: column;
     gap: 10px;
     border-right: 2px solid rgba(255, 255, 255, 0.2);
-    padding-right: 50px;
+    padding-right: 60px;
 }
 
 .sidebar-item {
@@ -91,6 +97,11 @@
     transition: filter 0.3s ease-in-out;
     font-size: 1.5rem;
     margin-top: 20px;
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소의 색상 상속 */
+    white-space: nowrap;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5); /* 하얀 그림자 추가 */
+
 }
 
 .sidebar-item.active {
@@ -105,7 +116,9 @@
 /* Main Content */
 .main-content-mean {
     width: 100%;
-    padding: 1% 5%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 5%;
 }
 
 .main-content h1 {

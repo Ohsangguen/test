@@ -37,8 +37,8 @@
 }
 
 .mypage-container {
-    width: 19%; /* 너비 조정 */
-    height: 40%; /* 높이 조정 */
+    width: 20%; /* 너비 조정 */
+    height: 35%; /* 높이 조정 */
     padding: 50px;
     text-align: center;
     box-shadow: 0 0 30px rgb(255, 255, 255);
@@ -76,7 +76,7 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    margin: 20px;
+    margin: 35px;
 }
 
 .info p {

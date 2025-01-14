@@ -1,6 +1,6 @@
 /* Todayfortune.css */
 
-.tarot-purple {
+.tarot-purple-general {
   background-color: rgb(54, 23, 97);
     color: #fff;
     position: relative;
@@ -12,7 +12,7 @@
 
 }
 
-.black-overlay {
+.black-overlay-general {
   background-color: rgba(0, 0, 0, 0.5);
   position: absolute;
   top: 0;
@@ -23,15 +23,38 @@
 }
   
 
-.main-title {
+.main-title-left {
   width: 150px;
+  margin-top: 2vh;
 }
 
-.main-title-text {
+.main-title-text-left {
   width: 200%; /* 이미지의 너비 조정 */
   height: auto; /* 이미지의 높이를 자동으로 조정 */
   cursor: pointer;
   text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8); /* 하얀 그림자 추가 */
+  margin-left: 3vw;
+}
+
+.header-options {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* 우측 정렬 */
+  padding: 20px;
+  position: absolute;
+  top: 2vh;
+  right: 3vw;
+  gap: 5%;
+}
+.option-text {
+  width: 100px;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: transform 0.2s ease-in-out;
+  text-decoration: none; /* 밑줄 제거 */
+  color: inherit; /* 부모 요소의 색상 상속 */
+  white-space: nowrap;
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5); /* 하얀 그림자 추가 */
 }
 
  .container-general {
@@ -252,10 +275,10 @@
     height: auto;
   }
   
-  .reveal-btn {
+  .reveal-btn-general {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: #6a4c93;
+    background-color: #694c9354;
     color: white;
     border: none;
     border-radius: 5px;
@@ -263,7 +286,7 @@
     transition: background-color 0.3s ease;
   }
   
-  .reveal-btn:hover {
+  .reveal-btn-general:hover {
     background-color: #523c7a;
   }
   
@@ -284,7 +307,7 @@
     z-index: 10;
   }
   
-  .selection-btn.reveal-button {
+  .selection-btn.reveal-button-general {
     display: block;
     padding: 10px 20px;
     font-size: 16px;

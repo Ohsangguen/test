@@ -77,6 +77,10 @@
     font-size: 1.8rem;
     cursor: pointer;
     transition: transform 0.2s ease-in-out;
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소의 색상 상속 */
+    white-space: nowrap;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5); /* 하얀 그림자 추가 */
 }
   
   .option-text:hover {
@@ -98,7 +102,7 @@
     flex-direction: column;
     gap: 10px;
     border-right: 2px solid rgba(255, 255, 255, 0.2);
-    padding-right: 50px;
+    padding-right: 60px;
 }
 
 .sidebar-item {
@@ -106,6 +110,10 @@
     cursor: pointer;
     filter: grayscale(100%);
     transition: filter 0.3s ease-in-out;
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소의 색상 상속 */
+    white-space: nowrap;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5); /* 하얀 그림자 추가 */
 }
 
 .sidebar-item.active {
@@ -205,6 +213,7 @@
     background: rgba(255, 255, 255, 0.1);
     padding: 10px;
     border-radius: 10px;
+    justify-items: center;
     text-align: center;
     cursor: pointer;
     transition: transform 0.2s ease, background 0.2s ease;
@@ -228,7 +237,7 @@
 }
 
 .selected-card-image {
-    max-width: 200px;
+    max-width: 185px;
     margin-top: 20px;
     border-radius: 10px;
     border: 2px solid white;
@@ -252,21 +261,22 @@
 
 .overlay-content {
     background: rgba(80, 40, 84, 0.789);
-    padding: 20px;
+    padding: 40px;
     border-radius: 5px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
     width: 100%;
+    justify-items: center;
 }
 
 .overlay-content.single-image {
-    max-width: 17%;
+    max-width: 15%;
     height: auto;
     margin: 10px; /* 이미지 간의 간격 추가 */
 }
 
 .overlay-content.multiple-images {
-    max-width: 80%; /* 이미지가 여러 장일 때 너비 설정 */
+    max-width: 100%; /* 이미지가 여러 장일 때 너비 설정 */
     height: auto;
     margin: 10px; /* 이미지 간의 간격 추가 */
 
