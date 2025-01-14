@@ -2,7 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom'; // useNavigate 가져오기
 import './Todayfortune.css';
-import cardImage from '../components/card_image.png';  // 카드 이미지 import
+import cardImage from '../components/card_image2.png';  // 카드 이미지 import
+import cardReveal from '../components/card_reveal.png';  // 카드 이미지 import
+
 import today_logo from '../components/오늘의운세_logo.png';  // 카드 이미지 import
 import tarotmeaning_logo from '../components/타로란_logo.png';  // 카드 이미지 import
 
@@ -81,7 +83,7 @@ const Todayfortune = () => {
           {selectedCardIndex !== null && (
             <div className="selected-card-center">
               <img 
-                src={cardImage} 
+                src={cardReveal} 
                 alt={`Selected Tarot card ${selectedCardIndex + 1}`} 
                 className="large-tarot-card" 
               />

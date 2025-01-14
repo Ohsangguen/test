@@ -1,10 +1,20 @@
 @import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102@1.0/MapoGoldenPier.css');
 
+@font-face {
+  font-family: "MapoGoldenPier";
+  font-weight: normal;
+  src: url("./fonts/MapoGoldenPier.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "MapoFlowerIsland";
+  font-weight: normal;
+  src: url("./fonts/MapoFlowerIsland.ttf") format("truetype");
+}
+
 body {
   margin: 0;
-  font-family: 'MapoGoldenPier', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+  font-family: 'MapoFlowerIsland';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

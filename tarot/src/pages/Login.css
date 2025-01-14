@@ -1,9 +1,3 @@
-@import url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2102@1.0/MapoGoldenPier.css');
-
-
-body {
-  font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
-}
 
   .tarot-purple {
     background-color: rgb(54, 23, 97);
@@ -24,6 +18,10 @@ body {
     width: 100%;
     height: 100%;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   /* 로그인 컨테이너 */
@@ -52,7 +50,7 @@ body {
     padding-top: 32px;
     margin-bottom: 25px;
     color: #ffffff;
-    font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
+    font-size: 2rem;
 
   }
   
@@ -61,6 +59,8 @@ body {
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 20px;
+    margin-top: 20px;
+
     text-align: left;
   }
   
@@ -71,13 +71,12 @@ body {
     margin-bottom: 8px;
     color: #ffffff;
     font-weight: 500;
-    font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
 
   }
   
   /* 아이콘과 입력창을 함께 감싸는 컨테이너 */
   .input-with-icon {
-    
+  
     position: relative;
   }
   
@@ -130,8 +129,6 @@ body {
     font-size: 18px;
     font-weight: bold;
     transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
-    font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
-
   }
   
   /* 제출 버튼 호버 시 스타일 변경 */
@@ -166,20 +163,28 @@ body {
     margin-top: 15px;
     color: red;
     font-weight: 500;
-    font-family: 'MapoGoldenPier', sans-serif; /* 폰트 패밀리 설정 */
+  }
 
-  }
+  /* 파일 업로드 버튼 스타일 */
+.file-upload-button {
+  padding: 10px 10px;
+  margin-right: 10px;
+  background-color: rgb(179, 127, 180);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+/* 파일 업로드 버튼 호버 시 스타일 변경 */
+.file-upload-button:hover {
+  background-color: #ad6ac9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
   
-  .google-login {
-    margin-top: 20px;
-    text-align: center;
-  }
-  
-  .google-login p {
-    margin-bottom: 10px;
-    font-size: 14px;
-    color: #555;
-  }
   
   /* 반응형 디자인: 화면 크기가 작아질 때 */
   @media (max-width: 500px) {

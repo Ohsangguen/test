@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import './Fourcard.css';
 import cardimage from '../components/card_image.png';
+import cardimage_general from '../components/card_general.png';
+import cardimage_love from '../components/card_love.png';
+import cardimage_money from '../components/card_money.png';
+import TAROT_logo from '../components/TAROT.png';
+
 import { useNavigate } from 'react-router-dom';
 
 
@@ -38,19 +43,19 @@ const Fourcard = () => {
                             <div className="selection-options">
                             <div className="card-container" onClick={() => handleSelectionClick('general')}>
                                 <div className="card-content">
-                                    <img src={cardimage} alt="일반운" className="card-image-four" />
+                                    <img src={cardimage_general} alt="일반운" className="card-image-four" />
                                     <p className="card-text">일반운</p>
                                 </div>
                             </div>
                             <div className="card-container" onClick={() => handleSelectionClick('love')}>
                                 <div className="card-content">
-                                    <img src={cardimage} alt="연애운" className="card-image-four" />
+                                    <img src={cardimage_love} alt="연애운" className="card-image-four" />
                                     <p className="card-text">연애운</p>
                                 </div>
                             </div>
                             <div className="card-container" onClick={() => handleSelectionClick('money')}>
                                 <div className="card-content">
-                                    <img src={cardimage} alt="금전운" className="card-image-four" />
+                                    <img src={cardimage_money} alt="금전운" className="card-image-four" />
                                     <p className="card-text">금전운</p>
                                 </div>
                             </div>

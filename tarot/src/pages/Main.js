@@ -1,6 +1,8 @@
 import React from 'react';
 import './Main.css';
-import cardimage from '../components/card_image.png';
+import cardimage from '../components/card_image2.png';
+import TAROT_logo from '../components/TAROT.png';
+import { Link, useNavigate } from 'react-router-dom';
 
 import leftsymbol from '../components/leftsymbol.png';
 import rightsymbol from '../components/rightsymbol.png';
@@ -8,12 +10,21 @@ import rightsymbol from '../components/rightsymbol.png';
 
 
 const Main = () => {
+    
+    const navigate = useNavigate();
+
+    const handleTitleClick = () => {
+        navigate('/');
+      };      
+
     return (
         <div className="tarot-purple">
             <div className="black-overlay">
                 <div className="container-main">
                     {/* Header */}
-                    <h1 className="header-main">TAROT</h1>
+                     <div className="main-title-contain" onClick={handleTitleClick}>
+                        <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-main" />
+                    </div>
 
                     {/* Navigation Cards */}
 

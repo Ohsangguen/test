@@ -1,5 +1,6 @@
 // TarotMeaning.jsx
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import './TarotMeaning.css';
 import today_logo from '../components/오늘의운세_logo.png';  
 import tarotmeaning_logo from '../components/타로란_logo.png';  
@@ -9,40 +10,34 @@ import TAROT_logo from '../components/TAROT.png';
 
 
 const TarotMeaning = () => {
+
+  const navigate = useNavigate();
+
+  const handleTitleClick = () => {
+    navigate('/');
+  };
+
   
   return (
-    <div className="tarot-purple">
-      <div className="black-overlay">
-        
-        {/* Header Section */}
+    <div className="tarot-purple-meaning ">
+      <div className="black-overlay-meaning ">
         <div className="header-container-mean">
-          <a href="main" className="title-logo">
-            <h1 className="main-title-text">TAROT</h1>
-          </a>
-          <div className="header-options">
-            <a href="todayfortune" className="option-text">
-              오늘의 운세
-            </a>
-            <a href="fourcard" className="option-text">
-              포카드 타로
-            </a>
-            <a href="couple" className="option-text">
-              커플 타로
-            </a>
+        <div className="main-title" onClick={handleTitleClick}>
+            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text" />
           </div>
+            <div className="header-options-mean">
+                <a href="todayfortune" className="option-text-mean">오늘의 운세</a>
+                <a href="fourcard" className="option-text-mean">포카드 타로</a>
+                <a href="couple" className="option-text-mean">커플 타로</a>
+            </div>
         </div>
 
         {/* Content Section */}
-        <div className="content-container-mean">
-          {/* Left Sidebar */}
-          <div className="left-sidebar">
-            <a href="tarotmeaning" className="sidebar-item active">
-              타로란?
-            </a>
-            <a href="tarotcards" className="sidebar-item active">
-              타로 카드 종류
-            </a>
-          </div>
+        <div className="content-container-cards">
+            <div className="left-sidebar">
+                <a href="tarotmeaning" className="sidebar-item active">타로란?</a>
+                <a href="tarotcards" className="sidebar-item active">타로 카드 종류</a>
+            </div>
 
           {/* Main Content */}
           <div className="main-content-mean">

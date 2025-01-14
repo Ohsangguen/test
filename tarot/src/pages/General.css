@@ -22,6 +22,18 @@
   z-index: 1;
 }
   
+
+.main-title {
+  width: 150px;
+}
+
+.main-title-text {
+  width: 200%; /* 이미지의 너비 조정 */
+  height: auto; /* 이미지의 높이를 자동으로 조정 */
+  cursor: pointer;
+  text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8); /* 하얀 그림자 추가 */
+}
+
  .container-general {
   width: 100%;
   margin: 0 auto;
@@ -115,7 +127,7 @@
   }
   
   
-  .tarot-card {
+  .tarot-card-general {
     width: 57px;
     height: 95px;
     background-size: 350%;
@@ -127,7 +139,6 @@
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     z-index: 6;
     position: relative;
-    border-radius: 3px;
     box-shadow: 0 0 1px rgba(243, 236, 54, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
       0 0 15px rgba(245, 223, 62, 0.187);
   }
@@ -140,12 +151,15 @@
     /* 필요하다면 투명한 배경을 추가하여 영역 확인 가능:
     background-color: rgba(0, 0, 0, 0.1);
     */
+    /* transform: scale(1.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; */
   }
-  
-  .card-wrapper:hover .tarot-card {
+
+  .card-wrapper:hover .tarot-card-general {
     transform: translateY(-30px);
     box-shadow: 0 10px 20px rgb(255, 255, 255);
   }
+
   .card.tilted {
     transform: rotate(15deg);
     z-index: 7;
@@ -291,10 +305,16 @@
     left: 50%;
     transform: translateX(-50%);
     width: 100%; /* 필요에 따라 조정 */
+    margin: 20px;
+    gap: 30px;
   }
   
-  .selected-card {
+  /* .selected-card {
     margin: 0 10px;
+  } */
+
+  .selected-card-general img {
+    width: 90%;
   }
   
   @media (max-width: 768px) {
