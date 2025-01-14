@@ -4,21 +4,39 @@ import './Couple.css';
 import { cards, shuffleCards } from './card-shuffle.js'; 
 import TAROT_logo from '../components/TAROT.png';
 import coupleneob from '../components/커플 타로 넙죽이/커플 넙죽이(주파수).png';
+import tarot_card_back from '../components/card_image2.png';
+
 
 
 const Couple = () => {
-  const [cards, setCards] = useState(shuffleCards());
+  // const [cards, setCards] = useState(shuffleCards());
   const [selectedCard, setSelectedCard] = useState(null);
   const [placedCards, setPlacedCards] = useState(Array(8).fill(null)); // 8개의 드롭존 상태 관리
   const [highlightedZones, setHighlightedZones] = useState(Array(8).fill(false)); // 드롭존 강조 상태 관리
   const [allCardsPlaced, setAllCardsPlaced] = useState(false); // 모든 카드가 드롭되었는지 상태 관리
+  const [isGathering, setIsGathering] = useState(false); // 카드 모음 상태 관리
+  const [startAnimation, setStartAnimation] = useState(false);
   const navigate = useNavigate();
+
+  const cardCount = 78; // 카드 수
+  const radius = 800;   // 원의 반지름
+  // const cards = Array.from({ length: cardCount });
+
+  const [cards] = useState(Array.from({ length: cardCount }, (_, index) => ({
+    id: index,
+    back: tarot_card_back,
+  })));
 
 
     useEffect(() => {
       // 모든 드롭존에 카드가 드롭되었는지 확인
       setAllCardsPlaced(placedCards.every(card => card !== null));
     }, [placedCards]);
+
+    useEffect(() => {
+    // 컴포넌트가 마운트되면 애니메이션 시작 상태로 변경
+    setStartAnimation(true);
+  }, []);
 
     // 드래그 시작 이벤트
     const handleDragStart = (e, card) => {
@@ -57,6 +75,16 @@ const Couple = () => {
       }
     };
 
+    const shuffleCards = () => {
+      // 셔플 버튼 클릭 시: 먼저 모음 단계 시작
+      setIsGathering(true);
+      // 모음이 완료되면 펼침 상태로 전환
+      setTimeout(() => {
+        setIsGathering(false);
+        setStartAnimation(true);
+      }, 3000);
+    };
+
     return (
       <div className="tarot-purple-couple">
         <div className="black-overlay">
@@ -64,40 +92,78 @@ const Couple = () => {
             <h2 className="instruction-text">카드를 비어있는 공간에 가져오세요.</h2>
 
                 {/* 카드 78장을 상단에 한 줄로 겹쳐서 배치 */}
-                <div className="cards-spread-container">
-                {cards.map((card, index) => (
-                    <div
-                        key={index}
-                        className="card spread-card"
-                        style={{
-                            backgroundImage: `url(${card.back})`,
-                            left: `${index * 10}px`,  // 카드 겹침 효과
-                        }}
-                        draggable
-                        onDragStart={(e) => handleDragStart(e, card)}                        
-                    />
-                ))}
-                </div>
+              <div className="cards-spread-couple">
+                {cards.map((card, index) => {
+                  const angle = (100 / (cardCount - 1)) * index - 3; // 각 카드의 각도 계산
+                  const x = radius * Math.cos((angle * Math.PI) / 180); // x 좌표 계산
+                  const y = radius * Math.sin((angle * Math.PI) / 180); // y 좌표 계산
+                  const delay = index * 0.02;
+
+                  let wrapperStyle = {
+                    position: 'absolute',
+                    top: '10%',
+                    left: '47%',
+                    transition: 'transform 1s ease-out',
+                    transitionDelay: `${delay}s`,
+                    width: '120px',   // 카드 크기와 동일하게 설정
+                    height: 'auto',
+                    transform: 'translate(-50%, -50%)', // 기본 transform
+                  };
+
+                  if (isGathering) {
+                    const gatherDelay = (cardCount - index) * 0.02;
+                    wrapperStyle.transitionDelay = `${gatherDelay}s`;
+                    wrapperStyle.transform = 'translate(-50%, -50%)';
+
+                  } else if (startAnimation) {
+                    wrapperStyle.transform = `
+                      rotate(${angle + 223}deg) 
+                      translate(${radius}px)
+                      rotate(90deg)
+                    `;
+                  } else {
+                    wrapperStyle.transform = 'translate(-50%, -50%)';
+                  }
+
+                  return (
+                    <div 
+                      key={index} 
+                      style={wrapperStyle} 
+                      className={`card-wrapper ${selectedCard === card ? 'selected' : ''}`}
+                      onClick={() => setSelectedCard(card)}  // 클릭 이벤트 할당
+                      draggable
+                      onDragStart={(e) => handleDragStart(e, card)}
+                    >
+                      <img 
+                        src={tarot_card_back  } 
+                        alt={`Tarot card ${index + 1}`} 
+                        className="tarot-card-couple"
+                      />
+                    </div>
+                  );
+                })}
+              </div>
+
 
                 {/* 드롭존 */}
                 <div className="heart-drop-zone">
-                        {placedCards.map((card, index) => (
-                            <div
-                                key={index}
-                                className={`heart-placeholder ${highlightedZones[index] ? 'highlighted' : ''} ${[2, 4, 6].includes(index) ? 'heart-placeholder-right' : ''}${[1, 3, 5].includes(index) ? 'heart-placeholder-left' : ''}`}
-                                onDragOver={handleDragOver}
-                                onDrop={(e) => handleDrop(e, index)}
-                            >
-                                {card ? (
-                                    <div className="card-drop" style={{ backgroundImage: `url(${card.image})`, backgroundColor: allCardsPlaced ? 'rgb(249, 133, 133)' : '#ccc' }} />
+                  {placedCards.map((card, index) => (
+                      <div
+                          key={index}
+                          className={`heart-placeholder ${highlightedZones[index] ? 'highlighted' : ''} ${[2, 4, 6].includes(index) ? 'heart-placeholder-right' : ''}${[1, 3, 5].includes(index) ? 'heart-placeholder-left' : ''}`}
+                          onDragOver={handleDragOver}
+                          onDrop={(e) => handleDrop(e, index)}
+                      >
+                          {card ? (
+                              <div className="card-drop" style={{ backgroundImage: `url(${tarot_card_back})`, backgroundColor: allCardsPlaced ? 'rgb(249, 133, 133)' : '#ccc' }} />
 
-                                    // <div className="card-drop" style={{ backgroundImage: `url(${card.image})` }} />
-                                ) : (
-                                    <div className="drop-placeholder">카드가져오기</div>
-                                )}
-                            </div>
-                        ))}
-                    </div>
+                              // <div className="card-drop" style={{ backgroundImage: `url(${card.image})` }} />
+                          ) : (
+                              <div className="drop-placeholder">카드가져오기</div>
+                          )}
+                      </div>
+                    ))}
+                </div>
 
                 {/* 버튼 */}
                 {allCardsPlaced && (

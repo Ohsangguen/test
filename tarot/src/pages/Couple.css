@@ -72,15 +72,66 @@
     margin-top: 20px;
   }
 
-  .spread-card {
+  .card-spread {
     position: absolute;
-    top: 0;
-    width: 150px;
-    height: 250px;
-    box-shadow: 0 4px 8px rgba(0,0,0,0.5);
-    transition: transform 0.3s;
-    cursor: pointer;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100vh; /* 화면 전체 높이 사용 */
+    overflow: hidden;
   }
+  .card-wrapper {
+    /* 클릭 가능한 영역 확장 */
+    width: 120px;  /* 카드 이미지보다 넓게 설정 */
+    height: auto; /* 카드 이미지보다 높게 설정 */
+    cursor: pointer;
+    /* 필요하다면 투명한 배경을 추가하여 영역 확인 가능:
+    background-color: rgba(0, 0, 0, 0.1);
+    */
+    /* transform: scale(1.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease; */
+    z-index: 10;
+  }
+  .card-wrapper:hover .tarot-card-couple {
+    transform: translateY(-30px);
+    box-shadow: 0 10px 20px rgb(255, 255, 255);
+  }
+
+.tarot-card-couple {
+  width: 57px;
+    height: 95px;
+    background-size: 350%;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 5px;
+    cursor: pointer;
+    perspective: 1000px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    z-index: 6;
+    position: relative;
+    box-shadow: 0 0 1px rgba(243, 236, 54, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
+      0 0 15px rgba(245, 223, 62, 0.187);
+}
+
+  .cards-spread-couple {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translate(-50%, 0%);
+    width: 100%;
+    height: 200px;
+    margin-bottom: 20px;
+
+}
+/* .card-spread {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100vh;
+}*/
 
   .drop-zone-container {
     display: flex;
@@ -101,7 +152,7 @@
 }
 
 .heart-drop-zone {
-  position: relative;
+  position: absolute;
   width: 50%;
   height: 60%;
   margin: 50px auto;
@@ -109,6 +160,10 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
+  top: 60%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
 }
 
 .heart-placeholder {
@@ -158,22 +213,23 @@
 
 .card {
       width: 60px;
-      height: 90px;
+      height: 100px;
       background-color: #ccc;
       margin: 5px;
       display: flex;
       justify-content: center;
       align-items: center;
-  }
+      cursor: pointer;}
 
 .drop-placeholder {
     font-size: 18px;
     color: white;
 }
 
+
 .card-drop {
   width: 60px;
-  height: 90px;
+  height: 100px;
   background-size: cover;
   background-color: #ccc;
   margin: 5px;
@@ -181,7 +237,7 @@
   justify-content: center;
   align-items: center;
   cursor: pointer;    
-  box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+  box-shadow: 2px 2px 20px rgb(255, 255, 255);
 }
 
 .card-drop.red {
