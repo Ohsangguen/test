@@ -278,24 +278,39 @@
   .reveal-btn-general {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: #694c9354;
+    background-color: #8660ba;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    animation: scaleBlink 2s linear infinite;
   }
   
   .reveal-btn-general:hover {
     background-color: #523c7a;
   }
   
-  .selection-btn.shuffle-btn {
-    position: relative;
-    z-index: 10; /* 다른 요소보다 높게 설정 */
+  .selection-btn.shuffle-btn-general {
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: #694c938c;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
   }
   
-  .selection-btn.shuffle-btn {
+  /* .selection-btn.reveal-button-general {
     display: block;
     padding: 10px 20px;
     font-size: 16px;
@@ -305,19 +320,11 @@
     left: 50%;
     transform: translateX(-50%);
     z-index: 10;
-  }
-  
-  .selection-btn.reveal-button-general {
-    display: block;
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: pointer;
-    position: relative;
-    bottom: 30px;
+    position: absolute;
+    top: 50%;
     left: 50%;
-    transform: translateX(-50%);
-    z-index: 10;
-  }
+    transform: translate(-50%, -50%);
+  } */
 
   .selected-cards-container {
     display: flex;
@@ -344,5 +351,16 @@
     .leftpattern-img {
       width: 15%;
       max-width: 80px;
+    }
+  }
+
+  @keyframes scaleBlink {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5); /* 핑크색 그림자 */
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      box-shadow: 0 0 10px 5px rgb(255, 255, 255); /* 핑크색 그림자 */
     }
   }

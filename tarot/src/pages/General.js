@@ -98,11 +98,7 @@ const General = () => {
 
           <div className="cards-container-general"></div>
 
-            <button id="reveal-button" className="selection-btn reveal-btn" onClick={handleRevealClick}>
-              카드 확인하기
-            </button>
-
-            <button onClick={shuffleCards} className="selection-btn shuffle-btn">
+            <button onClick={shuffleCards} className="selection-btn shuffle-btn-general">
               셔플
             </button>
 
