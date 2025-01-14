@@ -26,6 +26,7 @@ app.get('/', (req, res) => {
 // 라우트 등록
 app.use('/api', tarotRoutes);
 app.use('/api', userRoutes);
+app.use('/api', tarotRoutes); 
 
 // 테스트용 유저 데이터 검색 엔드포인트
 app.get('/users', async (req, res) => {

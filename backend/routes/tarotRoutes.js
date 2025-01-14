@@ -193,18 +193,69 @@ router.post('/generate-multi-reading', async (req, res) => {
         );
       } catch (error) {
         console.error('Error with AI request:', error.message);
+        aiResponses.push('AI 분석 실패');
       }
     }
+
+    // ai_results_total에서 결과 가져오기
+    const aiResultsTotal = await executeQuery(
+      `SELECT result_text FROM ai_results_total WHERE reading_id = ?`,
+      [readingId]
+    );
 
     res.json({
       status: 'success',
       readingId,
       cards: cardData,
       aiResponses,
+      aiResultsTotal: aiResultsTotal.map(result => result.result_text), // 응답에 포함
     });
   } catch (error) {
     console.error('General Error:', error.message);
-    res.status(500).json({ message: 'Failed to generate multi-reading.' });
+    res.status(500).json({ message: 'Internal server error' });
+  }
+});
+
+// 가장 최근의 4개의 AI 결과 가져오기
+router.get('/latest-ai-results', async (req, res) => {
+  try {
+    console.log('Fetching latest AI results...');
+    
+    const aiResultsQuery = `
+      SELECT result_text
+      FROM ai_results_total
+      ORDER BY created_at DESC
+      LIMIT 4
+    `;
+    const aiResultsTotal = await executeQuery(aiResultsQuery);
+
+    if (!aiResultsTotal || aiResultsTotal.length === 0) {
+      return res.status(404).json({ message: 'No AI results found.' });
+    }
+
+    const cardUrlsQuery = `
+      SELECT tc.image_url
+      FROM tarot_reading_cards trc
+      JOIN tarot_cards tc ON trc.card_id = tc.id
+      ORDER BY trc.id DESC
+      LIMIT 4
+    `;
+    const cardUrls = await executeQuery(cardUrlsQuery);
+
+    if (!cardUrls || cardUrls.length === 0) {
+      return res.status(404).json({ message: 'No card URLs found.' });
+    }
+
+    res.json({
+      status: 'success',
+      aiResults: aiResultsTotal.map(result => result.result_text),
+      cardUrls: cardUrls.map(card => card.image_url),
+    });
+  } catch (error) {
+    console.error('Error fetching latest AI results and card URLs:', error.message);
+    res.status(500).json({
+      message: 'Failed to fetch latest AI results and card URLs. Please try again later.',
+    });
   }
 });
 
@@ -304,6 +355,7 @@ router.post('/generate-reading', async (req, res) => {
     res.status(500).json({ message: 'Failed to generate reading.' });
   }
 });
+
 router.post('/generate-couple-reading', async (req, res) => {
   const { userId } = req.body;
 
