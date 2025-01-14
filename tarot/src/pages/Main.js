@@ -1,6 +1,6 @@
 import React from 'react';
 import './Main.css';
-import cardimage from '../components/card_image.png';
+import cardimage from '../components/card_image2.png';
 import TAROT_logo from '../components/TAROT.png';
 import { Link, useNavigate } from 'react-router-dom';
 

@@ -294,6 +294,16 @@
   background-color: #523c7a;
 }
 
+.large-tarot-card {
+  width: 200px;
+  height: auto;
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.766);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+
+}
+
 .selection-btn.shuffle-btn {
   position: relative;
   z-index: 10; /* 다른 요소보다 높게 설정 */
@@ -334,12 +344,7 @@
   z-index: 5;
 }
 
-.large-tarot-card {
-  width: 200px;
-  height: auto;
-  box-shadow: 0 0 10px rgba(255, 255, 255, 0.766);
-  border-radius: 10px;
-}
+
 
 @media (max-width: 768px) {
   .leftpattern-img {

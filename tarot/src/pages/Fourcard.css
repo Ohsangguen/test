@@ -138,7 +138,7 @@
         /* position: absolute; */
         z-index: 2;
         font-size: 1.5rem;
-        color: white;
+        color: #85676a;
         font-weight: bold;
         text-align: center;
     }
@@ -234,6 +234,7 @@
   }
   .screen.active h1{
     font-size: 2rem;
+    color: #d4c9ca;
   }
   
   .selection-options {

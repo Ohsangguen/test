@@ -238,31 +238,42 @@
 
 .overlay {
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.756);
+    top: 50%;
+    left: 50%;
+    width: 80%;
+    height: 80%;
+    /* background-color: rgba(0, 0, 0, 0.756); */
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 0.8rem;
+    transform: translate(-50%, -50%);
 }
 
 .overlay-content {
-    background: rgba(80, 40, 84, 0.7);
-    padding: 10px;
+    background: rgba(80, 40, 84, 0.789);
+    padding: 20px;
     border-radius: 5px;
     text-align: center;
-    max-width: 400px;
     box-shadow: 0 0 10px rgba(0,0,0,0.5);
-    position: relative;
-    width: 70%;
-    height: 70%;
+    width: 100%;
+}
+
+.overlay-content.single-image {
+    max-width: 17%;
+    height: auto;
+    margin: 10px; /* 이미지 간의 간격 추가 */
+}
+
+.overlay-content.multiple-images {
+    max-width: 80%; /* 이미지가 여러 장일 때 너비 설정 */
+    height: auto;
+    margin: 10px; /* 이미지 간의 간격 추가 */
+
+
 }
 
 .overlay-content img {
-    max-width: 70%;
     height: auto;
-    margin-top: 20px;
+    margin: 10px; /* 이미지 간의 간격 추가 */
 }

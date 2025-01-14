@@ -19,11 +19,11 @@ const Mypage = () => {
 
     return (
         <div className="tarot-purple-mypage">
-            <div className="black-overlay">
-                <div className="tarot-title-mypage">Welcome to Tarot World !</div>
+            <div className="black-overlay-mypage">
+                {/* <div className="tarot-title-mypage">Welcome to Tarot World !</div>
                 <div className="neob-container">
                     <img src={neob} alt="Neob" className="neob-image" />
-                </div>
+                </div> */}
                 <div className="mypage-container">
                     
                     {/* <h1>마이페이지</h1> */}

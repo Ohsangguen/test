@@ -101,6 +101,10 @@ const Login = () => {
         setProfileImage(e.target.files[0]);
     };
 
+    const triggerFileInput = () => {
+        document.getElementById('profileImage').click();
+    };
+
     return (
         <div className="tarot-purple">
             <div className="black-overlay">
@@ -150,17 +154,22 @@ const Login = () => {
                         </div>
 
                         {isRegister && (
-                            <div className="form-group">
-                            <label htmlFor="profileImage">프로필 이미지</label>
-                            <div className="input-with-icon">
-                                <input
-                                    type="file"
-                                    id="profileImage"
-                                    accept="image/*"
-                                    onChange={handleFileChange}
-                                />
-                            </div>
-                        </div>
+                             <div className="form-group">
+                             <label htmlFor="profileImage">프로필 이미지</label>
+                             <div className="input-with-icon">
+                                 <input
+                                     type="file"
+                                     id="profileImage"
+                                     accept="image/*"
+                                     onChange={handleFileChange}
+                                     style={{ display: 'none' }} // 파일 입력 필드를 숨김
+                                 />
+                                 <button type="button" className="file-upload-button" onClick={triggerFileInput}>
+                                     업로드
+                                 </button>
+                                 {profileImage && <span className="file-name">{profileImage.name}</span>}
+                             </div>
+                         </div>
                         )}
                         <button type="submit" className="submit-button">
                             {isRegister ? '회원가입' : '로그인'}

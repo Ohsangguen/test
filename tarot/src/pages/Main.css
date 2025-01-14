@@ -28,7 +28,6 @@
 }
 
 .main-title-contain {
-    width: 150px;
     display: flex;
     flex-direction: center;
     justify-items: center;
@@ -36,7 +35,8 @@
 }
 
 .main-title-text-main {
-    height: auto; /* 이미지의 높이를 자동으로 조정 */
+    margin-top: 5%;
+    height: 10%; /* 이미지의 높이를 자동으로 조정 */
     cursor: pointer;
     text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8); /* 하얀 그림자 추가 */
 }
@@ -48,6 +48,7 @@
         z-index: 2;
         position: relative;
         overflow: hidden;
+        justify-items: center;
 
     }
 

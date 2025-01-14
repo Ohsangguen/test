@@ -18,6 +18,10 @@
     width: 100%;
     height: 100%;
     z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 
   /* 로그인 컨테이너 */
@@ -55,6 +59,8 @@
     padding-left: 15px;
     padding-right: 15px;
     margin-bottom: 20px;
+    margin-top: 20px;
+
     text-align: left;
   }
   
@@ -70,7 +76,7 @@
   
   /* 아이콘과 입력창을 함께 감싸는 컨테이너 */
   .input-with-icon {
-    
+  
     position: relative;
   }
   
@@ -158,6 +164,26 @@
     color: red;
     font-weight: 500;
   }
+
+  /* 파일 업로드 버튼 스타일 */
+.file-upload-button {
+  padding: 10px 10px;
+  margin-right: 10px;
+  background-color: rgb(179, 127, 180);
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+}
+
+/* 파일 업로드 버튼 호버 시 스타일 변경 */
+.file-upload-button:hover {
+  background-color: #ad6ac9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
   
   
   /* 반응형 디자인: 화면 크기가 작아질 때 */
