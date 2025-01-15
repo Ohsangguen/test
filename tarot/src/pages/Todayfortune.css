@@ -2,13 +2,17 @@
 
 .tarot-purple-today {
   background-color: rgb(54, 23, 97);
-    color: #fff;
-    position: relative;
-    height: 100%;
-    min-height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    position: relative;
+  color: #fff;
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  position: relative;
+  background-image: url('../components/캐릭터 포즈 모음/타로넙죽-8.png'); /* 배경 이미지 설정 */
+  background-size: 30%; /* 배경 이미지 크기 조정 */
+  background-position: calc(40% + 20%) 60%; /* 배경 이미지 위치 조정 */
+  background-repeat: no-repeat;
 
 }
 
@@ -22,17 +26,20 @@
   z-index: 1;
 }
 
-.main-title-left {
+.main-title-left-today {
   width: 150px;
   margin-top: 2vh;
+  cursor: pointer;
+  z-index: 10; /* 다른 요소보다 위에 표시되도록 설정 */
 }
 
-.main-title-text-left {
-  width: 200%; /* 이미지의 너비 조정 */
-  height: auto; /* 이미지의 높이를 자동으로 조정 */
+.main-title-text-left-today {
+  position: absolute;
+  top: 1vh; /* 화면 상단에서 10px 아래에 배치 */
+  left: 1vw; /* 화면 왼쪽에서 10px 오른쪽에 배치 */
+  width: 20%;
   cursor: pointer;
-  text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8); /* 하얀 그림자 추가 */
-  margin-left: 3vw;
+  z-index: 10; /* 다른 요소보다 위에 표시되도록 설정 */
 }
 
 .container-today {
@@ -203,13 +210,15 @@
 .selection-btn {
   padding: 10px 20px;
   font-size: 16px;
-  background-color: #6a4c93;
+  background-color: #5a417d;
   color: white;
-  border: 1px solid #6a4c93;
+  border: 1px solid #ffffff;
   border-radius: 5px;
   cursor: pointer;
   margin: 0 10px;
   transition: background-color 0.3s ease;
+  box-shadow: 2px 2px 30px #5a417d;
+
 }
 
 .selection-btn:hover {
@@ -285,10 +294,12 @@
   font-size: 16px;
   cursor: pointer;
   position: absolute;
-  top: 50%;
+  top: 45%;
   left: 50%;
   transform: translateX(-50%);
   z-index: 10;
+  width: 57px;
+  height: 90px;
 }
 
 .selection-btn.reveal-button {

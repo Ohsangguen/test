@@ -3,7 +3,7 @@ import './Main.css';
 import cardimage from '../components/card_image2.png';
 import TAROT_logo from '../components/TAROT.png';
 import { Link, useNavigate } from 'react-router-dom';
-
+import mypageimg from '../components/캐릭터 포즈 모음/타로넙죽-6.png'
 import leftsymbol from '../components/leftsymbol.png';
 import rightsymbol from '../components/rightsymbol.png';
 
@@ -33,7 +33,8 @@ const Main = () => {
                         { link: "/tarotmeaning", text: "타로란?", position: "leftupcard", image: cardimage},
                         { link: "/todayfortune", text: "오늘의 운세", position: "rightupcard", image: cardimage},
                         { link: "/fourcard", text: "포카드 타로", position: "leftdowncard", image: cardimage},
-                        { link: "/couple", text: "커플 궁합 타로", position: "rightdowncard", image: cardimage}
+                        { link: "/couple", text: "커플 궁합 타로", position: "rightdowncard", image: cardimage},
+                        { link: "/mypage", text: "마이페이지", position: "centercard", image: mypageimg}
                     ].map(({ link, text, position, image}) => (
                         <a href={link} className={`card-container-main ${position}-container`} key={position}>
                         <p className="card-text-main">{text}</p>

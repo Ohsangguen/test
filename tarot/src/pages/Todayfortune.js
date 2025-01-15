@@ -67,8 +67,8 @@ const Todayfortune = () => {
     <div id="tarot-screen" className="tarot-purple-today">
       <div className="black-overlay-today">
         <div className="container-today">
-          <div className="main-title-left" onClick={handleTitleClick}>
-            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
+          <div className="main-title-left-today" onClick={handleTitleClick}>
+            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left-today" />
           </div>
 
           <div className="header-options">

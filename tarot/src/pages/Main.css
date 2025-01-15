@@ -141,10 +141,18 @@
     .rightupcard-container { top: 10%; right: 20%; }
     .leftdowncard-container { bottom: 10%; left: 20%; }
     .rightdowncard-container { bottom: 10%; right: 20%; }
+    .centercard-container { bottom: 10%; left: 45%; }
+
+    .centercard-container  .card-image-main {box-shadow: none;}
+    
+    .centercard-container:hover .card-image-main {
+        transform: scale(1.3);
+        box-shadow: none; /* hover 시에도 box-shadow를 적용하지 않음 */
+        transition: transform 0.3s ease-in-out;
+        pointer-events: auto;
+    }
 
     
-    
-
     .today-fortune, .tarot-meaning, .card-tarot, .couple-tarot {
         position: absolute;
         color: rgb(230, 201, 204);

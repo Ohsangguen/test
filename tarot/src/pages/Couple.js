@@ -115,8 +115,8 @@ const Couple = () => {
             <a href="todayfortune" className="option-text">오늘의 운세</a>
             <a href="fourcard" className="option-text">포카드 타로</a>
           </div>
-          <div className="main-title-left" onClick={handleTitleClick}>
-            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
+          <div className="main-title-left-couple" onClick={handleTitleClick}>
+            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left-couple" />
           </div>
 
           

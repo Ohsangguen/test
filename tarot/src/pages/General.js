@@ -82,8 +82,8 @@ const General = () => {
       ) : (
     <div id="tarot-screen" className="tarot-purple-general">
       <div className="black-overlay-general">
-        <div className="main-title-left" onClick={handleTitleClick}>
-          <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
+        <div className="main-title-left-general" onClick={handleTitleClick}>
+          <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left-general" />
         </div>
 
         <div className="header-options">
