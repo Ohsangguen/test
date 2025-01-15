@@ -12,7 +12,11 @@
     background-size: cover; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-attachment: fixed; /* 배경 이미지 고정 */
-    overflow: auto; /* 스크롤 가능 */
+    overflow: hidden; /* 전체 화면 스크롤 숨기기 */
+    background-image: url('../components/캐릭터 포즈 모음/타로넙죽-5.png'); /* 배경 이미지 설정 */
+    background-size: 35%; /* 배경 이미지 크기 조정 */
+    background-position: calc(-13%) 100%; /* 배경 이미지 위치 조정 */
+    background-repeat: no-repeat;
 }
 
 .black-overlay-cards  {
@@ -26,12 +30,11 @@
     background-size: cover; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-attachment: fixed; /* 배경 이미지 고정 */
-    overflow: auto; /* 스크롤 가능 */
 }
 
 .container-today {
     width: 100%;
-    margin: 0 auto;
+    /* margin: 0 auto;
     border: 0px solid lightpink;
     padding: 10px;
     position: relative;
@@ -39,7 +42,7 @@
     box-sizing: border-box;
     box-shadow: 0 0 5px rgba(237, 240, 77, 0.1);
     align-items: center;
-    justify-content: center;
+    justify-content: center; */
   }
 
 /* Header Section */
@@ -48,6 +51,7 @@
     justify-content: space-between;
     align-items: center;
     padding: 10px 50px;
+    
 }
 
 .main-title {
@@ -127,6 +131,10 @@
 /* Main Content */
 .main-content-cards {
     width: 100%;
+    height: 70vh; /* 화면 전체 높이 */
+    overflow-y: auto; /* 세로 스크롤 가능 */
+    padding: 20px; /* 내용물 패딩 */
+
 }
 
 .main-content h1 {

@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Main.css';
 import cardimage from '../components/card_image2.png';
 import TAROT_logo from '../components/TAROT.png';
-import { Link, useNavigate } from 'react-router-dom';
-
+import { useNavigate } from 'react-router-dom';
+import mypageimg from '../components/캐릭터 포즈 모음/타로넙죽-6.png'
 import leftsymbol from '../components/leftsymbol.png';
 import rightsymbol from '../components/rightsymbol.png';
 
@@ -12,10 +12,23 @@ import rightsymbol from '../components/rightsymbol.png';
 const Main = () => {
     
     const navigate = useNavigate();
+    const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태를 관리하는 상태 변수
 
     const handleTitleClick = () => {
         navigate('/');
-      };      
+    }; 
+      
+    const handleLoginClick = () => {
+        navigate('/login'); // 로그인 페이지로 이동
+    };
+
+    const handleCenterCardClick = () => {
+        if (isLoggedIn) {
+            navigate('/mypage'); // 로그인 상태이면 마이페이지로 이동
+        } else {
+            navigate('/login'); // 로그인 상태가 아니면 로그인 페이지로 이동
+        }
+    };
 
     return (
         <div className="tarot-purple">
@@ -26,6 +39,10 @@ const Main = () => {
                         <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-main" />
                     </div>
 
+                    {/* <div className="login-button" onClick={handleLoginClick}>
+                        로그인
+                    </div> */}
+
                     {/* Navigation Cards */}
 
                     <div className="cards-wrapper-main">
@@ -33,7 +50,9 @@ const Main = () => {
                         { link: "/tarotmeaning", text: "타로란?", position: "leftupcard", image: cardimage},
                         { link: "/todayfortune", text: "오늘의 운세", position: "rightupcard", image: cardimage},
                         { link: "/fourcard", text: "포카드 타로", position: "leftdowncard", image: cardimage},
-                        { link: "/couple", text: "커플 궁합 타로", position: "rightdowncard", image: cardimage}
+                        { link: "/couple", text: "커플 궁합 타로", position: "rightdowncard", image: cardimage},
+                        { link: "/mypage", text: "", position: "centercard", image: mypageimg, onClick: handleCenterCardClick}
+
                     ].map(({ link, text, position, image}) => (
                         <a href={link} className={`card-container-main ${position}-container`} key={position}>
                         <p className="card-text-main">{text}</p>

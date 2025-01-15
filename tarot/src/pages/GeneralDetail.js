@@ -5,7 +5,7 @@ import axios from 'axios';
 
 const GeneralDetail = () => {
   const location = useLocation();
-  const { selectedCards } = location.state; // Navigate로 전달된 상태 받기
+  const selectedCards = location.state?.selectedCards || []; // 기본값 설정
   const [aiResultsTotal, setAiResultsTotal] = useState([]); // 최근 4개의 AI 결과
   const [cardUrls, setCardUrls] = useState([]); // 최근 4개의 카드 URL
   const [selectedCardIndex, setSelectedCardIndex] = useState(null); // 현재 선택된 카드 인덱스

@@ -5,16 +5,19 @@ import { cards, shuffleCards } from './card-shuffle.js';
 import TAROT_logo from '../components/TAROT.png';
 import coupleneob from '../components/커플 타로 넙죽이/커플 넙죽이(주파수).png';
 import tarot_card_back from '../components/card_image2.png';
+import CoupleLoading from './CoupleLoading';
 import axios from 'axios';
 
 const Couple = () => {
+  // const [cards, setCards] = useState(shuffleCards());
   const [selectedCard, setSelectedCard] = useState(null);
   const [placedCards, setPlacedCards] = useState(Array(8).fill(null)); // 8개의 드롭존 상태 관리
   const [highlightedZones, setHighlightedZones] = useState(Array(8).fill(false)); // 드롭존 강조 상태 관리
   const [allCardsPlaced, setAllCardsPlaced] = useState(false); // 모든 카드가 드롭되었는지 상태 관리
   const [isGathering, setIsGathering] = useState(false); // 카드 모음 상태 관리
   const [startAnimation, setStartAnimation] = useState(false);
-  const [selectedCards, setSelectedCards] = useState([]); // 선택된 카드 상태 관리
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
+  const [selectedCards, setSelectedCards] = useState([]);
   const navigate = useNavigate();
 
   const cardCount = 78; // 카드 수
@@ -59,22 +62,20 @@ const Couple = () => {
       console.log(updatedCards);
       setPlacedCards(updatedCards);
 
-      // 드롭 후 테두리 비활성화
-      const updatedZones = [...highlightedZones];
-      updatedZones[index] = false;
-      setHighlightedZones(updatedZones);
-    }
-  };
-
-  // 카드 확인 버튼 클릭
-  const handleReveal = () => {
-    if (!allCardsPlaced) {
-      alert('모든 카드를 드롭 영역에 놓아야 합니다.');
-    } else {
-      console.log('Calling fetchReading function');
+            // 드롭 후 테두리 비활성화
+            const updatedZones = [...highlightedZones];
+            updatedZones[index] = false;
+            setHighlightedZones(updatedZones);
+        }
+    };
+  
+    // 카드 확인 버튼 클릭
+    const handleReveal = () => {
       fetchReading();
-    }
-  };
+      if (!allCardsPlaced) {
+        alert('모든 카드를 드롭 영역에 놓아야 합니다.');
+      } else { }
+    };
 
   const shuffleCards = () => {
     // 셔플 버튼 클릭 시: 먼저 모음 단계 시작
@@ -107,19 +108,23 @@ const Couple = () => {
     }
   };
 
-  return (
-    <div className="tarot-purple-couple">
-      <div className="black-overlay-couple">
+    return (
+      <div>
+      {isLoading ? (
+        <CoupleLoading /> // 로딩 중일 때 Loading 컴포넌트 표시
+      ) : (
+      <div className="tarot-purple-couple">
+        <div className="black-overlay-couple">
 
-        <div className="main-title-left" onClick={handleTitleClick}>
-          <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
-        </div>
+          <div className="main-title-left" onClick={handleTitleClick}>
+            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
+          </div>
 
-        <div className="header-options">
-          <a href="tarotmeaning" className="option-text">타로란?</a>
-          <a href="todayfortune" className="option-text">오늘의 운세</a>
-          <a href="fourcard" className="option-text">포카드 타로</a>
-        </div>
+          <div className="header-options">
+            <a href="tarotmeaning" className="option-text">타로란?</a>
+            <a href="todayfortune" className="option-text">오늘의 운세</a>
+            <a href="fourcard" className="option-text">포카드 타로</a>
+          </div>
 
         <div className="container-couple">
           <div className="cards-spread-couple">
@@ -191,20 +196,22 @@ const Couple = () => {
             ))}
           </div>
 
-          {/* 버튼 */}
-          {allCardsPlaced && (
-            <button
-              id="reveal-button-couple"
-              className="reveal-btn-couple"
-              onClick={handleReveal}
-            >
-              카드 확인하기
-            </button>
-          )}
+                {/* 버튼 */}
+                {allCardsPlaced && (
+                    <button
+                        id="reveal-button-couple"
+                        className="reveal-btn-couple"
+                        onClick={handleReveal}
+                    >
+                        카드 확인하기
+                    </button>
+                )}
+          </div>
         </div>
+        </div>
+       )}
       </div>
-    </div>
-  );
+    );
 };
 
 export default Couple;

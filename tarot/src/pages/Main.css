@@ -141,10 +141,19 @@
     .rightupcard-container { top: 10%; right: 20%; }
     .leftdowncard-container { bottom: 10%; left: 20%; }
     .rightdowncard-container { bottom: 10%; right: 20%; }
+    .centercard-container { bottom: 3%; left: 42%; }
+
+    .centercard-container  .card-image-main {box-shadow: none; width: 170%; /* mypageimg의 크기를 살짝 키움 */
+    }
+    
+    .centercard-container:hover .card-image-main {
+        transform: scale(2);
+        box-shadow: none; /* hover 시에도 box-shadow를 적용하지 않음 */
+        transition: transform 0.8s ease-in-out;
+        pointer-events: auto;
+    }
 
     
-    
-
     .today-fortune, .tarot-meaning, .card-tarot, .couple-tarot {
         position: absolute;
         color: rgb(230, 201, 204);
@@ -224,6 +233,16 @@
         transform: translateY(-50%);
         z-index: 2;
       }
+
+      .login-button {
+        position: absolute;
+        top: 10%;
+        right: 10%;
+        color: white;
+        font-size: 1.2rem;
+        cursor: pointer;
+        z-index: 10;
+    }
 
 @media (max-width: 1200px) {
     .header { font-size: 4vw; }

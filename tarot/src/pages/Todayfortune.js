@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Todayfortune.css';
 import axios from 'axios';
-
-import cardImage from '../components/card_image2.png';
-import cardReveal from '../components/card_reveal.png';
+import cardImage from '../components/card_image2.png';  // 카드 이미지 import
+import cardReveal from '../components/card_reveal.png';  // 카드 이미지 import
+import today_logo from '../components/오늘의운세_logo.png';  // 카드 이미지 import
+import tarotmeaning_logo from '../components/타로란_logo.png';  // 카드 이미지 import
 import TAROT_logo from '../components/TAROT.png';
+import TodayLoading from './TodayLoading'; // Loading 컴포넌트 import
+
+
 
 const Todayfortune = () => {
   const navigate = useNavigate();
@@ -56,12 +60,19 @@ const Todayfortune = () => {
   };
 
   const handleRevealClick = () => {
+    
+
+
     if (selectedCards.length === 0) {
       console.warn('카드를 선택해주세요.');
       return;
     }
     console.log('Revealing cards:', selectedCards);
-    navigate('/todaydetail', { state: { selectedCard: selectedCards[0] } });
+    setIsLoading(true); // 로딩 상태로 전환
+    setTimeout(() => {
+      navigate('/todaydetail', { state: { selectedCard: { id: selectedCardIndex } } });
+    }, 10000); // 10초 후에 TodayDetail 페이지로 이동
+    // navigate('/todaydetail', { state: { selectedCard: selectedCards[0] } });
   };
 
   const handleTitleClick = () => {
@@ -69,11 +80,15 @@ const Todayfortune = () => {
   };
 
   return (
+    <div>
+      {isLoading ? (
+        <TodayLoading /> // 로딩 중일 때 Loading 컴포넌트 표시
+      ) : (
     <div id="tarot-screen" className="tarot-purple-today">
       <div className="black-overlay-today">
         <div className="container-today">
-          <div className="main-title-left" onClick={handleTitleClick}>
-            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
+          <div className="main-title-left-today" onClick={handleTitleClick}>
+            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left-today" />
           </div>
 
           <div className="header-options">
@@ -96,6 +111,25 @@ const Todayfortune = () => {
               )}
             </div>
           )}
+
+          {/* <h2 className="instruction-text">카드를 골라주세요.</h2> */}
+
+          <div className="cards-container-today"></div>
+
+            <div className="leftpattern-img">
+              <img
+                src="https://ifh.cc/g/n5Q1nw.png"
+                alt="Left Pattern"
+                className="pattern-img"
+              />
+            </div>
+            <div className="rightpattern-img">
+              <img
+                src="https://ifh.cc/g/P23tkZ.png"
+                alt="Right Pattern"
+                className="pattern-img-r"
+              />
+            </div>
 
           <button onClick={shuffleCards} className="selection-btn shuffle-btn-today">
             셔플
@@ -150,6 +184,8 @@ const Todayfortune = () => {
           </div>
         </div>
       </div>
+      </div>
+      )}
     </div>
   );
 };

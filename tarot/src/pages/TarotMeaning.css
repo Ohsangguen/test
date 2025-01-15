@@ -6,6 +6,10 @@
     position: relative;
     height: 100vh;
     margin: 0;
+    background-image: url('../components/캐릭터 포즈 모음/타로넙죽-4.png'); /* 배경 이미지 설정 */
+    background-size: 30%; /* 배경 이미지 크기 조정 */
+    background-position: calc(-9%) 95%; /* 배경 이미지 위치 조정 */
+    background-repeat: no-repeat;
 }
 
 .black-overlay-meaning  {

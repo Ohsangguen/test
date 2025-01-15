@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import './TodayDetail.css';
 import axios from 'axios';
+import sampleCardImage from '../components/card_image.png'; // 임의의 이미지 import
 
 const TodayDetail = () => {
   const location = useLocation();

@@ -30,19 +30,34 @@
     background-repeat: no-repeat;
 }
 
-.tarot-title-mypage {
-    font-size: 3rem; /* 글자 크기 조정 */
-    color: white;
-    margin-bottom: 80px;
-}
+.main-title-left-mypage {
+    width: 150px;
+    margin-top: 2vh;
+    cursor: pointer;
+    z-index: 10; /* 다른 요소보다 위에 표시되도록 설정 */
+  
+  
+  }
+  
+  .main-title-text-left-mypage {
+    position: absolute;
+    top: 1vh; /* 화면 상단에서 10px 아래에 배치 */
+    left: 1vw; /* 화면 왼쪽에서 10px 오른쪽에 배치 */
+    width: 20%;
+    cursor: pointer;
+    z-index: 10; /* 다른 요소보다 위에 표시되도록 설정 */
+  }
+  
+
+
 
 .mypage-container {
-    width: 20%; /* 너비 조정 */
-    height: 35%; /* 높이 조정 */
+    width: 18%; /* 너비 조정 */
+    height: 30%; /* 높이 조정 */
     padding: 50px;
     text-align: center;
     box-shadow: 0 0 30px rgb(255, 255, 255);
-    background-image: url('../components/mypage_back.png'); /* 배경 이미지 설정 */
+    background-image: url('../components/mypage_back2.png'); /* 배경 이미지 설정 */
     background-size: contain; /* 배경 이미지 크기 조정 */
     background-position: center; /* 배경 이미지 위치 조정 */
     background-repeat: no-repeat;
@@ -76,11 +91,11 @@
     width: 150px;
     height: 150px;
     object-fit: cover;
-    margin: 35px;
+    margin: 7%;
 }
 
 .info p {
-    font-size: 18px;
+    font-size: 15px;
     margin: 5px 0;
     color: white;
 }
@@ -120,13 +135,3 @@
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
 }
 
-.speech-bubble::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    border-width: 10px;
-    border-style: solid;
-    border-color: white transparent transparent transparent;
-}
