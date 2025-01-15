@@ -20,9 +20,12 @@ const TodayDetail = () => {
         console.log('API Response:', response.data);
 
         // 서버에서 반환된 데이터 확인 및 상태 업데이트
-        if (response.data && response.data.cardUrls && response.data.aiResults) {
-          setCardUrl(response.data.cardUrls[0] || '');
-          setInterpretation(response.data.aiResults[0] || '해석을 가져올 수 없습니다.');
+        if (response.data && response.data.status === 'success') {
+          console.log('Response Data:', response.data);
+          const cardUrl = response.data.cardUrls[0];
+          const interpretation = response.data.aiResults[0];
+          setCardUrl(cardUrl);
+          setInterpretation(interpretation);
         } else {
           console.error('Invalid response structure:', response.data);
         }
@@ -91,4 +94,3 @@ const TodayDetail = () => {
 };
 
 export default TodayDetail;
-
