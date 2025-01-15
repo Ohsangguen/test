@@ -259,6 +259,91 @@ router.get('/latest-ai-results', async (req, res) => {
   }
 });
 
+router.get('/latest-couple-ai-results', async (req, res) => {
+  try {
+    console.log('Fetching latest AI results...');
+    
+    const aiResultsQuery = `
+      SELECT result_text
+      FROM ai_results_total
+      ORDER BY created_at DESC
+      LIMIT 8
+    `;
+    const aiResultsTotal = await executeQuery(aiResultsQuery);
+
+    if (!aiResultsTotal || aiResultsTotal.length === 0) {
+      return res.status(404).json({ message: 'No AI results found.' });
+    }
+
+    const cardUrlsQuery = `
+      SELECT tc.image_url
+      FROM tarot_reading_cards trc
+      JOIN tarot_cards tc ON trc.card_id = tc.id
+      ORDER BY trc.id DESC
+      LIMIT 8
+    `;
+    const cardUrls = await executeQuery(cardUrlsQuery);
+
+    if (!cardUrls || cardUrls.length === 0) {
+      return res.status(404).json({ message: 'No card URLs found.' });
+    }
+
+    res.json({
+      status: 'success',
+      aiResults: aiResultsTotal.map(result => result.result_text),
+      cardUrls: cardUrls.map(card => card.image_url),
+    });
+  } catch (error) {
+    console.error('Error fetching latest AI results and card URLs:', error.message);
+    res.status(500).json({
+      message: 'Failed to fetch latest AI results and card URLs. Please try again later.',
+    });
+  }
+});
+
+router.get('/latest-today-ai-results', async (req, res) => {
+  try {
+    console.log('Fetching latest AI results...');
+    
+    const aiResultsQuery = `
+      SELECT result_text
+      FROM ai_results_total
+      ORDER BY created_at DESC
+      LIMIT 1
+    `;
+    const aiResultsTotal = await executeQuery(aiResultsQuery);
+
+    if (!aiResultsTotal || aiResultsTotal.length === 0) {
+      return res.status(404).json({ message: 'No AI results found.' });
+    }
+
+    const cardUrlsQuery = `
+      SELECT tc.image_url
+      FROM tarot_reading_cards trc
+      JOIN tarot_cards tc ON trc.card_id = tc.id
+      ORDER BY trc.id DESC
+      LIMIT 1
+    `;
+    const cardUrls = await executeQuery(cardUrlsQuery);
+
+    if (!cardUrls || cardUrls.length === 0) {
+      return res.status(404).json({ message: 'No card URLs found.' });
+    }
+
+    res.json({
+      status: 'success',
+      aiResults: aiResultsTotal.map(result => result.result_text),
+      cardUrls: cardUrls.map(card => card.image_url),
+    });
+  } catch (error) {
+    console.error('Error fetching latest AI results and card URLs:', error.message);
+    res.status(500).json({
+      message: 'Failed to fetch latest AI results and card URLs. Please try again later.',
+    });
+  }
+});
+
+
 router.post('/generate-reading', async (req, res) => {
   const { userId, themeIds } = req.body;
   console.log('Request received with body:', req.body);
@@ -368,11 +453,11 @@ router.post('/generate-couple-reading', async (req, res) => {
     const readingId = await createReading(userId, 8); // 각 테마마다 8장씩
 
     const positions = [
-      'conflict', 
+      'compatibility', 
       'endeavor', 'endeavor', 
       'attractiveness', 'attractiveness', 
       'love_view', 'love_view', 
-      'compatibility'
+      'conflict'
     ];
     const cardData = [];
 
@@ -398,9 +483,9 @@ router.post('/generate-couple-reading', async (req, res) => {
       parts: [
         {
           text: `당신은 타로 전문가이자 전문 작가입니다. 손님이 타로를보러 왔어요 다음 타로 카드 정보를 기반으로 테마 "${theme}"의 "${position}" 위치에 해당하는 카드 이름과 그 해당 메시지를를 작성해주세요.
-          카드 이름: ${card.name}
           카드 의미: ${card.upright_meaning}
-          카드 중에서 position이 겹치는 것(endeavor, attractiveness,love_view)은 하나는 남자 하나는 여자이기 떄문입니다. 이를 구분할 수 있게 표시해 주고 나머지는 남녀 두명에게 이야기할 conflict와 compatibility입니다. 추가적으로 각각의 명칭은 '갈등과 해결방법' '노력' '매력' '연애관' '궁합'이니까 번역할때 필요하다면 이 용어 사용해줘여여`,
+          형식 예시(이거는 4번째 카드에 대한 설명):  9 OF CUPS (attractiveness, male): 당신은 풍족하고 만족스러운 삶을 살고 있으며, 그 자신감과 안정감이 매력적으로 비춰집니다. 마치 "모든 것을 다 가진 사람"처럼 보이며, 다른 사람들에게 편안함과 안정감을 주는 매력이 있습니다. 다재다능하고 부족함이 없어 보이는 당신의 모습은 파트너에게 큰 매력으로 다가갈 것입니다. 하지만, 너무 완벽해 보이려는 노력은 오히려 부담스럽게 느껴질 수도 있으니, 자연스러움을 유지하는 것이 중요합니다. 때로는 약점을 보여주는 인간적인 매력을 더할 수 있습니다.
+위 형식을 따라서 이야기해 한 카드에 할당되는 position은 하나니 순차적으로 잘 작성해야해. 또한 중요한 건데 endeavor랑 attractiveness랑 love_view는 couple에게 하는게 아니라 하나는 male이고 하나는 female에게 하는 말이야 이거 꼭 기억해해'`,
         },
       ],
     }));

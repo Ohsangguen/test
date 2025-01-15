@@ -18,6 +18,28 @@ const GeneralDetail = () => {
     });
   }, [selectedCards]);
 
+  const convertGoogleDriveUrl = (url) => {
+    try {
+      console.log('Original URL:', url);
+      // 이미 변환된 URL인지 확인
+      if (url.includes('https://drive.google.com/uc?export=view&id=')) {
+        console.log('Already converted URL:', url);
+        return url;
+      }
+      const match = url.match(/\/file\/d\/([^/]+)\//);
+      if (match && match[1]) {
+        const convertedUrl = `https://drive.google.com/uc?export=view&id=${match[1]}`;
+        console.log('Converted URL:', convertedUrl);
+        return convertedUrl;
+      }
+      console.error('잘못된 Google Drive URL:', url);
+      return url; // 잘못된 URL이면 원래 URL 반환
+    } catch (error) {
+      console.error('Google Drive URL 변환 중 오류:', error);
+      return url;
+    }
+  };
+
   // 최근 AI 결과와 카드 URL 가져오기
   useEffect(() => {
     const fetchAiResultsAndCardUrls = async () => {
@@ -25,7 +47,8 @@ const GeneralDetail = () => {
         const response = await axios.get('http://localhost:5000/api/latest-ai-results');
         console.log('Fetched AI results and card URLs:', response.data);
         setAiResultsTotal(response.data.aiResults.reverse() || []); // 결과를 역순으로 저장
-        setCardUrls(response.data.cardUrls.reverse() || []); // URL을 역순으로 저장
+        const convertedUrls = response.data.cardUrls.reverse().map(url => convertGoogleDriveUrl(url)); // URL을 변환하여 저장
+        setCardUrls(convertedUrls);
       } catch (error) {
         console.error('Error fetching AI results and card URLs:', error);
       }
@@ -41,17 +64,6 @@ const GeneralDetail = () => {
   const handleCardClick = (index) => {
     console.log(`Clicked card index: ${index}`);
     setSelectedCardIndex(index); // 클릭한 카드의 인덱스 설정
-  };
-
-  const convertGoogleDriveUrl = (url) => {
-    if (!url) return 'default_card_image_url'; // 기본 이미지 URL
-  
-    const fileIdMatch = url.match(/(?:file\/d\/|id=)([-\w]{25,})/);
-    const fileId = fileIdMatch ? fileIdMatch[1] : null;
-  
-    return fileId
-      ? `https://drive.google.com/uc?export=view&id=${fileId}`
-      : 'default_card_image_url';
   };
 
   return (
@@ -70,7 +82,7 @@ const GeneralDetail = () => {
                 onClick={() => handleCardClick(index)}
               >
                 <img
-                  src={convertGoogleDriveUrl(cardUrls[index])} // 데이터베이스에서 가져온 이미지 URL 사용
+                  src={cardUrls[index]} // 변환된 이미지 URL 사용
                   alt={`Selected Tarot card ${index + 1}`}
                   className="tarot-card"
                 />
@@ -83,7 +95,7 @@ const GeneralDetail = () => {
             {selectedCardIndex !== null && (
               <div className="interpretation-box-in">
                 <img
-                  src={convertGoogleDriveUrl(cardUrls[selectedCardIndex])} // 데이터베이스에서 가져온 이미지 URL 사용
+                  src={cardUrls[selectedCardIndex]} // 변환된 이미지 URL 사용
                   alt={`Selected Tarot card ${selectedCardIndex + 1}`}
                   className="tarot-card-generaldetail"
                 />

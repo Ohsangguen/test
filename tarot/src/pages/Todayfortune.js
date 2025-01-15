@@ -1,37 +1,47 @@
-// OneCardTarot.jsx
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom'; // useNavigate 가져오기
+import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import './Todayfortune.css';
-import cardImage from '../components/card_image2.png';  // 카드 이미지 import
-import cardReveal from '../components/card_reveal.png';  // 카드 이미지 import
+import axios from 'axios';
 
-import today_logo from '../components/오늘의운세_logo.png';  // 카드 이미지 import
-import tarotmeaning_logo from '../components/타로란_logo.png';  // 카드 이미지 import
+import cardImage from '../components/card_image2.png';
+import cardReveal from '../components/card_reveal.png';
 import TAROT_logo from '../components/TAROT.png';
 
-
 const Todayfortune = () => {
+  const navigate = useNavigate();
 
-  const navigate = useNavigate(); // useNavigate 훅 초기화
-
-  const cardCount = 78; // 카드 수
-  const radius = 250;   // 원의 반지름
+  const cardCount = 78;
+  const radius = 250;
   const cards = Array.from({ length: cardCount });
 
   const [startAnimation, setStartAnimation] = useState(false);
   const [isGathering, setIsGathering] = useState(false);
   const [selectedCardIndex, setSelectedCardIndex] = useState(null);
-  const [showRevealButton, setShowRevealButton] = useState(false);
+  const [selectedCards, setSelectedCards] = useState([]); // 추가된 상태
+  const [isLoading, setIsLoading] = useState(false); // 로딩 상태 추가
 
   useEffect(() => {
-    // 컴포넌트가 마운트되면 애니메이션 시작 상태로 변경
     setStartAnimation(true);
   }, []);
 
+  const fetchReading = async () => {
+    try {
+      console.log('Sending request to /api/generate-reading');
+      const response = await axios.post('http://localhost:5000/api/generate-reading', {
+        userId: 1,
+        themeIds: 0,
+      });
+      console.log('Fetched reading response:', response.data);
+      const { cards, aiResultsTotal } = response.data; // 응답 데이터에서 필요한 값 가져오기
+      setSelectedCards(cards);
+      navigate('/todaydetail', { state: { selectedCards: response.data.cards, aiResultsTotal: response.data.aiResultsTotal } });
+    } catch (error) {
+      console.error('Error fetching reading:', error);
+    }
+  };
+
   const shuffleCards = () => {
-    // 셔플 버튼 클릭 시: 먼저 모음 단계 시작
     setIsGathering(true);
-    // 모음이 완료되면 펼침 상태로 전환
     setTimeout(() => {
       setIsGathering(false);
       setStartAnimation(true);
@@ -41,35 +51,22 @@ const Todayfortune = () => {
   const handleCardClick = (index) => {
     console.log(`카드 ${index + 1} 클릭됨`);
     setSelectedCardIndex(index);
-    setShowRevealButton(true);
+    fetchReading();
+    // 선택된 카드 관련 로직이 필요한 경우 여기에 추가
   };
 
   const handleRevealClick = () => {
-    const randomIndex = Math.floor(Math.random() * cardCount);
-    console.log(`랜덤으로 선택된 카드: ${randomIndex + 1}`);
-
-    // React Router를 이용한 페이지 이동
-    navigate(`/todaydetail`);
+    if (selectedCards.length === 0) {
+      console.warn('카드를 선택해주세요.');
+      return;
+    }
+    console.log('Revealing cards:', selectedCards);
+    navigate('/todaydetail', { state: { selectedCard: selectedCards[0] } });
   };
-  
-
-  // const handleRevealClick = () => {
-  //   if (selectedCardIndex === null) {
-  //     // 사용자가 아직 카드를 선택하지 않은 경우에 대한 처리
-  //     console.warn('카드를 선택해주세요.');
-  //     return;
-  //   }
-  //   console.log(`선택된 카드: ${selectedCardIndex + 1}`);
-  
-  //   // React Router를 이용한 페이지 이동
-  //   // URL 파라미터에 selectedCardIndex를 사용 (0부터 시작하므로 필요 시 +1 조정 가능)
-  //   navigate(`/card/${selectedCardIndex}`);
-  // };
 
   const handleTitleClick = () => {
     navigate('/');
   };
-
 
   return (
     <div id="tarot-screen" className="tarot-purple-today">
@@ -84,120 +81,72 @@ const Todayfortune = () => {
             <a href="fourcard" className="option-text">포카드 타로</a>
             <a href="couple" className="option-text">커플 타로</a>
           </div>
-          {/* <a href="main" className="header-today">
-            <img src="https://ifh.cc/g/018lPq.png" alt="Tarot" />
-          </a> */}
-          
 
           {selectedCardIndex !== null && (
             <div className="selected-card-center">
-
-              {/* {showRevealButton && (
-                <button 
-                
-                  id="reveal-button-today" 
-                  src={cardReveal} 
-                  className="selection-btn reveal-btn-today"
+              {isLoading ? (
+                <p>Loading card details...</p>
+              ) : (
+                <img
+                  src={cardReveal}
+                  alt={`Selected Tarot card ${selectedCardIndex + 1}`}
+                  className="large-tarot-card"
                   onClick={handleRevealClick}
-                >
-                  카드 확인하기
-                </button>
-              )} */}
-
-              <img 
-                src={cardReveal} 
-                alt={`Selected Tarot card ${selectedCardIndex + 1}`} 
-                className="large-tarot-card" 
-                onClick={handleRevealClick}
-
-              />
+                />
+              )}
             </div>
           )}
 
-          {/* <h2 className="instruction-text">카드를 골라주세요.</h2> */}
+          <button onClick={shuffleCards} className="selection-btn shuffle-btn-today">
+            셔플
+          </button>
 
-          <div className="cards-container-today"></div>
+          <div className="cards-spread-today">
+            {cards.map((_, index) => {
+              const angle = (280 / cardCount) * index;
+              const delay = index * 0.02;
 
-            <div className="leftpattern-img">
-              <img
-                src="https://ifh.cc/g/n5Q1nw.png"
-                alt="Left Pattern"
-                className="pattern-img"
-              />
-            </div>
-            <div className="rightpattern-img">
-              <img
-                src="https://ifh.cc/g/P23tkZ.png"
-                alt="Right Pattern"
-                className="pattern-img-r"
-              />
-            </div>
-            {/* <div className="rightline-img">
-              <img
-                src="https://ifh.cc/g/2aTXPo.png"
-                alt="Right line"
-                className="line-img"
-              />
-            </div>
-            <div className="leftline-img">
-              <img
-                src="https://ifh.cc/g/2aTXPo.png"
-                alt="left line"
-                className="line-img"
-              />
-            </div> */}
+              let wrapperStyle = {
+                position: 'absolute',
+                top: '50%',
+                left: '46%',
+                transition: 'transform 1s ease-out',
+                transitionDelay: `${delay}s`,
+                width: '120px',
+                height: 'auto',
+                transform: 'translate(25%, -50%)',
+                cursor: 'pointer',
+              };
 
-              <button onClick={shuffleCards} className="selection-btn shuffle-btn-today">
-                셔플        
-              </button>
+              if (isGathering) {
+                const gatherDelay = (cardCount - index) * 0.02;
+                wrapperStyle.transitionDelay = `${gatherDelay}s`;
+                wrapperStyle.transform = 'translate(25%, -50%)';
+              } else if (startAnimation) {
+                wrapperStyle.transform = `
+                  rotate(${angle + 138}deg) 
+                  translate(${radius}px)
+                  rotate(80deg)
+                `;
+              } else {
+                wrapperStyle.transform = 'translate(25%, -50%)';
+              }
 
-            <div className="cards-spread-today">
-              {cards.map((_, index) => {
-                const angle = (280 / cardCount) * index;
-                // 각 카드에 대해 지연 시간을 계산
-                const delay = index * 0.02;
-
-                let wrapperStyle = {
-                  position: 'absolute',
-                  top: '50%',
-                  left: '46%',
-                  transition: 'transform 1s ease-out',
-                  transitionDelay: `${delay}s`,
-                  width: '120px',   // 카드 크기와 동일하게 설정
-                  height: 'auto',
-                  transform: 'translate(25%, -50%)', // 기본 transform
-                  cursor: 'pointer',
-                };
-
-                if (isGathering) {
-                  const gatherDelay = (cardCount - index) * 0.02;
-                  wrapperStyle.transitionDelay = `${gatherDelay}s`;
-                  wrapperStyle.transform = 'translate(25%, -50%)';
-                } else if (startAnimation) {
-                  wrapperStyle.transform = `
-                    rotate(${angle + 138}deg) 
-                    translate(${radius}px)
-                    rotate(80deg)
-                  `;
-                } else {
-                  wrapperStyle.transform = 'translate(25%, -50%)';
-                }
-
-                return (
-                  <div 
-                    key={index} 
-                    style={wrapperStyle} 
-                    className="card-wrapper"
-                    onClick={() => handleCardClick(index)}  // 클릭 이벤트 할당
-                  >
-                    <img 
-                      src={cardImage} 
-                      alt={`Tarot card ${index + 1}`} 
-                      className="tarot-card"
-                    />
-                  </div>
-                );
-              })}
+              return (
+                <div
+                  key={index}
+                  style={wrapperStyle}
+                  className="card-wrapper"
+                  onClick={() => handleCardClick(index)}
+                >
+                  <img
+                    src={cardImage}
+                    alt={`Tarot card ${index + 1}`}
+                    className="tarot-card"
+                  />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>

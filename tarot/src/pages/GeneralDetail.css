@@ -38,7 +38,9 @@
   }
   
   .selected-card img {
+    display: block;
     width: 100%;
+    height: auto;
     border-radius: 10px;
   }
   
@@ -76,22 +78,18 @@
 }
 
 .tarot-card-generaldetail {
-  width: 30%;
-  height: 80%;
-  background-size: 350%;
+  width: 120px; /* 픽셀 단위로 명시적인 크기 설정 */
+  height: 180px;
+  background-size: cover; /* 이미지를 요소 크기에 맞게 조정 */
   background-position: center;
   background-repeat: no-repeat;
-  margin: 5px;
+  margin: 10px;
   cursor: pointer;
-  perspective: 1000px;
+  border-radius: 10px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   z-index: 6;
   position: relative;
-  border-radius: 3px;
-  box-shadow: 0 0 1px rgba(243, 236, 54, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
-    0 0 15px rgba(245, 223, 62, 0.187);
-    margin-right: 10%;
-    
+  box-shadow: 0 0 10px rgba(243, 236, 54, 0.3);
 }
   
   h1 {

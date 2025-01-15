@@ -179,3 +179,61 @@ paths:
           description: Invalid input data.
         500:
           description: Server error.
+  /api/latest-couple-ai-results:
+    get:
+      summary: 최신 AI 결과 가져오기
+      description: `ai_results_total` 테이블에서 최신 4개의 AI 결과를 가져옵니다.
+      tags:
+        - AI Results
+      responses:
+        '200':
+          description: 성공적으로 AI 결과를 가져왔습니다.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  count:
+                    type: integer
+                    example: 8
+                  results:
+                    type: array
+                    items:
+                      type: string
+                      example: "AI 결과 텍스트"
+        '404':
+          description: AI 결과를 찾을 수 없습니다.
+        '500':
+          description: AI 결과를 가져오는 데 실패했습니다.
+  /api/latest-today-ai-results:
+    get:
+      summary: 최신 AI 결과 가져오기
+      description: `ai_results_total` 테이블에서 최신 1개의 AI 결과를 가져옵니다.
+      tags:
+        - AI Results
+      responses:
+        '200':
+          description: 성공적으로 AI 결과를 가져왔습니다.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    example: success
+                  count:
+                    type: integer
+                    example: 1
+                  results:
+                    type: array
+                    items:
+                      type: string
+                      example: "AI 결과 텍스트"
+        '404':
+          description: AI 결과를 찾을 수 없습니다.
+        '500':
+          description: AI 결과를 가져오는 데 실패했습니다.
