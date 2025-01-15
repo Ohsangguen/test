@@ -44,17 +44,6 @@ const TodayDetail = () => {
     console.log('Card clicked, showing interpretation.');
   };
 
-  const convertGoogleDriveUrl = (url) => {
-    if (!url) return 'default_card_image_url'; // 기본 이미지 URL
-
-    const fileIdMatch = url.match(/(?:file\/d\/|id=)([-\w]{25,})/);
-    const fileId = fileIdMatch ? fileIdMatch[1] : null;
-
-    return fileId
-      ? `https://drive.google.com/uc?export=view&id=${fileId}`
-      : 'default_card_image_url';
-  };
-
   return (
     <div className="tarot-purple-todaydetail">
       <div className="black-overlay">
@@ -66,7 +55,7 @@ const TodayDetail = () => {
               {/* 카드 */}
               <div className="card-todaydetail" onClick={handleCardClick}>
                 <img
-                  src={convertGoogleDriveUrl(cardUrl)}
+                  src={cardUrl}
                   alt="Selected Tarot card"
                   className="tarot-card-todaydetail"
                 />
@@ -76,7 +65,7 @@ const TodayDetail = () => {
               <div className="interpretation-box">
                 <div className="interpretation-box-in">
                   <img
-                    src={convertGoogleDriveUrl(cardUrl)}
+                    src={cardUrl}
                     alt="Selected Tarot card"
                     className="tarot-card-todaydetail"
                   />

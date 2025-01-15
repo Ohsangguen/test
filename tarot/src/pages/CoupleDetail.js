@@ -18,27 +18,14 @@ const CoupleDetail = () => {
         const response = await axios.get('http://localhost:5000/api/latest-couple-ai-results');
         console.log('Fetched AI results and card URLs:', response.data);
         setAiResultsTotal(response.data.aiResults.reverse() || []); // 결과를 역순으로 저장
-        setCardUrls(response.data.cardUrls.reverse() || []); // URL을 역순으로 저장
       } catch (error) {
         console.error('Error fetching AI results and card URLs:', error);
       }
     };
     fetchAiResultsAndCardUrls();
   }, []);
-
   const handleCardClick = (index) => {
     setSelectedCardIndex(index);
-  };
-
-  const convertGoogleDriveUrl = (url) => {
-    if (!url) return cardImage; // 기본 이미지 URL
-
-    const fileIdMatch = url.match(/(?:file\/d\/|id=)([-\w]{25,})/);
-    const fileId = fileIdMatch ? fileIdMatch[1] : null;
-
-    return fileId
-      ? `https://drive.google.com/uc?export=view&id=${fileId}`
-      : cardImage;
   };
 
   return (
@@ -50,7 +37,7 @@ const CoupleDetail = () => {
             {selectedCardIndex !== null && (
               <div className="interpretation-box-in">
                 <img
-                  src={convertGoogleDriveUrl(cardUrls[selectedCardIndex])}
+                  src={selectedCards[selectedCardIndex]?.card.image_url || 'https://via.placeholder.com/150'}
                   alt={`Selected Tarot card ${selectedCardIndex + 1}`}
                   className="tarot-card-coupledetail"
                 />
@@ -79,7 +66,7 @@ const CoupleDetail = () => {
                   onClick={() => handleCardClick(index)}
                 >
                   <img
-                    src={convertGoogleDriveUrl(cardUrls[index])}
+                    src={card.card.image_url || 'https://via.placeholder.com/150'}
                     alt={`Selected Tarot card ${index + 1}`}
                     className="tarot-card"
                   />
@@ -93,7 +80,7 @@ const CoupleDetail = () => {
             {selectedCardIndex !== null && (
               <div className="interpretation-box-in">
                 <img
-                  src={convertGoogleDriveUrl(cardUrls[selectedCardIndex])}
+                  src={selectedCards[selectedCardIndex]?.card.image_url || 'https://via.placeholder.com/150'}
                   alt={`Selected Tarot card ${selectedCardIndex + 1}`}
                   className="tarot-card-coupledetail"
                 />
