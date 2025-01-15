@@ -110,16 +110,16 @@ const Couple = () => {
       ) : (
       <div className="tarot-purple-couple">
         <div className="black-overlay-couple">
-
-          <div className="main-title-left" onClick={handleTitleClick}>
-            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
-          </div>
-
-          <div className="header-options">
+        <div className="header-options">
             <a href="tarotmeaning" className="option-text">타로란?</a>
             <a href="todayfortune" className="option-text">오늘의 운세</a>
             <a href="fourcard" className="option-text">포카드 타로</a>
           </div>
+          <div className="main-title-left" onClick={handleTitleClick}>
+            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left" />
+          </div>
+
+          
 
           <div className="container-couple">
               <div className="cards-spread-couple">

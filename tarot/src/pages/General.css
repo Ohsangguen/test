@@ -9,6 +9,10 @@
     width: 100vw;
     overflow: hidden;
     position: relative;
+    background-image: url('../components/neob_shine.jpg'); /* 배경 이미지 설정 */
+    background-size: 100%; /* 배경 이미지 크기 조정 */
+    background-position: calc(40% + 10%)  100%; /* 배경 이미지 위치 조정 */
+    background-repeat: no-repeat;
 
 }
 
@@ -26,6 +30,10 @@
 .main-title-left {
   width: 150px;
   margin-top: 2vh;
+  cursor: pointer;
+  z-index: 10; /* 다른 요소보다 위에 표시되도록 설정 */
+
+
 }
 
 .main-title-text-left {
@@ -56,6 +64,8 @@
   white-space: nowrap;
   text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5); /* 하얀 그림자 추가 */
 }
+
+/*  */
 
  .container-general {
   width: 100%;
@@ -147,6 +157,7 @@
     width: 100%;
     height: 100vh; /* 화면 전체 높이 사용 */
     overflow: hidden;
+
   }
   
   
@@ -278,7 +289,7 @@
   .reveal-btn-general {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: #8660ba;
+    background-color: #946bce;
     color: white;
     border: none;
     border-radius: 5px;
@@ -286,7 +297,7 @@
     transition: background-color 0.3s ease;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 51.5%; /* 왼쪽에서 55%로 설정하여 오른쪽으로 살짝 이동 */
     transform: translate(-50%, -50%);
     animation: scaleBlink 2s linear infinite;
   }
@@ -298,7 +309,7 @@
   .selection-btn.shuffle-btn-general {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: #694c938c;
+    background-color: #72569a8c;
     color: white;
     border: none;
     border-radius: 5px;
@@ -310,6 +321,11 @@
     transform: translate(-50%, -50%);
   }
   
+  .shuffle-btn-general:hover {
+    background-color: #523c7a;
+  }
+  
+
   /* .selection-btn.reveal-button-general {
     display: block;
     padding: 10px 20px;

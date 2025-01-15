@@ -5,6 +5,7 @@ import cardImage from '../components/card_image2.png';  // 카드 이미지 impo
 import TAROT_logo from '../components/TAROT.png';
 import axios from 'axios';
 import FourcardLoading from './FourcardLoading';
+// import taortneob from '../components/캐릭터 포즈 모음/타로넙죽-1.png';
 
 
 const General = () => {
@@ -86,10 +87,11 @@ const General = () => {
         </div>
 
         <div className="header-options">
-            <a href="tarotmeaning" className="option-text">타로란?</a>
-            <a href="todayfortune" className="option-text">오늘의 운세</a>
-            <a href="couple" className="option-text">커플 타로</a>
-          </div>
+          <a href="tarotmeaning" className="option-text">타로란?</a>
+          <a href="todayfortune" className="option-text">오늘의 운세</a>
+          <a href="couple" className="option-text">커플 타로</a>
+        </div>
+
 
         <div className="container-general">
           

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Header from './pages/Header';
-import Sidebar from './pages/Sidebar';
+// import Header from './pages/Header';
+// import Sidebar from './pages/Sidebar';
 import Login from './pages/Login';
 import Mypage from './pages/Mypage';
 
@@ -23,27 +23,27 @@ import CoupleDetail from './pages/CoupleDetail';
 import CoupleLoading from './pages/CoupleLoading';
 
 function App() {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태 관리
+  // const [isSidebarOpen, setIsSidebarOpen] = useState(false); // 사이드바 상태 관리
 
   // 사이드바 열기/닫기 함수
-  const toggleSidebar = () => {
-    setIsSidebarOpen(prevState => !prevState);
-    console.log("bar click");
-  };
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(prevState => !prevState);
+  //   console.log("bar click");
+  // };
 
   return (
     <Router>
       <div className="app">
         {/* Header */}
-        <Header toggleSidebar={toggleSidebar} />
+        {/* <Header toggleSidebar={toggleSidebar} /> */}
 
         <div className="mainBody">
-          {/* Sidebar */}
+          {/* Sidebar
           <Sidebar isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
           <div
             className={`overlay ${isSidebarOpen ? "open" : ""}`}
             onClick={toggleSidebar}
-          ></div>
+          ></div> */}
 
           <div className="main-content">
             <Routes>

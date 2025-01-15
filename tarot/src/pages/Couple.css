@@ -23,6 +23,8 @@
   .main-title-left {
     width: 150px;
     margin-top: 2vh;
+    cursor: pointer;
+    z-index: 10; 
 }
 
 .main-title-text-left {
@@ -30,7 +32,10 @@
     height: auto; /* 이미지의 높이를 자동으로 조정 */
     cursor: pointer;
     text-shadow: 2px 2px 20px rgba(255, 255, 255, 0.8); /* 하얀 그림자 추가 */
-}
+    margin-left: 3vw;
+    z-index: 10; 
+
+  }
 
   .header-options {
     display: flex;
@@ -42,6 +47,7 @@
     right: 3vw;
     gap: 5%;
   }
+  
   .option-text {
     width: 100px;
     font-size: 1.4rem;
@@ -313,7 +319,7 @@
   .reveal-btn-couple {
     padding: 10px 20px;
     font-size: 18px;
-    background-color: #b275c684;
+    background-color: #db728bc9;
     color: white;
     border: none;
     border-radius: 10px;
@@ -323,6 +329,8 @@
     position: absolute;
     top: 55%; /* 버튼 위치를 더 올림 */
     left: 50%;
+    animation: scaleblink 2s linear infinite;
+
 
   }
   .reveal-btn-couple:hover {
@@ -390,5 +398,16 @@
     }
     100% {
       box-shadow: 0 0 10px 5px rgb(255, 145, 145);
+    }
+  }
+
+  @keyframes scaleblink {
+    0%, 100% {
+      transform: translate(-50%, -50%) scale(1);
+      box-shadow: 0 0 5px 5px rgba(255, 255, 255, 0.5); /* 핑크색 그림자 */
+    }
+    50% {
+      transform: translate(-50%, -50%) scale(1.2);
+      box-shadow: 0 0 10px 5px rgb(255, 255, 255); /* 핑크색 그림자 */
     }
   }
