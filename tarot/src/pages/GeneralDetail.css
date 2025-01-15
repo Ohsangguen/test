@@ -18,48 +18,82 @@
     z-index: 1;
   }
 
-  /* Todayfortune.css */
+
+  .main-title-left-general {
+    width: 150px;
+    margin-top: 2vh;
+    cursor: pointer;
+    z-index: 10; /* 다른 요소보다 위에 표시되도록 설정 */
+  }
+  
+  .main-title-text-left-general {
+    position: absolute;
+    top: 3vh; /* 화면 상단에서 10px 아래에 배치 */
+    left: 3vw; /* 화면 왼쪽에서 10px 오른쪽에 배치 */
+    width: 20%;
+    cursor: pointer;
+    z-index: 10; /* 다른 요소보다 위에 표시되도록 설정 */
+  }
+  
+  .header-options {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* 우측 정렬 */
+    padding: 20px;
+    position: absolute;
+    top: 2vh;
+    right: 3vw;
+    gap: 5%;
+  }
+  .option-text {
+    width: 100px;
+    font-size: 1.4rem;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    text-decoration: none; /* 밑줄 제거 */
+    color: inherit; /* 부모 요소의 색상 상속 */
+    white-space: nowrap;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.5), 0 0 10px rgba(255, 255, 255, 0.5), 0 0 15px rgba(255, 255, 255, 0.5); /* 하얀 그림자 추가 */
+  }
   
   
   .cards-spread-generaldetail {
     display: flex;
     justify-content: center;
-    align-items: center;
+    /* align-items: center; */
     position: relative;
-    height: 50px;
+    margin-top: 7%;
   }
   
   .selected-card-generaldetail {
     position: relative;
-    width: 120px;
+    width: 100%;
     height: auto;
     z-index: 5;
     transform: translateY(-50%);
   }
   
-  .selected-card img {
-    width: 100%;
-    border-radius: 10px;
+  .selected-card-generaldetail img {
+    /* width: 100%; */
+    border-radius: 0px;
   }
   
-  .interpretation-box {
-    background-color: rgba(255, 255, 255, 0.498);
-    padding: 20px;
+  .interpretation-box-general {
+    background-color: rgba(140, 140, 140, 0.801);
     border-radius: 10px;
-    text-align: center;
-    margin-top: 3vh;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 60%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    width: 70%;
+    padding: 20px;
   }
-  .interpretation-box-in {
+  .interpretation-box-in-general {
     display: flex;
-    flex-direction: row; /* 이미지와 텍스트를 row로 배치 */
-    align-items: center; /* 세로 정렬 */
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-    margin-top: 3vh;  
-}
+    flex-direction: row;
+    align-items: center;
+  }
+  .interpretation-box-in img {
+    width: 10%;
+    max-height: 50;
+  }
   
 .container-generaldetail {
     display: flex;
@@ -76,12 +110,11 @@
 }
 
 .tarot-card-generaldetail {
-  width: 30%;
-  height: 80%;
+  width: 20%;
+  max-height: 300px;
   background-size: 350%;
   background-position: center;
   background-repeat: no-repeat;
-  margin: 5px;
   cursor: pointer;
   perspective: 1000px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -90,7 +123,7 @@
   border-radius: 3px;
   box-shadow: 0 0 1px rgba(243, 236, 54, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
     0 0 15px rgba(245, 223, 62, 0.187);
-    margin-right: 10%;
+    margin-right: 3%;
     
 }
   

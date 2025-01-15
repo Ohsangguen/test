@@ -91,7 +91,7 @@
     flex-direction: column;
     gap: 10px;
     border-right: 2px solid rgba(255, 255, 255, 0.2);
-    padding-right: 60px;
+    padding-right: 5%;
 }
 
 .sidebar-item {

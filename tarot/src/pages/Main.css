@@ -116,11 +116,13 @@
     .card-image-main {
         width: 100%; /* card-container-main의 width에 맞추기 위해 100%로 설정 */
         height: auto; /* 이미지의 높이를 자동으로 설정 */
-        z-index: 2;
+        z-index: 5;
         box-shadow: 0 0 5px rgba(237, 240, 77, 0.1), 0 0 10px rgba(237, 240, 77, 0.1), 0 0 15px rgba(237, 240, 77, 0.1);
         transition: box-shadow 0.3s ease-in-out;
         position: relative;
         pointer-events: auto; /* 클릭 가능하도록 변경 */
+        cursor: pointer;
+
     }
 
 
@@ -129,6 +131,8 @@
         box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
         transition: transform 0.3s ease-in-out;
         pointer-events: auto;
+        cursor: pointer;
+
     }
 
     .card-container-main:hover .card-text-main {

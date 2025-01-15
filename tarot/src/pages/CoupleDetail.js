@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import cardImage from '../components/card_image.png'; // 카드 이미지 import
 import './CoupleDetail.css';
 import axios from 'axios';
+import TAROT_logo from '../components/TAROT.png';
 
 const CoupleDetail = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { selectedCards } = location.state || { selectedCards: [] };
   const [aiResultsTotal, setAiResultsTotal] = useState([]); // 최근 8개의 AI 결과
   const [cardUrls, setCardUrls] = useState([]); // 최근 8개의 카드 URL
@@ -28,22 +30,32 @@ const CoupleDetail = () => {
     setSelectedCardIndex(index);
   };
 
+  const handleTitleClick = () => {
+    navigate('/');
+  };
+
   return (
     <div className="tarot-purple">
       <div className="black-overlay">
+        <div className="main-title-left-general" onClick={handleTitleClick}>
+          <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left-general" />
+        </div>
+
+        <div className="header-options">
+          <a href="tarotmeaning" className="option-text">타로란?</a>
+          <a href="todayfortune" className="option-text">오늘의 운세</a>
+          <a href="couple" className="option-text">커플 타로</a>
+        </div>
         <div className="container-coupledetail">
           {/* 왼쪽 해석 텍스트 박스 */}
           <div className="interpretation-box-coupleleft">
             {selectedCardIndex !== null && (
-              <div className="interpretation-box-in">
+              <div className="interpretation-box-in-couple">
                 <img
                   src={selectedCards[selectedCardIndex]?.card.image_url || 'https://via.placeholder.com/150'}
                   alt={`Selected Tarot card ${selectedCardIndex + 1}`}
                   className="tarot-card-coupledetail"
                 />
-                <p style={{ fontSize: '11px' }}>
-                  <strong>카드 이름:</strong> {selectedCards[selectedCardIndex]?.name || '이름 없음'}
-                </p>
                 <p style={{ fontSize: '11px' }}>
                   <strong>카드 의미:</strong> {aiResultsTotal[selectedCardIndex] || 'AI 결과 없음'}
                 </p>
@@ -78,15 +90,12 @@ const CoupleDetail = () => {
           {/* 오른쪽 해석 텍스트 박스 */}
           <div className="interpretation-box-coupleright">
             {selectedCardIndex !== null && (
-              <div className="interpretation-box-in">
+              <div className="interpretation-box-in-couple">
                 <img
                   src={selectedCards[selectedCardIndex]?.card.image_url || 'https://via.placeholder.com/150'}
                   alt={`Selected Tarot card ${selectedCardIndex + 1}`}
                   className="tarot-card-coupledetail"
                 />
-                <p style={{ fontSize: '11px' }}>
-                  <strong>카드 이름:</strong> {selectedCards[selectedCardIndex]?.name || '이름 없음'}
-                </p>
                 <p style={{ fontSize: '11px' }}>
                   <strong>카드 의미:</strong> {aiResultsTotal[selectedCardIndex] || 'AI 결과 없음'}
                 </p>

@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './GeneralDetail.css';
 import axios from 'axios';
+import TAROT_logo from '../components/TAROT.png';
+
 
 const GeneralDetail = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const selectedCards = location.state?.selectedCards || []; // 기본값 설정
   const [aiResultsTotal, setAiResultsTotal] = useState([]); // 최근 4개의 AI 결과
   const [cardUrls, setCardUrls] = useState([]); // 최근 4개의 카드 URL
@@ -66,9 +69,23 @@ const GeneralDetail = () => {
     setSelectedCardIndex(index); // 클릭한 카드의 인덱스 설정
   };
 
+  const handleTitleClick = () => {
+    navigate('/');
+  };
+
   return (
     <div className="tarot-purple">
       <div className="black-overlay">
+
+        <div className="main-title-left-general" onClick={handleTitleClick}>
+          <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left-general" />
+        </div>
+
+        <div className="header-options">
+          <a href="tarotmeaning" className="option-text">타로란?</a>
+          <a href="todayfortune" className="option-text">오늘의 운세</a>
+          <a href="couple" className="option-text">커플 타로</a>
+        </div>
         <div className="container-generaldetail">
           {/* 카드 배열 */}
           <div className="cards-spread-generaldetail">
@@ -91,18 +108,18 @@ const GeneralDetail = () => {
           </div>
 
           {/* 해석 텍스트 박스 */}
-          <div className="interpretation-box">
+          <div className="interpretation-box-general">
             {selectedCardIndex !== null && (
-              <div className="interpretation-box-in">
+              <div className="interpretation-box-in-general">
                 <img
                   src={cardUrls[selectedCardIndex]} // 변환된 이미지 URL 사용
                   alt={`Selected Tarot card ${selectedCardIndex + 1}`}
                   className="tarot-card-generaldetail"
                 />
-                <p style={{ fontSize: '8px' }}>
+                <p style={{ fontSize: '17px' }}>
                   <strong>카드 이름:</strong> {selectedCards[selectedCardIndex].name}
                 </p>
-                <p style={{ fontSize: '8px' }}>
+                <p style={{ fontSize: '17px' }}>
                   <strong>카드 의미:</strong> {aiResultsTotal[selectedCardIndex] || 'AI 결과 없음'}
                 </p>
               </div>

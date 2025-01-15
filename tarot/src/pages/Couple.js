@@ -203,7 +203,7 @@ const Couple = () => {
                         className="reveal-btn-couple"
                         onClick={handleReveal}
                     >
-                        카드 확인하기
+                        두근두근..♥
                     </button>
                 )}
           </div>

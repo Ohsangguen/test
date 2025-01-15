@@ -41,8 +41,8 @@
   
   .main-title-text-left-mypage {
     position: absolute;
-    top: 1vh; /* 화면 상단에서 10px 아래에 배치 */
-    left: 1vw; /* 화면 왼쪽에서 10px 오른쪽에 배치 */
+    top: 3vh; /* 화면 상단에서 10px 아래에 배치 */
+    left: 3vw; /* 화면 왼쪽에서 10px 오른쪽에 배치 */
     width: 20%;
     cursor: pointer;
     z-index: 10; /* 다른 요소보다 위에 표시되도록 설정 */
@@ -53,7 +53,7 @@
 
 .mypage-container {
     width: 18%; /* 너비 조정 */
-    height: 30%; /* 높이 조정 */
+    height: 34%; /* 높이 조정 */
     padding: 50px;
     text-align: center;
     box-shadow: 0 0 30px rgb(255, 255, 255);
@@ -127,7 +127,7 @@
     transform: translateX(-50%);
     background: white;
     border-radius: 10px;
-    padding: 10px;
+    padding: 20px;
     color: black;
     font-size: 14px;
     width: 150px;

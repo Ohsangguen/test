@@ -1,11 +1,13 @@
 import React, { useState, useEffect } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './TodayDetail.css';
 import axios from 'axios';
+import TAROT_logo from '../components/TAROT.png';
 import sampleCardImage from '../components/card_image.png'; // 임의의 이미지 import
 
 const TodayDetail = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { selectedCard } = location.state || {}; // Navigate로 전달된 상태 받기
 
   const [cardUrl, setCardUrl] = useState(''); // 카드 이미지 URL
@@ -45,9 +47,23 @@ const TodayDetail = () => {
     console.log('Card clicked, showing interpretation.');
   };
 
+  const handleTitleClick = () => {
+    navigate('/');
+  };
+
   return (
     <div className="tarot-purple-todaydetail">
       <div className="black-overlay">
+
+         <div className="main-title-left-general" onClick={handleTitleClick}>
+            <img src={TAROT_logo} alt="TAROT Logo" className="main-title-text-left-general" />
+          </div>
+  
+          <div className="header-options">
+            <a href="tarotmeaning" className="option-text">타로란?</a>
+            <a href="todayfortune" className="option-text">오늘의 운세</a>
+            <a href="couple" className="option-text">커플 타로</a>
+          </div>
         <div className="container-todaydetail">
           {isLoading ? (
             <p>Loading card details...</p>
@@ -63,8 +79,8 @@ const TodayDetail = () => {
               </div>
 
               {/* 해석 텍스트 박스 */}
-              <div className="interpretation-box">
-                <div className="interpretation-box-in">
+              <div className="interpretation-box-today">
+                <div className="interpretation-box-in-today">
                   <img
                     src={cardUrl}
                     alt="Selected Tarot card"

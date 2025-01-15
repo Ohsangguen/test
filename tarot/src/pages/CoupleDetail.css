@@ -31,7 +31,6 @@
   
   .selected-card-coupledetail {
     position: relative;
-    width: 120px;
     height: auto;
     z-index: 5;
     transform: translateY(-50%);
@@ -39,7 +38,6 @@
   
   .selected-card img {
     width: 100%;
-    border-radius: 10px;
   }
   
   .interpretation-box-coupleleft {
@@ -55,7 +53,7 @@
   }
 
   .interpretation-box-coupleright {
-    background-color: rgba(255, 255, 255, 0.498);
+    background-color: rgba(140, 140, 140, 0.801);
     border-radius: 10px;
     text-align: center;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -66,14 +64,13 @@
     transform: translateY(-50%);
   }
 
-  .interpretation-box-in {
+  .interpretation-box-in-couple {
     display: flex;
-    flex-direction: row; /* 이미지와 텍스트를 row로 배치 */
+    flex-direction: column; /* 이미지와 텍스트를 row로 배치 */
     align-items: center; /* 세로 정렬 */
     padding: 20px;
     border-radius: 10px;
     text-align: center;
-    margin-top: 3vh;  
 }
   
 .container-coupledetail {
@@ -157,12 +154,10 @@
 .heart-placeholder:nth-child(8) { bottom: 0%; left: 50%; transform: translateX(-50%); }
 
 .tarot-card-coupledetail {
-  width: 30%;
-  height: 80%;
+  width: 50%;
   background-size: 350%;
   background-position: center;
   background-repeat: no-repeat;
-  margin: 5px;
   cursor: pointer;
   perspective: 1000px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -171,7 +166,8 @@
   border-radius: 3px;
   box-shadow: 0 0 1px rgba(243, 236, 54, 0.1), 0 0 10px rgba(237, 240, 77, 0.1),
     0 0 15px rgba(245, 223, 62, 0.187);
-    margin-right: 10%; 
+    margin-right: 3%;
+    
 }
 
 .tarot-card {
