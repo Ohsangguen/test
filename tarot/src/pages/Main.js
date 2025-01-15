@@ -34,7 +34,7 @@ const Main = () => {
                         { link: "/todayfortune", text: "오늘의 운세", position: "rightupcard", image: cardimage},
                         { link: "/fourcard", text: "포카드 타로", position: "leftdowncard", image: cardimage},
                         { link: "/couple", text: "커플 궁합 타로", position: "rightdowncard", image: cardimage},
-                        { link: "/mypage", text: "마이페이지", position: "centercard", image: mypageimg}
+                        { link: "/mypage", text: "", position: "centercard", image: mypageimg}
                     ].map(({ link, text, position, image}) => (
                         <a href={link} className={`card-container-main ${position}-container`} key={position}>
                         <p className="card-text-main">{text}</p>
