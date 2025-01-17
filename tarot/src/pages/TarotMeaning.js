@@ -58,7 +58,13 @@ const TarotMeaning = () => {
               '타로키니(Tarocchini)' 혹은 '타로치(Tarocchi)'라는 이름으로 불렸습니다.
             </p>
             <p>
-              이후 프랑스의 점성술사 장 밥티스트 알리에트(Jean-Baptiste Alliette)는 타로를 체계적으로 연구하고 해석하는 방식을 개발했습니다.
+              이후 프랑스의 점성술사 장 밥티스트 알리에트(Jean-Baptiste Alliette)는 타로를 체계적으로 연구하고 해석하는 방식을 개발했습니다./n
+
+            </p>
+
+            <h2>Karost 제작자들</h2>
+            <p>
+              오상근, 김나혜, 윤성수, 서가은, 박지연, 황윤정
             </p>
           </div>
         </div>
