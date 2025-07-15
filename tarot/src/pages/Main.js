@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Main.css';
 import cardimage from '../components/card_image2.png';
 import TAROT_logo from '../components/TAROT.png';
@@ -14,21 +14,48 @@ const Main = () => {
     const navigate = useNavigate();
     const [isLoggedIn, setIsLoggedIn] = useState(false); // 로그인 상태를 관리하는 상태 변수
 
+    useEffect(() => {
+        const checkLoginStatus = async () => {
+          try {
+            // 로그인 상태를 확인하는 API 호출 (예: /api/check-login)
+            const response = await fetch('/api/check-login');
+            const data = await response.json();
+            setIsLoggedIn(data.isLoggedIn);
+          } catch (error) {
+            console.error('Error checking login status:', error);
+          }
+        };
+    
+        checkLoginStatus();
+      }, []);
+
+
     const handleTitleClick = () => {
-        navigate('/');
-    }; 
-      
+        if (isLoggedIn) {
+        navigate('/'); // 로그인 상태이면 메인 페이지로 이동
+        } else {
+        navigate('/login'); // 로그인 상태가 아니면 로그인 페이지로 이동
+        }
+    };
+
     const handleLoginClick = () => {
         navigate('/login'); // 로그인 페이지로 이동
     };
 
     const handleCenterCardClick = () => {
         if (isLoggedIn) {
-            navigate('/mypage'); // 로그인 상태이면 마이페이지로 이동
+          navigate('/mypage'); // 로그인 상태이면 마이페이지로 이동
         } else {
-            navigate('/login'); // 로그인 상태가 아니면 로그인 페이지로 이동
+          navigate('/login'); // 로그인 상태가 아니면 로그인 페이지로 이동
         }
-        // navigate('/login');
+    };
+    
+    const handleOtherButtonClick = (path) => {
+        if (isLoggedIn) {
+          navigate(path); // 로그인 상태이면 해당 경로로 이동
+        } else {
+          navigate('/login'); // 로그인 상태가 아니면 로그인 페이지로 이동
+        }
     };
 
     return (

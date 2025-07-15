@@ -11,6 +11,8 @@ const swaggerDocument = YAML.load('./swagger.yaml');
 const app = express();
 const PORT = process.env.PORT || 5000;
 
+// 환경 변수 로드 확인
+console.log('Environment Variables:', process.env);
 // Swagger UI 설정
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
@@ -40,6 +42,15 @@ app.get('/users', async (req, res) => {
   }
 });
 
+process.on('uncaughtException', (err) => {
+  console.error('Uncaught Exception:', err);
+});
+
+process.on('unhandledRejection', (reason, promise) => {
+  console.error('Unhandled Rejection at:', promise, 'reason:', reason);
+});
+
+
 // 서버 실행
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
@@ -50,3 +61,4 @@ app._router.stack.forEach((middleware) => {
     console.log(middleware.route.path); // 등록된 경로 출력
   }
 });
+console.log('Server setup complete');

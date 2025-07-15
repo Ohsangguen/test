@@ -220,30 +220,78 @@ router.post('/generate-multi-reading', async (req, res) => {
 router.get('/latest-ai-results', async (req, res) => {
   try {
     console.log('Fetching latest AI results...');
-    
+
+    // 가장 최근의 reading_id 가져오기
+    const latestReadingIdQuery = `
+      SELECT id
+      FROM tarot_readings
+      ORDER BY created_at DESC
+      LIMIT 1
+    `;
+    const latestReadingResult = await executeQuery(latestReadingIdQuery);
+
+    if (!latestReadingResult || latestReadingResult.length === 0) {
+      return res.status(404).json({ message: 'No readings found.' });
+    }
+
+    const latestReadingId = latestReadingResult[0].id;
+
+    // 해당 reading_id의 카드가 4개가 될 때까지 기다리기
+    const waitForCards = async (readingId) => {
+      const checkCardsQuery = `
+        SELECT COUNT(*) as cardCount
+        FROM tarot_reading_cards
+        WHERE reading_id = ?
+      `;
+      let cardCountResult;
+      let attempts = 0;
+      const maxAttempts = 10;// 최대 시도 횟수 (예: 20번)
+      const delay = 500; // 지연 시간 (밀리초, 예: 0.5초)
+
+      while (attempts < maxAttempts) {
+        cardCountResult = await executeQuery(checkCardsQuery, [readingId]);
+        console.log(`Attempt ${attempts + 1}: Found ${cardCountResult[0].cardCount} cards`);
+        if (cardCountResult[0].cardCount >= 4) {
+          return true;
+        }
+        attempts++;
+        await new Promise(resolve => setTimeout(resolve, delay));
+      }
+      return false;
+    };
+
+    const cardsReady = await waitForCards(latestReadingId);
+
+    if (!cardsReady) {
+      return res.status(500).json({ message: 'Failed to fetch 4 cards for the latest reading in time.' });
+    }
+
+    // 해당 reading_id의 AI 결과 가져오기
     const aiResultsQuery = `
       SELECT result_text
       FROM ai_results_total
+      WHERE reading_id = ?
       ORDER BY created_at DESC
       LIMIT 4
     `;
-    const aiResultsTotal = await executeQuery(aiResultsQuery);
+    const aiResultsTotal = await executeQuery(aiResultsQuery, [latestReadingId]);
 
     if (!aiResultsTotal || aiResultsTotal.length === 0) {
-      return res.status(404).json({ message: 'No AI results found.' });
+      return res.status(404).json({ message: 'No AI results found for the latest reading.' });
     }
 
+    // 해당 reading_id의 카드 URL 가져오기
     const cardUrlsQuery = `
       SELECT tc.image_url
       FROM tarot_reading_cards trc
       JOIN tarot_cards tc ON trc.card_id = tc.id
+      WHERE trc.reading_id = ?
       ORDER BY trc.id DESC
-      LIMIT 4
     `;
-    const cardUrls = await executeQuery(cardUrlsQuery);
+    const cardUrls = await executeQuery(cardUrlsQuery, [latestReadingId]);
 
     if (!cardUrls || cardUrls.length === 0) {
-      return res.status(404).json({ message: 'No card URLs found.' });
+      return res.status(404).json({ message: 'No card URLs found for the latest reading.' });
     }
 
     res.json({
