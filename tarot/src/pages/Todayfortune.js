@@ -116,21 +116,6 @@ const Todayfortune = () => {
 
           <div className="cards-container-today"></div>
 
-            <div className="leftpattern-img">
-              <img
-                src="https://ifh.cc/g/n5Q1nw.png"
-                alt="Left Pattern"
-                className="pattern-img"
-              />
-            </div>
-            <div className="rightpattern-img">
-              <img
-                src="https://ifh.cc/g/P23tkZ.png"
-                alt="Right Pattern"
-                className="pattern-img-r"
-              />
-            </div>
-
           <button onClick={shuffleCards} className="selection-btn shuffle-btn-today">
             셔플
           </button>
