@@ -95,7 +95,7 @@ const Couple = () => {
   const fetchReading = async () => {
     try {
       console.log('Sending request to /api/generate-couple-reading');
-      const response = await axios.post('http://localhost:5000/api/generate-couple-reading', {
+      const response = await axios.post('http://${process.env.REACT_APP_API_BASE_URL}/api/generate-couple-reading', {
         userId: 1,
         themeIds: 4
       });

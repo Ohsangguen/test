@@ -4,8 +4,9 @@ import cardimage from '../components/card_image2.png';
 import TAROT_logo from '../components/TAROT.png';
 import { useNavigate } from 'react-router-dom';
 import mypageimg from '../components/캐릭터 포즈 모음/타로넙죽-6.png'
-import leftsymbol from '../components/leftsymbol.png';
-import rightsymbol from '../components/rightsymbol.png';
+import centersymbol from '../components/centersymbol.png';
+import leftupsymbol from '../components/leftupsymbol.png';
+import rightupsymbol from '../components/rightupsymbol.png';
 
 
 
@@ -96,21 +97,14 @@ const Main = () => {
 
                     {/* Center Image */}
                     <div className="center-main">
-                        <img src="https://ifh.cc/g/xXF5yV.png" alt="Moon and Star Illustration" className="midle-image" />
+                        <img src={centersymbol} alt="Moon and Star Illustration" className="midle-image" />
                     </div>
 
-                    {/* <div className="leftsymbol-container">
-                        <img src={leftsymbol} alt="Left Symbol" className="leftsymbol-img" />
+                    <div className="leftsymbol-container">
+                        <img src={leftupsymbol} alt="Left Symbol" className="leftsymbol-img" />
                     </div>
                     <div className="rightsymbol-container">
-                        <img src={rightsymbol} alt="Right Symbol" className="rightsymbol-img" />
-                    </div> */}
-
-                    <div className="leftline-img">
-                        <img src="https://ifh.cc/g/p5tpLK.png" alt="Left Line" className="line-img" />
-                    </div>
-                    <div className="rightline-img">
-                        <img src="https://ifh.cc/g/2aTXPo.png" alt="Right Line" className="line-img" />
+                        <img src={rightupsymbol} alt="Right Symbol" className="rightsymbol-img" />
                     </div> 
 
                     {/*                     

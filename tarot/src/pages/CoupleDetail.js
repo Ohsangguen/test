@@ -17,7 +17,7 @@ const CoupleDetail = () => {
   useEffect(() => {
     const fetchAiResultsAndCardUrls = async () => {
       try {
-        const response = await axios.get('http://localhost:5000/api/latest-couple-ai-results');
+        const response = await axios.get('http://${process.env.REACT_APP_API_BASE_URL}/api/latest-couple-ai-results');
         console.log('Fetched AI results and card URLs:', response.data);
         setAiResultsTotal(response.data.aiResults.reverse() || []); // 결과를 역순으로 저장
       } catch (error) {

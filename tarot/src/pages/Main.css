@@ -172,17 +172,17 @@
     .couple-tarot { bottom: 10%; right: 25%; }
 
 
-    .leftsymbol-container {
+    .leftupsymbol-container {
         position: absolute;
         width: 10%;
-        height: 80%;
+        height: 10%;
         top: 10%;
         left: 0%;
         z-index: 2;
     }
-    .leftsymbol-img { height: 100%; }
+    .leftupsymbol-img { height: 100%; }
 
-    .rightsymbol-container {
+    .rightupsymbol-container {
         position: absolute;
         width: 10%;
         height: 80%;
@@ -190,7 +190,7 @@
         left: 100%;
         z-index: 2;
     }
-    .rightsymbol-img { height: 100%; }
+    .rightupsymbol-img { height: 100%; }
 
     /* .leftsymbol-img, .rightsymbol-img {
         position: absolute;

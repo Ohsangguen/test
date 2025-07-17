@@ -19,7 +19,7 @@ const TodayDetail = () => {
     const fetchCardDetails = async () => {
       try {
         console.log('Fetching card details from API...');
-        const response = await axios.get(`http://localhost:5000/api/latest-today-ai-results`);
+        const response = await axios.get(`http://${process.env.REACT_APP_API_BASE_URL}/api/latest-today-ai-results`);
         console.log('API Response:', response.data);
 
         // 서버에서 반환된 데이터 확인 및 상태 업데이트

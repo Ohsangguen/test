@@ -31,7 +31,7 @@ const Todayfortune = () => {
   const fetchReading = async () => {
     try {
       console.log('Sending request to /api/generate-reading');
-      const response = await axios.post('http://localhost:5000/api/generate-reading', {
+      const response = await axios.post('http://${process.env.REACT_APP_API_BASE_URL}/api/generate-reading', {
         userId: 1,
         themeIds: 0,
       });

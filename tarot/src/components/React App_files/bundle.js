@@ -1620,7 +1620,7 @@ const General = () => {
   const fetchReading = async () => {
     try {
       console.log('Sending request to /api/generate-multi-reading');
-      const response = await axios__WEBPACK_IMPORTED_MODULE_7__["default"].post('http://localhost:5000/api/generate-multi-reading', {
+      const response = await axios__WEBPACK_IMPORTED_MODULE_7__["default"].post('http://${process.env.REACT_APP_API_BASE_URL}/api/generate-multi-reading', {
         userId: 1,
         themeIds: 1
       });
@@ -1950,7 +1950,7 @@ const GeneralDetail = () => {
   (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(() => {
     const fetchAiResultsAndCardUrls = async () => {
       try {
-        const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get('http://localhost:5000/api/latest-ai-results');
+        const response = await axios__WEBPACK_IMPORTED_MODULE_4__["default"].get('http://${process.env.REACT_APP_API_BASE_URL}/api/latest-ai-results');
         console.log('Fetched AI results and card URLs:', response.data);
         setAiResultsTotal(response.data.aiResults.reverse() || []); // 결과를 역순으로 저장
         setCardUrls(response.data.cardUrls.reverse() || []); // URL을 역순으로 저장

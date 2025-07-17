@@ -64,7 +64,7 @@ const GeneralDetail = () => {
         let response;
 
         while (attempts < maxAttempts) {
-          response = await axios.get('http://localhost:5000/api/latest-ai-results');
+          response = await axios.get('http://${process.env.REACT_APP_API_BASE_URL}/api/latest-ai-results');
           console.log('Fetched AI results and card URLs:', response.data);
 
           if (response.data.aiResults.length >= 4 && response.data.cardUrls.length >= 4) {
